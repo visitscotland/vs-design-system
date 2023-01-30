@@ -18,11 +18,15 @@
         <VsContainer v-if="!jsDisabled && displayError">
             <VsRow>
                 <VsCol class="text-center py-4">
-                    <!--
-                        @slot Slot for data unavailable message
-                        Expects text
-                    -->
-                    <slot name="data-unavailable" />
+                    <VsWarning
+                        theme="light"
+                    >
+                        <!--
+                            @slot Slot for data unavailable message
+                            Expects text
+                        -->
+                        <slot name="data-unavailable" />
+                    </VsWarning>
                 </VsCol>
             </VsRow>
         </VsContainer>

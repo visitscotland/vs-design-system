@@ -33,8 +33,46 @@
                 -->
                 <slot name="centre-name" />
             </VsHeading>
+            <div
+                class="text-center py-4"
+                v-if="jsDisabled || isLoading || displayError"
+            >
+                <template v-if="!jsDisabled && isLoading">
+                    <VsLoadingSpinner />
+                    <!--
+                        @slot Slot for data loading message
+                        Expects text
+                    -->
+                    <slot name="data-loading" />
+                </template>
+                <template v-if="!jsDisabled && displayError">
+                    <VsWarning
+                        theme="light"
+                        size="small"
+                    >
+                        <!--
+                            @slot Slot for data unavailable message
+                            Expects text
+                        -->
+                        <slot name="data-unavailable" />
+                    </VsWarning>
+                </template>
+                <template v-if="jsDisabled">
+                    <VsWarning
+                        theme="light"
+                        size="small"
+                    >
+                        <!--
+                            @slot Slot for JS required message
+                            Expects text
+                        -->
+                        <slot name="js-required" />
+                    </VsWarning>
+                </template>
+            </div>
             <VsTable
                 :table-caption="runsLiftsStatusLabel"
+                v-if="!jsDisabled && !isLoading && !displayError"
             >
                 <VsTableHead>
                     <VsTableHeaderCell>
@@ -189,6 +227,8 @@ import VsTableBody from '@components/patterns/table/components/TableBody';
 import VsTableRow from '@components/patterns/table/components/TableRow';
 import VsTableDataCell from '@components/patterns/table/components/TableDataCell';
 import VsTableFooter from '@components/patterns/table/components/TableFooter';
+import VsWarning from '@components/patterns/warning/Warning';
+import VsLoadingSpinner from '@components/elements/loading-spinner/LoadingSpinner';
 
 const axios = require('axios');
 
@@ -212,6 +252,8 @@ export default {
         VsTableRow,
         VsTableDataCell,
         VsTableFooter,
+        VsWarning,
+        VsLoadingSpinner,
     },
     props: {
         /**
