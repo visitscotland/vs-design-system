@@ -370,12 +370,10 @@ export default {
             axios.get(this.centreInfoUrl)
                 .then((response) => {
                     const data = this.cleanData(response.data);
-                    console.log(data);
                     this.processLifts(data.lifts);
                     if (data.runs) {
                         this.processRuns(data.runs);
                     }
-                    console.log(data);
                     this.processLastUpdate(data.lastUpdate);
                     this.isLoading = false;
                     clearTimeout(errorTimeout);
