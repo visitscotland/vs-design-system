@@ -448,6 +448,10 @@ export default {
          * Emits the current stage
          */
         setStage(stageNum) {
+            if (stageNum === 0) {
+                this.placesLoaded = 1;
+            }
+
             this.$emit('set-stage', stageNum);
         },
         /**
