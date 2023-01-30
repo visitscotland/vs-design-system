@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.5](https://github.com/visitscotland/design-system/compare/v0.7.4...v0.7.5) (2023-01-30)
+
+
+### Features
+
+* 🎸 improve messaging positioning and occurences ([d636253](https://github.com/visitscotland/design-system/commit/d636253a545042ec1ae60a7f1cbdf89eb848c04e))
+* 🎸 messaging for no results ([93cb8f0](https://github.com/visitscotland/design-system/commit/93cb8f0ee48e377d4a8f0943842c44671a78563b))
+
+
+### Bug Fixes
+
+* 🐛 fix display issues on  focussing through list items ([d650bdb](https://github.com/visitscotland/design-system/commit/d650bdb950fa35b156202ba3cfc59ce4abb3f66f))
+* 🐛 fix load more button disappearing bug ([30fdb62](https://github.com/visitscotland/design-system/commit/30fdb62a100f1bea150e6dc7f8a36025316997c5))
+
+
+### Styling
+
+* 💄 Fixes black line on page intro image ([6a776bc](https://github.com/visitscotland/design-system/commit/6a776bc0f3caf163498a2f89da966b12bef4c118))
+
 ### [0.7.4](https://github.com/visitscotland/design-system/compare/v0.7.3...v0.7.4) (2023-01-27)
 
 
