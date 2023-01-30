@@ -91,6 +91,14 @@
                             <template slot="infoMessage">
                                 {{ infoMessage }}
                             </template>
+                            <template slot="zoomTooClose">
+                                <!-- @slot Message to show when map zoom is too close -->
+                                <slot name="zoomTooClose" />
+                            </template>
+                            <template slot="zoomTooFar">
+                                <!-- @slot Message to show when map zoom is too far -->
+                                <slot name="zoomTooFar" />
+                            </template>
                             <template slot="noJs">
                                 <!-- @slot Message to show when JS is disabled  -->
                                 <slot name="noJs" />
