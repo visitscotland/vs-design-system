@@ -6,6 +6,7 @@
             <VsCol>
                 <div
                     class="vs-main-map-wrapper"
+                    :ref="mapId"
                 >
                     <div
                         class="vs-main-map-wrapper__side-panel"
@@ -24,6 +25,7 @@
                             :panel-status="panelStatus"
                             :panel-message="currentStage === 0 ? panelMessage : null"
                             :total-pins="totalEndpointPins"
+                            :current-list-item-focus="focussedListItem"
                             @set-category="setCategory"
                             @set-subcategory="setSubCategory"
                             @subcategories-filtered="filterSubCategories"
@@ -161,6 +163,7 @@ export default {
             subCatList: this.subCatList,
             filtersAppliedText: this.filtersAppliedText,
             clearFiltersText: this.clearFiltersText,
+            focussedListItem: this.focussedListItem,
         };
     },
     props: {
@@ -317,6 +320,7 @@ export default {
             showPanelMessage: null,
             currentPanelEndpointFilters: '',
             totalEndpointPins: 0,
+            focussedListItem: 0,
         };
     },
     computed: {
@@ -435,7 +439,7 @@ export default {
             this.currentPanelEndpointFilters = filterString;
 
             this.getSubcatMarkerData(filterString);
-            this.getSubcatPanelData(filterString, 1);
+            this.getSubcatPanelData(filterString, 0);
         },
         /**
          * Makes a call to the API to get marker data for
@@ -457,13 +461,19 @@ export default {
             } else {
                 axios.get(endpoint).then((response) => {
                     this.totalEndpointPins = response.data.features.length;
-                    response.data.features.forEach((feature) => {
-                        const modifiedFeature = feature;
-                        modifiedFeature.properties.apiData = true;
-                        this.activePins.push(modifiedFeature);
-                    });
+
+                    if (this.totalEndpointPins === 0) {
+                        this.mapStatus = 'no-results';
+                    } else {
+                        this.totalEndpointPins = response.data.features.length;
+                        response.data.features.forEach((feature) => {
+                            const modifiedFeature = feature;
+                            modifiedFeature.properties.apiData = true;
+                            this.activePins.push(modifiedFeature);
+                        });
+                        this.mapStatus = '';
+                    }
                 });
-                this.mapStatus = '';
             }
         },
         /**
@@ -478,17 +488,22 @@ export default {
                 endpoint += endpointFilters;
             }
 
-            if (page !== 1) {
+            if (page !== 0) {
                 endpoint += `${endpointFilters}&page=${page}`;
             }
 
             axios.get(endpoint).then((response) => {
-                if (page <= 1) {
-                    this.subCatList = response.data.data.products;
-                } else {
-                    this.subCatList = this.subCatList.concat(response.data.data.products);
+                if (response.data.data.products.length !== 0) {
+                    if (page === 0) {
+                        this.subCatList = response.data.data.products;
+                        this.focussedListItem = 0;
+                    } else {
+                        this.focussedListItem = page * 24;
+                        this.subCatList = this.subCatList.concat(response.data.data.products);
+                    }
+
+                    this.setStage(1);
                 }
-                this.setStage(1);
                 this.panelStatus = null;
             });
         },
