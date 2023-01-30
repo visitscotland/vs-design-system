@@ -4,6 +4,28 @@
         data-test="vs-map"
     >
         <div
+            v-if="showMapMessage"
+            class="vs-map__message"
+            data-test="vs-map__message"
+        >
+            <div class="vs-map__message-box">
+                <VsLoading
+                    v-if="isLoading"
+                    class="vs-map__loading"
+                />
+                <p class="vs-map__message-text">
+                    <template v-if="isLoading">
+                        <!-- @slot Message to show when map is loading  -->
+                        <slot name="mapLoadingText" />
+                    </template>
+                    <template v-else-if="showInfoMessage">
+                        <!-- @slot Generic message slot -->
+                        <slot name="infoMessage" />
+                    </template>
+                </p>
+            </div>
+        </div>
+        <div
             :id="mapId"
             class="vs-map__map"
             ref="mapbox"
@@ -18,6 +40,7 @@
 <script>
 import Vue from 'vue';
 import VsWarning from '@components/patterns/warning/Warning';
+import VsLoading from '@components/elements/loading-spinner/LoadingSpinner';
 import osBranding from '@/utils/os-branding';
 import VsMapMarker from './components/MapMarker';
 import initFontAwesome from '../../../utils/init-font-awesome';
@@ -38,6 +61,7 @@ export default {
     release: '0.0.1',
     components: {
         VsWarning,
+        VsLoading,
     },
     props: {
         /**
@@ -104,6 +128,20 @@ export default {
             type: String,
             default: null,
         },
+        /**
+         * Data to set map bounds
+         */
+        boundsData: {
+            type: Object,
+            default: () => {},
+        },
+        /** If the map should show an info message defined
+         * a slot
+         */
+        showInfoMessage: {
+            type: Boolean,
+            default: null,
+        },
     },
     data() {
         return {
@@ -132,6 +170,8 @@ export default {
             popup: null,
             hoveredStateId: null,
             activeStateId: null,
+            showMapMessage: true,
+            isLoading: true,
         };
     },
     computed: {
@@ -142,6 +182,13 @@ export default {
 
             return '';
         },
+        activeMarkerPostion() {
+            if (this.mapbox.map) {
+                return mapStore.getters.getActiveMarkerPosition;
+            }
+
+            return null;
+        },
     },
     watch: {
         isVisible(newVal) {
@@ -150,7 +197,8 @@ export default {
             }
         },
         places() {
-            this.geojsonData.features.splice(0, this.geojsonData.features.length);
+            this.geojsonData.features = [];
+            // this.geojsonData.features.splice(0, this.geojsonData.features.length);
             this.addMapFeatures();
             this.addMapMarkers();
         },
@@ -178,6 +226,18 @@ export default {
                 this.addActivePolygon(newVal);
             }
         },
+        activeMarkerPostion(coords) {
+            if (!this.checkPointIsVisible(coords)) {
+                this.centreMapOnPoint(coords);
+            }
+        },
+        showInfoMessage(newVal) {
+            if (newVal) {
+                this.showMapMessage = true;
+            } else {
+                this.showMapMessage = false;
+            }
+        },
     },
     mounted() {
         initFontAwesome();
@@ -199,14 +259,13 @@ export default {
          * Adds a map to the page
          */
         addMap() {
+            const boundingBox = this.calculateBoundingBox();
+
             this.mapbox.config.container = this.$refs.mapbox;
             this.mapbox.map = new mapboxgl.Map({
                 container: this.$refs.mapbox,
                 style: 'https://api.visitscotland.com/maps/vector/v1/vts/resources/styles',
-                bounds: [
-                    [-7.555827, 55.308836], // south-west point.
-                    [-0.778285, 60.830894], // north-east point.
-                ],
+                bounds: boundingBox,
             });
             this.mapbox.map.scrollZoom.disable();
             this.mapbox.map.on('rotate', () => {
@@ -217,6 +276,9 @@ export default {
 
             this.mapbox.map.on('load', () => {
                 this.addMapPolygons();
+                this.showMapMessage = false;
+                this.isLoading = false;
+                this.$emit('map-ready', true);
             });
         },
         /**
@@ -259,7 +321,7 @@ export default {
                         properties: {
                             title: place.properties.title,
                             imageSrc: place.image,
-                            type: place.properties.category.id,
+                            type: typeof place.properties.category !== 'undefined' ? place.properties.category.id : '',
                             id: place.properties.id,
                         },
                         id: place.properties.id,
@@ -273,32 +335,45 @@ export default {
          * Adds map markers
          */
         addMapMarkers() {
-            if (this.markers !== null) {
-                for (let i = this.markers.length - 1; i >= 0; i--) {
-                    this.markers[i].remove();
-                }
+            // timeout needed to give the store a chance to load
+            // so that watchers update
+            let timeout = 0;
+
+            if (this.initialLoad) {
+                timeout = 1000;
             }
-
-            this.geojsonData.features.forEach((feature) => {
-                if (feature.geometry.type === 'Point') {
-                    const markerComponent = new Vue({
-                        ...VsMapMarker,
-                        parent: this,
-                        propsData: {
-                            feature,
-                            mapId: this.mapId,
-                        },
-                    });
-
-                    markerComponent.$mount();
-
-                    const mapboxMarker = new mapboxgl.Marker(markerComponent.$el)
-                        .setLngLat(feature.geometry.coordinates)
-                        .addTo(this.mapbox.map);
-
-                    this.markers.push(mapboxMarker);
+            setTimeout(() => {
+                if (this.markers !== null) {
+                    for (let i = this.markers.length - 1; i >= 0; i--) {
+                        this.markers[i].remove();
+                    }
                 }
-            });
+
+                for (let child = this.$children.length - 1; child >= 0; child--) {
+                    this.$children[child].$destroy();
+                }
+
+                this.geojsonData.features.forEach((feature) => {
+                    if (feature.geometry.type === 'Point') {
+                        const markerComponent = new Vue({
+                            ...VsMapMarker,
+                            parent: this,
+                            propsData: {
+                                feature,
+                                mapId: this.mapId,
+                            },
+                        });
+
+                        markerComponent.$mount();
+
+                        const mapboxMarker = new mapboxgl.Marker(markerComponent.$el)
+                            .setLngLat(feature.geometry.coordinates)
+                            .addTo(this.mapbox.map);
+
+                        this.markers.push(mapboxMarker);
+                    }
+                });
+            }, timeout);
         },
         /**
          * Hide all polygons
@@ -615,6 +690,65 @@ export default {
         onResize() {
             this.isTablet = window.innerWidth >= 768;
         },
+        /**
+         * Creates a map bounding object from polygon data
+         */
+        getBoundsFromPolygon() {
+            const coordinates = this.boundsData.coordinates[0];
+            /* eslint-disable arrow-body-style */
+            return coordinates.reduce((bounds, coord) => {
+                return bounds.extend(coord);
+            }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
+            /* eslint-enable arrow-body-style */
+        },
+        /**
+         * Check a marker is visible on the map
+         */
+        checkPointIsVisible() {
+            const isInBounds = this.mapbox.map.getBounds()
+                .contains(this.activeMarkerPostion);
+
+            return isInBounds;
+        },
+        /**
+         * Reposition map to centre on point
+         */
+        centreMapOnPoint(coords) {
+            this.mapbox.map.flyTo({
+                center: coords,
+            });
+        },
+        /**
+         * Calculate bounding box depending on data provided
+        */
+        calculateBoundingBox() {
+            let boundingBox;
+
+            if (typeof this.boundsData === 'undefined'
+                || this.boundsData.type === 'undefined') {
+                boundingBox = [
+                    [-7.555827, 55.308836], // south-west point.
+                    [-0.778285, 60.830894], // north-east point.
+                ];
+            } else if (this.boundsData.type === 'bounds') {
+                const southWest = new mapboxgl
+                    .LngLat(this.boundsData.coordinates[1][0],
+                            this.boundsData.coordinates[1][1]);
+                const northEast = new mapboxgl
+                    .LngLat(this.boundsData.coordinates[0][0],
+                            this.boundsData.coordinates[0][1]);
+                boundingBox = new mapboxgl.LngLatBounds(southWest, northEast);
+            } else if (this.boundsData.type === 'Polygon') {
+                boundingBox = this.getBoundsFromPolygon();
+            } else {
+                boundingBox = [
+                    [-7.555827, 55.308836], // south-west point.
+                    [-0.778285, 60.830894], // north-east point.
+                ];
+            }
+
+            return boundingBox;
+        },
     },
 };
 </script>
@@ -635,6 +769,40 @@ export default {
     &__map {
         height: 100%;
         position: relative;
+    }
+
+    &__message {
+        position: absolute;
+        z-index: 20;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    &__message-box {
+        border: 1px solid $color-pink;
+        border-radius: $border-radius-default;
+        height: 142px;
+        width: 200px;
+        background: $color-white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: $spacer-6;
+    }
+
+    &__loading {
+        margin-bottom: $spacer-4;
+    }
+
+    &__message-text {
+        font-size: $font-size-3;
+        margin-bottom: 0;
+        text-align: center;
     }
 
     &__no-js {

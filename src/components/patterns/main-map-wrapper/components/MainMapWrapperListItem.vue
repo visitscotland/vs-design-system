@@ -3,21 +3,25 @@
         class="vs-main-map-wrapper-list-item"
         :class="isActive ? 'vs-main-map-wrapper-list-item--hovered' : ''"
         data-test="vs-main-map-wrapper-list-item"
-        @click="showItemDetail(itemData.id)"
-        @keyup.enter="showItemDetail(itemData.id)"
-        @mouseover="itemHover(itemData.id)"
+        @click="showItemDetail(formattedData.id)"
+        @keyup.enter="showItemDetail(formattedData.id)"
+        @mouseover="itemHover(formattedData.id)"
         @mouseleave="itemHover('')"
-        @focusin="itemHover(itemData.id)"
+        @focusin="itemHover(formattedData.id)"
         @focusout="itemHover('')"
+        ref="btn"
     >
-        <VsImg
-            :src="itemData.image"
-            class="vs-main-map-wrapper-list-item__img"
-        />
+        <div class="vs-main-map-wrapper-list-item__img-container">
+            <VsImg
+                v-if="typeof formattedData.image !== 'undefined'"
+                :src="formattedData.image"
+                class="vs-main-map-wrapper-list-item__img"
+            />
+        </div>
         <span
             class="vs-main-map-wrapper-list-item__text"
         >
-            {{ itemData.title }}
+            {{ formattedData.title }}
         </span>
 
         <VsIcon
@@ -58,10 +62,28 @@ export default {
             type: Object,
             required: true,
         },
+        /** If the data source is from an API endpoint */
+        fromEndpoint: {
+            type: Boolean,
+            default: false,
+        },
+        /**
+        * If the component should be focussed on mount
+         */
+        focussed: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    data() {
+        return {
+            formattedData: {
+            },
+        };
     },
     computed: {
         isActive() {
-            if (this.highlightedPlace === this.itemData.id) {
+            if (this.highlightedPlace === this.formattedData.id) {
                 return true;
             }
 
@@ -70,6 +92,30 @@ export default {
         highlightedPlace() {
             return mapStore.getters.getHoveredStop(this.mapId);
         },
+        selectedSubCategory() {
+            return mapStore.getters.getSelectedSubcat;
+        },
+    },
+    mounted() {
+        if (!this.fromEndpoint) {
+            this.formattedData = this.itemData;
+        } else {
+            this.formattedData = {
+                ...this.formattedData,
+                id: this.itemData.id,
+                title: this.itemData.name,
+            };
+
+            if (typeof this.itemData.images !== 'undefined') {
+                this.formattedData = {
+                    ...this.formattedData,
+                    image: this.itemData.images[0].mediaUrl,
+                };
+            }
+        }
+        if (this.focussed) {
+            this.$refs.btn.focus();
+        }
     },
     methods: {
         /**
@@ -81,6 +127,7 @@ export default {
                 mapId: this.mapId,
                 placeId: id,
             });
+
             this.$parent.$emit('show-item-detail', id);
             this.$parent.$emit('set-stage', 2);
         },
@@ -103,6 +150,7 @@ export default {
         display: flex;
         position: relative;
         width: 100%;
+        height: 100px;
         align-items: center;
         outline: none;
         background: none;
@@ -132,12 +180,23 @@ export default {
             outline: none;
         }
 
-        &__img {
-            width: 120px;
-            margin-right: $spacer-2;
+        &__img-container {
+            flex-basis: 100px;
+            flex-grow: 0;
+            flex-shrink: 0;
+            height: 90px;
+            position: relative;
+            overflow: hidden;
         }
 
-        &__icon {
+        &__img {
+           width: 120px;
+           height: 90px;
+           object-fit: cover;
+        }
+
+        &__icon,
+        &__text {
             margin-left: $spacer-2;
         }
 

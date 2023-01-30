@@ -67,7 +67,9 @@
                                     {{ statusLabel }}
                                 </span>
                             </VsTableHeaderCell>
-                            <VsTableHeaderCell>
+                            <VsTableHeaderCell
+                                v-if="runs.length"
+                            >
                                 <span data-test="vs-ski__runs-label">
                                     {{ runsLabel }}
                                 </span>
@@ -90,7 +92,9 @@
                                         {{ summaryOpenLabel }}
                                     </span>
                                 </VsTableDataCell>
-                                <VsTableDataCell>
+                                <VsTableDataCell
+                                    v-if="runs.length"
+                                >
                                     {{ statusSummary.runs.open }}/{{ runs.length }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>
@@ -103,7 +107,7 @@
                             >
                                 <VsTableDataCell>
                                     <VsIcon
-                                        name="tick"
+                                        name="ski-boot"
                                         size="xs"
                                         class="mr-2"
                                     />
@@ -111,7 +115,9 @@
                                         {{ summaryLimitedPatrolLabel }}
                                     </span>
                                 </VsTableDataCell>
-                                <VsTableDataCell>
+                                <VsTableDataCell
+                                    v-if="runs.length"
+                                >
                                     {{ statusSummary.runs.limitedPatrol }}/{{ runs.length }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>
@@ -129,7 +135,9 @@
                                         {{ summaryOpeningLabel }}
                                     </span>
                                 </VsTableDataCell>
-                                <VsTableDataCell>
+                                <VsTableDataCell
+                                    v-if="runs.length"
+                                >
                                     {{ statusSummary.runs.opening }}/{{ runs.length }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>
@@ -147,7 +155,9 @@
                                         {{ summaryClosedLabel }}
                                     </span>
                                 </VsTableDataCell>
-                                <VsTableDataCell>
+                                <VsTableDataCell
+                                    v-if="runs.length"
+                                >
                                     {{ statusSummary.runs.closed }}/{{ runs.length }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>
@@ -159,7 +169,7 @@
                             >
                                 <VsTableDataCell>
                                     <VsIcon
-                                        name="status-closed"
+                                        name="hourglass"
                                         size="xs"
                                         class="mr-2"
                                     />
@@ -167,7 +177,9 @@
                                         {{ summaryOnHoldLabel }}
                                     </span>
                                 </VsTableDataCell>
-                                <VsTableDataCell>
+                                <VsTableDataCell
+                                    v-if="runs.length"
+                                >
                                     {{ statusSummary.runs.onHold }}/{{ runs.length }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>
@@ -199,7 +211,7 @@
 
                 <VsCol
                     cols="12"
-                    md="3"
+                    md="5"
                     offset-md="1"
                     class="vs-ski-scotland-status__centre-info"
                 >
@@ -329,14 +341,14 @@
                                 </VsTableDataCell>
                                 <VsTableDataCell v-if="lift.status === '3' || lift.status === 3">
                                     <VsIcon
-                                        name="tick"
+                                        name="ski-boot"
                                         size="xs"
                                         class="mr-2"
                                     /> {{ statusLimitedPatrolLabel }}
                                 </VsTableDataCell>
                                 <VsTableDataCell v-if="lift.status === '4' || lift.status === 4">
                                     <VsIcon
-                                        name="status-closed"
+                                        name="hourglass"
                                         size="xs"
                                         class="mr-2"
                                     /> {{ statusOnHoldLabel }}
@@ -348,6 +360,7 @@
                             <VsTableRow>
                                 <VsTableDataCell
                                     colspan="2"
+                                    role="cell"
                                 >
                                     <p>{{ lastUpdatedLabel }}: {{ lastUpdate }}</p>
                                 </VsTableDataCell>
@@ -357,7 +370,7 @@
                 </VsCol>
             </VsRow>
             <VsRow
-                v-if="!jsDisabled && !isLoading && !displayError"
+                v-if="!jsDisabled && !isLoading && !displayError && runs.length"
             >
                 <VsCol
                     cols="12"
@@ -431,16 +444,16 @@
                                                 v-if="run.status === '3' || run.status === 3"
                                             >
                                                 <VsIcon
-                                                    name="tick"
+                                                    name="ski-boot"
                                                     size="xs"
                                                     class="mr-2"
                                                 /> {{ statusLimitedPatrolLabel }}
                                             </VsTableDataCell>
                                             <VsTableDataCell
-                                                v-if="run.status === '2' || run.status === 2"
+                                                v-if="run.status === '4' || run.status === 4"
                                             >
                                                 <VsIcon
-                                                    name="status-closed"
+                                                    name="hourglass"
                                                     size="xs"
                                                     class="mr-2"
                                                 /> {{ statusOnHoldLabel }}
@@ -450,7 +463,10 @@
                                     </VsTableBody>
                                     <VsTableFooter>
                                         <VsTableRow>
-                                            <VsTableDataCell>
+                                            <VsTableDataCell
+                                                colspan="2"
+                                                role="cell"
+                                            >
                                                 <p>{{ lastUpdatedLabel }}: {{ lastUpdate }}</p>
                                             </VsTableDataCell>
                                         </VsTableRow>
@@ -901,7 +917,9 @@ export default {
                 .then((response) => {
                     const data = this.cleanData(response.data);
                     this.processLifts(data.lifts);
-                    this.processRuns(data.runs);
+                    if (data.runs) {
+                        this.processRuns(data.runs);
+                    }
                     this.processLastUpdate(data.lastUpdate);
                     this.processFullReport(data.report);
                     this.isLoading = false;
@@ -934,24 +952,28 @@ export default {
                 [output.lifts] = data.lift.sectors;
                 output.lifts = output.lifts.lifts;
 
-                // Some of the sites (Nevis Range) return multiple areas, some runs appear in
-                // multiple areas and some are only in one so we have to join them, then filter
-                // out dupes.
-                const runs = data.run.areas
-                    .map((area) => area.runs)
-                    .reduce((pre, cur) => pre.concat(cur))
-                    .filter((value, index, self) => index === self.findIndex((t) => (
-                        t.name === value.name
-                    )));
+                // Glenshee and the Lecht don't have any run data, just lifts
+                if (data.run.areas) {
+                    // Some of the sites (Nevis Range) return multiple areas, some runs appear in
+                    // multiple areas and some are only in one so we have to join them, then filter
+                    // out dupes.
+                    const runs = data.run.areas
+                        .map((area) => area.runs)
+                        .reduce((pre, cur) => pre.concat(cur))
+                        .filter((value, index, self) => index === self.findIndex((t) => (
+                            t.name === value.name
+                        )));
 
-                output.runs = runs;
+                    output.runs = runs;
+                }
             }
-
-            // Some sites return itineraries with null difficulty rather than the standard
-            // orange
-            for (let x = 0; x < output.runs.length; x++) {
-                if (output.runs[x].difficulty === null) {
-                    output.runs[x].difficulty = 'orange';
+            if (output.runs) {
+                // Some sites return itineraries with null difficulty rather than the standard
+                // orange
+                for (let x = 0; x < output.runs.length; x++) {
+                    if (output.runs[x].difficulty === null) {
+                        output.runs[x].difficulty = 'orange';
+                    }
                 }
             }
 
@@ -1067,6 +1089,12 @@ export default {
 
         &__centre-info {
             font-size: $font-size-4;
+            margin-top: $spacer-8;
+
+            @include media-breakpoint-up(md) {
+                margin-bottom: $spacer-7;
+                margin-top: $spacer-0;
+            }
         }
 
         &__detailed-status-link {
@@ -1081,6 +1109,11 @@ export default {
                     margin-top: $spacer-10;
                 }
             }
+        }
+
+        .vs-icon {
+            width: $spacer-5;
+            text-align: center;
         }
     }
 </style>

@@ -287,31 +287,32 @@ export default {
                 </VsCaption>
             </VsImageWithCaption>
 
-            <div v-html="stop.description" slot="stop-description"></div>
+            <template slot="stop-description">
+                <div v-html="stop.description"></div>
+                <VsLink href="stop.href" class="d-inline-block mb-4">
+                    Find out more
+                </VsLink>
 
-            <VsLink href="stop.href">
-                Find out more
-            </VsLink>
+                <VsDescriptionList class="mb-4 justify-content-start" inline>
+                    <VsDescriptionListItem title class="mb-0 mr-0 pr-1 col-auto">
+                        Time to explore
+                    </VsDescriptionListItem>
+                    <VsDescriptionListItem class="mb-0 col-auto px-0">
+                        {{stop.timeToExplore}}
+                    </VsDescriptionListItem>
+                </VsDescriptionList>
 
-            <VsDescriptionList class="my-4 mb-0 justify-content-start" inline>
-                <VsDescriptionListItem title class="mb-0 mr-0 pr-1 col-auto">
-                    Time to explore
-                </VsDescriptionListItem>
-                <VsDescriptionListItem class="mb-0 col-auto px-0">
-                    {{stop.timeToExplore}}
-                </VsDescriptionListItem>
-            </VsDescriptionList>
-
-            <VsItineraryTips
-                v-if="stop.tips.tipsTitle.length > 0 && stop.tips.tipsBody.length > 0"
-                slot="stop-tips"
-            >
-                <div slot="text">
-                    <strong>{{stop.tips.tipsTitle}}</strong>
-                    <div v-html="stop.tips.tipsBody"></div>
-                </div>
-                <VsSvg slot="svg" path="highland-cow" />
-            </VsItineraryTips>
+                <VsItineraryTips
+                    v-if="stop.tips.tipsTitle.length > 0 && stop.tips.tipsBody.length > 0"
+                    slot="stop-tips"
+                >
+                    <div slot="text">
+                        <strong>{{stop.tips.tipsTitle}}</strong>
+                        <div v-html="stop.tips.tipsBody"></div>
+                    </div>
+                    <VsSvg slot="svg" path="highland-cow" />
+                </VsItineraryTips>
+            </template>
 
             <template slot="stop-address">
                 <VsAddress v-if="stop.address && stop.address.line1">

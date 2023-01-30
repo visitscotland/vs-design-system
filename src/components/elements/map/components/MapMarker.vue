@@ -14,7 +14,7 @@
         <VsSvg
             class="vs-map-marker__icon"
             slot="svg"
-            :path="`marker-${feature.properties.type}`"
+            :path="getMarkerIcon"
         />
     </button>
 </template>
@@ -52,6 +52,13 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * Selected place ID
+         */
+        selectedPlace: {
+            type: String,
+            default: null,
+        },
     },
     computed: {
         isActive() {
@@ -68,16 +75,57 @@ export default {
         activePlace() {
             return mapStore.getters.getActivePlace(this.mapId);
         },
+        activeSubcat() {
+            return mapStore.getters.getSelectedSubcat;
+        },
+        getMarkerIcon() {
+            let markerName;
+            if (this.feature.properties.type !== '') {
+                markerName = `marker-${this.feature.properties.type}`;
+            } else if (this.activeSubCat !== null) {
+                markerName = `marker-${this.activeSubcat}`;
+            } else {
+                markerName = 'marker-featured';
+            }
+
+            if (markerName === 'marker-null') {
+                markerName = '';
+            }
+
+            return markerName;
+        },
     },
+    watch: {
+        isActive() {
+            if (this.activePlace === this.feature.properties.id
+                || this.highlightedPlace === this.feature.properties.id) {
+                return true;
+            }
+
+            if (this.activePlace === this.feature.properties.id) {
+                mapStore.dispatch('setActiveMarkerPos', this.feature.geometry.coordinates);
+            }
+
+            return false;
+        },
+        activePlace() {
+            if (this.activePlace === this.feature.properties.id) {
+                mapStore.dispatch('setActiveMarkerPos', this.feature.geometry.coordinates);
+            }
+        },
+    },
+
     methods: {
         /**
          * Fires on click of the marker
          */
         handleClick() {
+            mapStore.dispatch('setActiveMarkerPos', this.feature.geometry.coordinates);
             mapStore.dispatch('setActivePlace', {
                 mapId: this.mapId,
                 placeId: this.feature.properties.id,
             });
+
             this.$parent.$emit('show-detail', this.feature.properties.id);
             this.$parent.$emit('set-category', this.feature.properties.type);
         },
