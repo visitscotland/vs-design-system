@@ -213,6 +213,31 @@
                     </VsTableRow>
                 </VsTableFooter>
             </VsTable>
+            <div class="vs-ski-scotland-card__button-holder">
+                <VsButton
+                    v-if="pisteMapLink"
+                    variant="secondary"
+                    :href="pisteMapLink"
+                    size="xs"
+                >
+                    {{ pisteMapLabel }}
+                </VsButton>
+                <VsButton
+                    v-else
+                    disabled
+                    size="xs"
+                >
+                    {{ pisteMapLabel }}
+                </VsButton>
+            </div><!--
+            --><div class="vs-ski-scotland-card__button-holder">
+                <VsButton
+                    :href="moreDetailsLink"
+                    size="xs"
+                >
+                    {{ moreDetailsLabel }}
+                </VsButton>
+            </div>
         </div>
     </div>
 </template>
@@ -229,6 +254,7 @@ import VsTableDataCell from '@components/patterns/table/components/TableDataCell
 import VsTableFooter from '@components/patterns/table/components/TableFooter';
 import VsWarning from '@components/patterns/warning/Warning';
 import VsLoadingSpinner from '@components/elements/loading-spinner/LoadingSpinner';
+import VsButton from '@components/elements/button/Button';
 
 const axios = require('axios');
 
@@ -254,6 +280,7 @@ export default {
         VsTableFooter,
         VsWarning,
         VsLoadingSpinner,
+        VsButton,
     },
     props: {
         /**
@@ -363,6 +390,37 @@ export default {
         imgAlt: {
             type: String,
             default: '',
+        },
+        /**
+        * Localisable label, translation of "view piste map" for the
+        * card links
+        */
+        pisteMapLabel: {
+            type: String,
+            default: 'View Piste Map',
+        },
+        /**
+        * Localisable label, translation of "more details" for the
+        * card links
+        */
+        moreDetailsLabel: {
+            type: String,
+            default: 'More Details',
+        },
+        /**
+        * An href pointing to the piste map for the ski centre
+        */
+        pisteMapLink: {
+            type: String,
+            default: '',
+        },
+        /**
+        * An href pointing to the ski status page for the ski centre
+        */
+        moreDetailsLink: {
+            type: String,
+            required: true,
+            default: '#',
         },
     },
     data() {
@@ -564,6 +622,26 @@ export default {
 
         .vs-heading {
             margin-top: $spacer-0;
+        }
+
+        .vs-ski-scotland-card__button-holder {
+            width: 50%;
+            display: inline-block;
+            padding: $spacer-1 $spacer-2;
+
+            @include media-breakpoint-up(sm) {
+                width: 100%;
+            }
+
+            @include media-breakpoint-up(lg) {
+                width: 50%;
+            }
+        }
+
+        .vs-button {
+            width: 100%;
+            padding: $spacer-2 $spacer-2;
+            font-size: $font-size-3;
         }
     }
 

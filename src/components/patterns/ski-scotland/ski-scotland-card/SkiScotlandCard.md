@@ -13,6 +13,8 @@
                     locale="en-gb"
                     img-src="https://via.placeholder.com/400x200"
                     img-alt="Glencoe ski centre"
+                    more-details-link="#"
+                    piste-map-link="#"
                 >
                     <template slot="centre-name">Glencoe</template>
                     <div slot="data-loading">
