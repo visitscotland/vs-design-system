@@ -49,6 +49,7 @@
                     <VsWarning
                         theme="light"
                         size="small"
+                        data-test="vs-ski-scotland-card__error"
                     >
                         <!--
                             @slot Slot for data unavailable message
@@ -61,6 +62,7 @@
                     <VsWarning
                         theme="light"
                         size="small"
+                        data-test="vs-ski-scotland-card__js-disabled"
                     >
                         <!--
                             @slot Slot for JS required message
@@ -124,7 +126,7 @@
                                 size="xs"
                                 class="mr-2"
                             />
-                            <span data-test="vs-ski__open-label">
+                            <span data-test="vs-ski__limited-patrol-label">
                                 {{ summaryLimitedPatrolLabel }}
                             </span>
                         </VsTableDataCell>
@@ -186,7 +188,7 @@
                                 size="xs"
                                 class="mr-2"
                             />
-                            <span data-test="vs-ski__open-label">
+                            <span data-test="vs-ski__on-hold-label">
                                 {{ summaryOnHoldLabel }}
                             </span>
                         </VsTableDataCell>
@@ -218,14 +220,14 @@
                     v-if="pisteMapLink"
                     variant="secondary"
                     :href="pisteMapLink"
-                    size="xs"
+                    size="sm"
                 >
                     {{ pisteMapLabel }}
                 </VsButton>
                 <VsButton
                     v-else
                     disabled
-                    size="xs"
+                    size="sm"
                 >
                     {{ pisteMapLabel }}
                 </VsButton>
@@ -233,7 +235,7 @@
             --><div class="vs-ski-scotland-card__button-holder">
                 <VsButton
                     :href="moreDetailsLink"
-                    size="xs"
+                    size="sm"
                 >
                     {{ moreDetailsLabel }}
                 </VsButton>
@@ -245,6 +247,10 @@
 <script>
 import VsImg from '@components/elements/img/Img';
 import VsHeading from '@components/elements/heading/Heading';
+import VsIcon from '@components/elements/icon/Icon';
+import VsButton from '@components/elements/button/Button';
+import VsWarning from '@components/patterns/warning/Warning';
+import VsLoadingSpinner from '@components/elements/loading-spinner/LoadingSpinner';
 import VsTable from '@components/patterns/table/Table';
 import VsTableHead from '@components/patterns/table/components/TableHead';
 import VsTableHeaderCell from '@components/patterns/table/components/TableHeaderCell';
@@ -252,9 +258,6 @@ import VsTableBody from '@components/patterns/table/components/TableBody';
 import VsTableRow from '@components/patterns/table/components/TableRow';
 import VsTableDataCell from '@components/patterns/table/components/TableDataCell';
 import VsTableFooter from '@components/patterns/table/components/TableFooter';
-import VsWarning from '@components/patterns/warning/Warning';
-import VsLoadingSpinner from '@components/elements/loading-spinner/LoadingSpinner';
-import VsButton from '@components/elements/button/Button';
 
 const axios = require('axios');
 
@@ -271,6 +274,10 @@ export default {
     components: {
         VsImg,
         VsHeading,
+        VsIcon,
+        VsWarning,
+        VsLoadingSpinner,
+        VsButton,
         VsTable,
         VsTableHead,
         VsTableHeaderCell,
@@ -278,9 +285,6 @@ export default {
         VsTableRow,
         VsTableDataCell,
         VsTableFooter,
-        VsWarning,
-        VsLoadingSpinner,
-        VsButton,
     },
     props: {
         /**
@@ -651,7 +655,6 @@ export default {
         .vs-button {
             width: 100%;
             padding: $spacer-2 $spacer-2;
-            font-size: $font-size-3;
         }
     }
 
