@@ -615,10 +615,10 @@ export default {
             width: 100%;
             max-width: 100%;
             position: relative;
-            aspect-ratio: 3/2;
+            aspect-ratio: 2/1;
 
-            @supports not (aspect-ratio: 3/2) {
-                padding-bottom: 66.6%;
+            @supports not (aspect-ratio: 2/1) {
+                padding-bottom: 50%;
             }
         }
 
