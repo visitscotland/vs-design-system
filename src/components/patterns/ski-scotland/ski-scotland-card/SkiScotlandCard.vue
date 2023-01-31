@@ -605,7 +605,7 @@ export default {
         border-radius: $border_radius_xl;
         overflow: hidden;
         box-shadow: $shadow_popover;
-        margin-bottom: $spacer-10;
+        margin-bottom: $spacer-9;
 
         &::nth-last-child(-n + 3) {
             margin-bottom: $spacer-0;
