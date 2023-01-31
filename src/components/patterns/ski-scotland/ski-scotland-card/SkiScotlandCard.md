@@ -2,11 +2,14 @@
 
 ```jsx
     <VsContainer>
-        <VsRow>
+        <VsRow
+            class="mx-n4 mx-lg-n8"
+        >
             <VsCol
                 cols="12"
                 sm="6"
                 md="4"
+                class="px-4 px-lg-8"
             >
                 <VsSkiScotlandCard
                     centre-info-url="https://glencoe.infonet-online.fr/json/snowreport.json"
@@ -32,6 +35,7 @@
                 cols="12"
                 sm="6"
                 md="4"
+                class="px-4 px-lg-8"
             >
                 <VsSkiScotlandCard
                     centre-info-url="https://www.cairngormmountain.co.uk/_mountain_feed/?json"
@@ -55,6 +59,7 @@
                 cols="12"
                 sm="6"
                 md="4"
+                class="px-4 px-lg-8"
             >
                 <VsSkiScotlandCard
                     centre-info-url="https://nevis-range.infonet-online.fr/json/snowreport.json"
@@ -78,6 +83,7 @@
                 cols="12"
                 sm="6"
                 md="4"
+                class="px-4 px-lg-8"
             >
                 <VsSkiScotlandCard
                     centre-info-url="http://the-lecht.infonet-online.fr/json/snowreport.json"
@@ -101,6 +107,7 @@
                 cols="12"
                 sm="6"
                 md="4"
+                class="px-4 px-lg-8"
             >
                 <VsSkiScotlandCard
                     centre-info-url="http://glenshee.infonet-online.fr/json/snowreport.json"

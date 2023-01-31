@@ -597,6 +597,16 @@ export default {
 
 <style lang="scss">
     .vs-ski-scotland-card {
+        border: none;
+        border-radius: $border_radius_xl;
+        overflow: hidden;
+        box-shadow: $shadow_popover;
+        margin-bottom: $spacer-10;
+
+        &::nth-last-child(-n + 3) {
+            margin-bottom: $spacer-0;
+        }
+
         .vs-ski-scotland-card__img-container {
             width: 100%;
             max-width: 100%;
