@@ -2,8 +2,8 @@ import { mount } from '@vue/test-utils';
 import moxios from 'moxios';
 import VsSkiScotlandStatus from '../SkiScotlandStatus';
 
-const sampleSkiData = require('./assets/sample-ski-data.json');
-const sampleCairngormsData = require('./assets/sample-cairngorms-ski-data.json');
+const sampleSkiData = require('../../test-assets/sample-ski-data.json');
+const sampleCairngormsData = require('../../test-assets/sample-cairngorms-ski-data.json');
 
 const centreInformationSlot = 'Centre Information Placeholder';
 const skiStatusUrl = 'https://testurl';
