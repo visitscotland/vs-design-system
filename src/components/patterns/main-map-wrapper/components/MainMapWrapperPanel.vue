@@ -2,9 +2,10 @@
     <section
         data-test="vs-main-map-wrapper-panel"
         class="vs-main-map-wrapper-panel"
-        :class="currentStage === 2 ? 'vs-main-map-wrapper-panel--small-padding' : ''"
+        :class="panelClasses"
     >
         <div
+            v-if="currentHeading !== '' || currentStage > 0"
             class="vs-main-map-wrapper-panel__header-section"
             :class="headerClasses"
         >
@@ -341,6 +342,17 @@ export default {
 
             return this.placesData;
         },
+        panelClasses() {
+            let panelClasses = '';
+            if (this.currentStage === 1) {
+                panelClasses += 'justify-content-between';
+            }
+            if (this.currentStage === 2) {
+                panelClasses += ' vs-main-map-wrapper-panel--small-padding';
+            }
+
+            return panelClasses;
+        },
         headerClasses() {
             if (this.currentStage === 1) {
                 return 'vs-main-map-wrapper-panel__header-section--with-spacer';
@@ -528,7 +540,7 @@ export default {
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
 
         &--small-padding {
             padding-top: $spacer-6;
