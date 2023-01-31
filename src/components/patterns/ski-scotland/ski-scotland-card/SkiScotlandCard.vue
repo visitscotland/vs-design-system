@@ -34,7 +34,7 @@
                 <slot name="centre-name" />
             </VsHeading>
             <div
-                class="text-center py-4"
+                class="text-center pt-8 py-4 position-relative"
                 v-if="jsDisabled || isLoading || displayError"
             >
                 <template v-if="!jsDisabled && isLoading">
@@ -655,6 +655,13 @@ export default {
         .vs-button {
             width: 100%;
             padding: $spacer-2 $spacer-2;
+        }
+
+        .vs-loading-spinner {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0.5rem;
         }
     }
 
