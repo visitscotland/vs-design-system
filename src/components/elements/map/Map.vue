@@ -28,7 +28,6 @@
                         <slot name="zoomTooClose" />
                     </template>
                     <template v-else-if="showZoomMessage === 'too-far'">
-                        test
                         <!-- @slot Message for zoom level too far -->
                         <slot name="zoomTooFar" />
                     </template>
