@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.6](https://github.com/visitscotland/design-system/compare/v0.7.5...v0.7.6) (2023-02-01)
+
+
+### Features
+
+* 🎸 add messaging and functionality for min/max zoom ([174a896](https://github.com/visitscotland/design-system/commit/174a896accb58c753c0a500f9177afbd72681ad4))
+* 🎸 correct spacing and title visibility ([1e39582](https://github.com/visitscotland/design-system/commit/1e39582a62ec7e7b40b7ab0f6fa15d744be0da53))
+
+
+### Bug Fixes
+
+* 🐛 remove testing text ([eb611ae](https://github.com/visitscotland/design-system/commit/eb611aec1f923638f75371a0726cdb378daa06da))
+
 ### [0.7.5](https://github.com/visitscotland/design-system/compare/v0.7.4...v0.7.5) (2023-01-30)
 
 
