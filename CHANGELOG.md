@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.7](https://github.com/visitscotland/design-system/compare/v0.7.6...v0.7.7) (2023-02-02)
+
+
+### Features
+
+* 🎸 add auto zoom/position when map is reset ([b020c39](https://github.com/visitscotland/design-system/commit/b020c3973b0314df8e5f6127fa0bb3c7326b2458))
+
 ### [0.7.6](https://github.com/visitscotland/design-system/compare/v0.7.5...v0.7.6) (2023-02-01)
 
 
