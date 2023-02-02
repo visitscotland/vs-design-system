@@ -82,7 +82,9 @@
                             @show-detail="showDetail"
                             @set-category="setCategory"
                             @map-ready="setMapReady"
+                            @zoom-reset="resetZoom = false"
                             :bounds-data="regionBounds"
+                            :reset-zoom="resetZoom"
                         >
                             <template slot="mapLoadingText">
                                 <!-- @slot Message to show when map is loading  -->
@@ -329,6 +331,7 @@ export default {
             currentPanelEndpointFilters: '',
             totalEndpointPins: 0,
             focussedListItem: 0,
+            resetZoom: false,
         };
     },
     computed: {
@@ -372,6 +375,7 @@ export default {
         selectedSubCategory(val) {
             if (val === null) {
                 this.mapStatus = '';
+                this.resetZoom = true;
             }
         },
     },
@@ -382,6 +386,10 @@ export default {
             filters: this.filters,
             places: this.placesData,
             activePins: this.activePins,
+        });
+
+        this.$root.$on('clearSelectedSubcats', () => {
+            this.resetZoom = true;
         });
     },
     methods: {
@@ -532,10 +540,10 @@ export default {
                 });
             } else {
                 mapStore.dispatch('setCurrentStage', num);
-
                 if (this.currentStage === 0) {
                     this.currentEndpointData = [];
                     if (this.selectedSubCategory === null) {
+                        this.resetZoom = true;
                         this.showAllPlaces();
                         this.mapStatus = '';
                     } else {
