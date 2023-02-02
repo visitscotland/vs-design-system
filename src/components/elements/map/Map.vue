@@ -28,7 +28,6 @@
                         <slot name="zoomTooClose" />
                     </template>
                     <template v-else-if="showZoomMessage === 'too-far'">
-                        test
                         <!-- @slot Message for zoom level too far -->
                         <slot name="zoomTooFar" />
                     </template>
@@ -152,6 +151,13 @@ export default {
             type: Boolean,
             default: null,
         },
+        /**
+         * Allows parent component to fire a reset zoom event
+        */
+        resetZoom: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
@@ -256,6 +262,16 @@ export default {
                 this.showMapMessage = false;
             }
         },
+        resetZoom(newVal) {
+            if (newVal) {
+                this.mapbox.map.fitBounds(this.calculateBoundingBox());
+                this.$emit('zoom-reset');
+
+                if (this.showInfoMessage) {
+                    this.showMapMessage = true;
+                }
+            };
+        },
     },
     mounted() {
         initFontAwesome();
@@ -309,7 +325,7 @@ export default {
                 } else if (this.mapbox.map.getZoom() === 18) {
                     this.showZoomMessage = 'too-close';
                     this.showMapMessage = true;
-                } else {
+                } else if (!this.showInfoMessage) {
                     this.showZoomMessage = null;
                     this.showMapMessage = false;
                 }
