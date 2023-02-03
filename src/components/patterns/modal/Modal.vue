@@ -122,6 +122,10 @@ export default {
         @include media-breakpoint-up(sm) {
             padding: $spacer-5 $spacer-2;
         }
+
+        .vs-video {
+            width: 100%;
+        }
     }
 
     @include media-breakpoint-up(lg) {
@@ -172,6 +176,9 @@ export default {
                     video-id="c05sg3G4oA4"
                     video-title="Test Video"
                     class="mb-8"
+                    cookie-btn-text="Manage cookies"
+                    no-js-message="You need Javascript enabled to see this video"
+                    no-cookies-message="You need cookies enabled to see this video"
                 />
             </VsCol>
 
