@@ -509,7 +509,7 @@ export default {
             }
 
             axios.get(endpoint).then((response) => {
-                if (response.data.data.products.length !== 0) {
+                if (typeof response.data.data.products !== 'undefined') {
                     if (page === 0) {
                         this.subCatList = response.data.data.products;
                         this.focussedListItem = 0;
@@ -519,6 +519,8 @@ export default {
                     }
 
                     this.setStage(1);
+                } else {
+                    this.mapStatus = 'no-results';
                 }
                 this.panelStatus = null;
             });
