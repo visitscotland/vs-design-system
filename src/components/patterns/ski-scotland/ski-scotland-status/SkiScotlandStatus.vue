@@ -18,11 +18,15 @@
         <VsContainer v-if="!jsDisabled && displayError">
             <VsRow>
                 <VsCol class="text-center py-4">
-                    <!--
-                        @slot Slot for data unavailable message
-                        Expects text
-                    -->
-                    <slot name="data-unavailable" />
+                    <VsWarning
+                        theme="light"
+                    >
+                        <!--
+                            @slot Slot for data unavailable message
+                            Expects text
+                        -->
+                        <slot name="data-unavailable" />
+                    </VsWarning>
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -504,7 +508,8 @@ import VsLoadingSpinner from '@components/elements/loading-spinner/LoadingSpinne
 const axios = require('axios');
 
 /**
- * The ski scotland status component is a wrapper for snow status components
+ * The ski scotland status component retrieves information about a specific ski resort,
+ * and displays organised, processed snow status information about it
  *
  * @displayName Ski Scotland Status
  */
