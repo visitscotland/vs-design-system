@@ -413,7 +413,8 @@ export default {
             return headingStr;
         },
         showLoadMore() {
-            if (this.placesLoaded * 24 > this.totalPins) {
+            if (this.placesLoaded * 24 > this.totalPins
+                || this.placesLoaded === 0) {
                 return false;
             }
 
