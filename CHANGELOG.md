@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/visitscotland/design-system/compare/v0.7.7...v0.8.0) (2023-02-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* 🧨 ]
+
+### Features
+
+* 🎸 Add additional examples for other ski centres ([548c87b](https://github.com/visitscotland/design-system/commit/548c87b8286606050a10028fc2e128e7a8fee63e))
+* 🎸 Add error handing and loading indicator to ski cards ([5b5838e](https://github.com/visitscotland/design-system/commit/5b5838e9ccac8e1b05c4380c3bb461e0c581610d))
+* 🎸 Add file structure for ski scot card ([a4ffc31](https://github.com/visitscotland/design-system/commit/a4ffc3136d3e2e8cb263f2ffb071476334fe34d5))
+* 🎸 Add piste and details buttons to ski card ([06c81b4](https://github.com/visitscotland/design-system/commit/06c81b4a98ef3e460efa2d4b301c0e4917bba19c))
+* 🎸 Bring over glenshee/lecht handling from status to cards ([8ad24b2](https://github.com/visitscotland/design-system/commit/8ad24b286b53b7927a513a4a06f12d1522c0273e))
+* 🎸 Load data into ski summary cards ([c7837c8](https://github.com/visitscotland/design-system/commit/c7837c8a1521c8b91809bebcd50cbcfdcdd9218c))
+* 🎸 Position loading spinner in ski card ([0c78a32](https://github.com/visitscotland/design-system/commit/0c78a32244e4fb5f7a60c98488ed392ba7bd045d))
+* 🎸 Reduce vertical spacing between ski cards ([850e6bc](https://github.com/visitscotland/design-system/commit/850e6bccc94f3496dc1c3e5c6aa5aa7187feb598))
+* 🎸 Set up correct grid spacign ([395d4ce](https://github.com/visitscotland/design-system/commit/395d4ce6cc810029b3dc9ab3bc635f56c49750a0))
+
+
+### Bug Fixes
+
+* 🐛 Correct card image aspect ratio ([7fb0b35](https://github.com/visitscotland/design-system/commit/7fb0b35f250bbce3eed8d866bd5d5c154d07a1db))
+* 🐛 fix positioning of overlay message in side panel ([d168efe](https://github.com/visitscotland/design-system/commit/d168efe42d8a018fab1b7150dbf4ff66cebbd8cc))
+* 🐛 Force video in modal to always have width ([1df8985](https://github.com/visitscotland/design-system/commit/1df898509958706c8ac52c1c62523a16538ae121))
+
+
+### Performance Improvements
+
+* ⚡️ Consolidate duplicate test assets for ski components ([bd3e043](https://github.com/visitscotland/design-system/commit/bd3e043d2db02292f57733051578c81ac12d3726))
+
+
+### Code Refactoring
+
+* 💡 Remove errant console statements ([04fbe7b](https://github.com/visitscotland/design-system/commit/04fbe7b28fdf7948e7927f75e0891d1d679b0e33))
+
+
+### Tests
+
+* 💍 Add tests for ski scotland card ([382bac8](https://github.com/visitscotland/design-system/commit/382bac8844013672b2df1f343ba1f0614f74e046))
+
 ### [0.7.7](https://github.com/visitscotland/design-system/compare/v0.7.6...v0.7.7) (2023-02-02)
 
 
