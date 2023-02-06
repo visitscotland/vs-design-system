@@ -307,7 +307,7 @@ export default {
     },
     data() {
         return {
-            placesLoaded: 0,
+            placesLoaded: 1,
         };
     },
     computed: {
@@ -411,7 +411,7 @@ export default {
     },
     watch: {
         currentFilter() {
-            this.placesLoaded = 0;
+            this.placesLoaded = 1;
         },
     },
     methods: {
@@ -450,7 +450,7 @@ export default {
          */
         setStage(stageNum) {
             if (stageNum === 0) {
-                this.placesLoaded = 0;
+                this.placesLoaded = 1;
             }
 
             this.$emit('set-stage', stageNum);
