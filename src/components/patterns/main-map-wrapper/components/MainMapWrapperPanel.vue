@@ -401,7 +401,8 @@ export default {
             return headingStr;
         },
         showLoadMore() {
-            if (this.placesLoaded * 24 > this.totalPins) {
+            if (this.subcategoryLocations.length >= this.totalPins
+                || this.subcategoryLocations.length === 0) {
                 return false;
             }
 
@@ -449,7 +450,7 @@ export default {
          */
         setStage(stageNum) {
             if (stageNum === 0) {
-                this.placesLoaded = 1;
+                this.placesLoaded = 0;
             }
 
             this.$emit('set-stage', stageNum);
