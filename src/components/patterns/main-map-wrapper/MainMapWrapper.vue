@@ -465,7 +465,6 @@ export default {
                     if (this.totalEndpointPins === 0) {
                         this.mapStatus = 'no-results';
                     } else {
-                        this.totalEndpointPins = response.data.features.length;
                         response.data.features.forEach((feature) => {
                             const modifiedFeature = feature;
                             modifiedFeature.properties.apiData = true;
