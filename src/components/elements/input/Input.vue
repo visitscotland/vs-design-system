@@ -9,19 +9,24 @@
         >
             {{ hintText }}
         </p>
-        <template
+
+        <div
+            role="alert"
+            aria-live="assertive"
             v-if="$v.inputVal.$anyError || invalid"
+            :id="`error-${fieldName}`"
         >
-            <span
+            <p
                 v-for="error in errorsList"
+                v-show="!reAlertErrors && !clearErrorsOnFocus"
                 :key="error"
-                class="error"
-                :id="`error-${fieldName}`"
-                aria-live="assertive"
+                class="error mb-0"
             >
+                <span class="sr-only">{{ fieldName }}</span>
                 {{ validationMessages[error] || genericValidation[error] }}
-            </span>
-        </template>
+            </p>
+        </div>
+
         <BFormInput
             ref="input"
             :type="type"
@@ -35,10 +40,12 @@
             :autocomplete="autocompleteValue(fieldName)"
             :v="inputVal"
             :aria-invalid="$v.inputVal.$anyError || invalid"
-            :aria-describedby="$v.inputVal.$anyError || invalid ? `error-${fieldName}` : null"
+            :aria-describedby="$v.inputVal.$anyError || invalid ?
+                `error-${fieldName}` : `hint-${fieldName}`"
             :maxlength="validationRules.maxLength ? validationRules.maxLength : null"
             :minlength="validationRules.minLength ? validationRules.minLength : null"
-            @blur="manualValidate"
+            @blur="validateErrors"
+            @focus="resetErrors"
         />
         <VsButton
             v-if="showClearButton"
@@ -181,6 +188,20 @@ export default {
             type: String,
             default: '',
         },
+        /**
+         * Whether the parent form has just been submitted, if so all errors
+         * need to be wiped from then re-added to the DOM to inform screen
+         * readers that they should be re-declared
+         */
+        reAlertErrors: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    data() {
+        return {
+            clearErrorsOnFocus: false,
+        };
     },
     computed: {
         /**
@@ -280,6 +301,21 @@ export default {
             }
 
             return autocomplete;
+        },
+        /**
+         * Validate errors on blur, and re-render them to the screen for screen
+         * reader notice
+         */
+        validateErrors() {
+            this.manualValidate();
+            this.clearErrorsOnFocus = false;
+        },
+        /**
+         * Reset field errors on focus to allow screen reader to notice them if still
+         * present on blur
+         */
+        resetErrors() {
+            this.clearErrorsOnFocus = true;
         },
     },
     validations() {
