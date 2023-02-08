@@ -35,7 +35,6 @@ user to filter and search for data contained on the map.
     clearFiltersText="clear filters"
     mapFilterMessage="Please apply filter(s) to refine results."
     mapNoResultsMessage="There are no results, please try again"
-    panelMessage="Get friendly and helpful advice for your trip at our iCentres"
 >
     <template slot="closeSidePanelText">
         <span class="sr-only">

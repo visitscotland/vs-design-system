@@ -97,6 +97,14 @@
                     />
                 </div>
             </template>
+
+            <template v-if="panelMessage !== null">
+                <div class="vs-main-map-wrapper-panel__bottom-message">
+                    <p>
+                        {{ panelMessage }}
+                    </p>
+                </div>
+            </template>
         </template>
         <template v-if="currentStage === 1">
             <template v-if="selectedSubcategory !== null">
@@ -626,6 +634,25 @@ export default {
             display: block;
             margin: -#{$spacer-4} -#{$spacer-4} 0;
             padding: $spacer-4 $spacer-4 0;
+        }
+
+        &__bottom-message {
+            position: absolute;
+            bottom: 1px;
+            background: $color-white;
+            left: 1px;
+            font-size: $font-size-4;
+            text-align: center;
+            padding: $spacer-4;
+            display: flex;
+            justify-content: center;
+            // to avoid overlap of scroll bar
+            width: calc(100% - 15px);
+
+            p {
+                margin-bottom: $spacer-0;
+                max-width: 75%;
+            }
         }
 
         .vs-main-wrapper-category:last-of-type {
