@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.2](https://github.com/visitscotland/design-system/compare/v0.8.1...v0.8.2) (2023-02-08)
+
+
+### Features
+
+* 🎸 add message at bottom of panel ([9e906ef](https://github.com/visitscotland/design-system/commit/9e906ef569251ca8ebd52ce2d811982e0d03f198))
+
+
+### Styling
+
+* 💄 Fixes for meganav UI and Itineray accordion icon ([b4a407b](https://github.com/visitscotland/design-system/commit/b4a407b4932692bfc927b3bfdf7a8d8e9f7a0956))
+
 ### [0.8.1](https://github.com/visitscotland/design-system/compare/v0.8.0...v0.8.1) (2023-02-08)
 
 
