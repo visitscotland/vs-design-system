@@ -666,7 +666,9 @@ export default {
             position: absolute;
             top: $spacer-4;
             left: $spacer-4;
-            z-index: 1;
+            // ensure button can always be clicked
+            // to avoid user getting trapped by overlay
+            z-index: 100;
 
             @include media-breakpoint-up(lg) {
                 display: none;
