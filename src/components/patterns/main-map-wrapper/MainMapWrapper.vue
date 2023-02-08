@@ -497,7 +497,6 @@ export default {
          * provides a random 24 items for the side panel
          */
         getSubcatPanelData(endpointFilters, page) {
-            this.panelStatus = 'loading-data';
             const subCat = this.filters.filter((cat) => cat.id === this.selectedSubCategory);
             let endpoint = subCat[0].listProductsEndPoint;
             if (typeof endpointFilters !== 'undefined') {
@@ -508,8 +507,11 @@ export default {
                 endpoint += `${endpointFilters}&page=${page}`;
             }
 
+            this.panelStatus = 'loading-data';
+
             axios.get(endpoint).then((response) => {
                 if (typeof response.data.data.products !== 'undefined') {
+                    this.setStage(1);
                     if (page === 0) {
                         this.subCatList = response.data.data.products;
                         this.focussedListItem = 0;
@@ -517,8 +519,6 @@ export default {
                         this.focussedListItem = page * 24;
                         this.subCatList = this.subCatList.concat(response.data.data.products);
                     }
-
-                    this.setStage(1);
                 } else {
                     this.mapStatus = 'no-results';
                 }
@@ -648,6 +648,7 @@ export default {
         }
 
         &__side-panel {
+            position: relative;
             width: 100%;
 
             @include media-breakpoint-up(lg) {

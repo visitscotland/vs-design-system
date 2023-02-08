@@ -533,7 +533,6 @@ export default {
 
 <style lang="scss">
     .vs-main-map-wrapper-panel {
-        position: relative;
         padding: $spacer-11 $spacer-3 $spacer-0;
         border: 1px solid $color-gray;
         height: 100%;
