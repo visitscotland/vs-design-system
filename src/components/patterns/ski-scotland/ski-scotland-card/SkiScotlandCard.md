@@ -8,7 +8,7 @@
             <VsCol
                 cols="12"
                 sm="6"
-                md="4"
+                lg="4"
                 class="px-4 px-lg-8"
             >
                 <VsSkiScotlandCard
@@ -19,7 +19,7 @@
                     more-details-link="#"
                     piste-map-link="#"
                 >
-                    <template slot="centre-name">Glencoe</template>
+                    <template slot="centre-name">Glencoe Ski Centre Super Long Title Test</template>
                     <div slot="data-loading">
                         Data is currently loading, please wait...
                     </div>
@@ -34,7 +34,7 @@
             <VsCol
                 cols="12"
                 sm="6"
-                md="4"
+                lg="4"
                 class="px-4 px-lg-8"
             >
                 <VsSkiScotlandCard
@@ -58,7 +58,7 @@
             <VsCol
                 cols="12"
                 sm="6"
-                md="4"
+                lg="4"
                 class="px-4 px-lg-8"
             >
                 <VsSkiScotlandCard
@@ -82,7 +82,7 @@
             <VsCol
                 cols="12"
                 sm="6"
-                md="4"
+                lg="4"
                 class="px-4 px-lg-8"
             >
                 <VsSkiScotlandCard
@@ -106,7 +106,7 @@
             <VsCol
                 cols="12"
                 sm="6"
-                md="4"
+                lg="4"
                 class="px-4 px-lg-8"
             >
                 <VsSkiScotlandCard

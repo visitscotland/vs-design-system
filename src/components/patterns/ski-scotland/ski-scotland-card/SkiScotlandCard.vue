@@ -215,7 +215,10 @@
                     </VsTableRow>
                 </VsTableFooter>
             </VsTable>
-            <div class="vs-ski-scotland-card__button-holder">
+            <div
+                class="vs-ski-scotland-card__button-holder
+                vs-ski-scotland-card__button-holder--left"
+            >
                 <VsButton
                     v-if="pisteMapLink"
                     variant="secondary"
@@ -232,7 +235,10 @@
                     {{ pisteMapLabel }}
                 </VsButton>
             </div><!--
-            --><div class="vs-ski-scotland-card__button-holder">
+            --><div
+                class="vs-ski-scotland-card__button-holder
+                vs-ski-scotland-card__button-holder--right"
+            >
                 <VsButton
                     :href="moreDetailsLink"
                     size="sm"
@@ -606,6 +612,7 @@ export default {
         overflow: hidden;
         box-shadow: $shadow_popover;
         margin-bottom: $spacer-9;
+        height: calc(100% - #{$spacer-9});
 
         &::nth-last-child(-n + 3) {
             margin-bottom: $spacer-0;
@@ -631,7 +638,16 @@ export default {
         }
 
         .card-body {
-            padding: $spacer-4;
+            position: relative;
+            padding: $spacer-4 $spacer-4 $spacer-10;
+
+            @include media-breakpoint-up(sm) {
+                padding-bottom: $spacer-12;
+            }
+
+            @include media-breakpoint-up(lg) {
+                padding-bottom: $spacer-10;
+            }
         }
 
         .vs-heading {
@@ -639,22 +655,54 @@ export default {
         }
 
         .vs-ski-scotland-card__button-holder {
-            width: 50%;
+            width: calc(50% - #{$spacer-4});
             display: inline-block;
             padding: $spacer-1 $spacer-2;
+            position: absolute;
+            bottom: $spacer-4;
+
+            &--left {
+                left: $spacer-4;
+            }
+
+            &--right {
+                right: $spacer-4;
+            }
 
             @include media-breakpoint-up(sm) {
-                width: 100%;
+                width: calc(100% - #{$spacer-8});
+
+                &--left {
+                    right: $spacer-4;
+                    bottom: $spacer-10;
+                }
+
+                &--right {
+                    left: $spacer-4;
+                }
             }
 
             @include media-breakpoint-up(lg) {
-                width: 50%;
+                width: calc(50% - #{$spacer-4});
+
+                &--left {
+                    right: auto;
+                    bottom: $spacer-4;
+                }
+
+                &--right {
+                    left: auto;
+                }
             }
         }
 
         .vs-button {
             width: 100%;
             padding: $spacer-2 $spacer-2;
+
+            &.disabled {
+                margin-bottom: 2px;
+            }
         }
 
         .vs-loading-spinner {
