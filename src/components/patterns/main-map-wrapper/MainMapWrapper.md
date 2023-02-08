@@ -63,6 +63,12 @@ user to filter and search for data contained on the map.
     <template slot="panelLoadingMessage">
         Loading results
     </template>
+    <template slot="zoomTooClose">
+        We're sorry, you can't zoom in any more
+    </template>
+    <template slot="zoomTooFar">
+        We're sorry, you can't zoom out any more
+    </template>
 </VsMainMapWrapper>
 ```
 

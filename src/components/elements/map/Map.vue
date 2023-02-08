@@ -6,6 +6,7 @@
         <div
             v-if="showMapMessage"
             class="vs-map__message"
+            :class="showZoomMessage ? '' : 'vs-map__message--with-overlay'"
             data-test="vs-map__message"
         >
             <div class="vs-map__message-box">
@@ -21,6 +22,14 @@
                     <template v-else-if="showInfoMessage">
                         <!-- @slot Generic message slot -->
                         <slot name="infoMessage" />
+                    </template>
+                    <template v-else-if="showZoomMessage === 'too-close'">
+                        <!-- @slot Message for zoom level too close -->
+                        <slot name="zoomTooClose" />
+                    </template>
+                    <template v-else-if="showZoomMessage === 'too-far'">
+                        <!-- @slot Message for zoom level too far -->
+                        <slot name="zoomTooFar" />
                     </template>
                 </p>
             </div>
@@ -142,6 +151,13 @@ export default {
             type: Boolean,
             default: null,
         },
+        /**
+         * Allows parent component to fire a reset zoom event
+        */
+        resetZoom: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
@@ -172,9 +188,17 @@ export default {
             activeStateId: null,
             showMapMessage: true,
             isLoading: true,
+            showZoomMessage: null,
         };
     },
     computed: {
+        getZoom() {
+            if (this.mapbox.map) {
+                return this.mapbox.map.getZoom();
+            }
+
+            return null;
+        },
         highlightedPlace() {
             if (this.mapbox.map) {
                 return mapStore.getters.getHoveredStop(this.mapId);
@@ -238,6 +262,16 @@ export default {
                 this.showMapMessage = false;
             }
         },
+        resetZoom(newVal) {
+            if (newVal) {
+                this.mapbox.map.fitBounds(this.calculateBoundingBox());
+                this.$emit('zoom-reset');
+
+                if (this.showInfoMessage) {
+                    this.showMapMessage = true;
+                }
+            };
+        },
     },
     mounted() {
         initFontAwesome();
@@ -266,6 +300,8 @@ export default {
                 container: this.$refs.mapbox,
                 style: 'https://api.visitscotland.com/maps/vector/v1/vts/resources/styles',
                 bounds: boundingBox,
+                maxZoom: 18,
+                minZoom: 4,
             });
             this.mapbox.map.scrollZoom.disable();
             this.mapbox.map.on('rotate', () => {
@@ -279,6 +315,20 @@ export default {
                 this.showMapMessage = false;
                 this.isLoading = false;
                 this.$emit('map-ready', true);
+                this.mapbox.map.boxZoom.enable();
+            });
+
+            this.mapbox.map.on('zoomend', () => {
+                if (this.mapbox.map.getZoom() === 4) {
+                    this.showZoomMessage = 'too-far';
+                    this.showMapMessage = true;
+                } else if (this.mapbox.map.getZoom() === 18) {
+                    this.showZoomMessage = 'too-close';
+                    this.showMapMessage = true;
+                } else if (!this.showInfoMessage) {
+                    this.showZoomMessage = null;
+                    this.showMapMessage = false;
+                }
             });
         },
         /**
@@ -779,7 +829,12 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(255, 255, 255, 0.4);
+        pointer-events: none;
+
+        &--with-overlay {
+            pointer-events: all;
+            background: rgba(255, 255, 255, 0.4);
+        }
     }
 
     &__message-box {
@@ -918,6 +973,26 @@ export default {
         &:focus {
             &::after {
                 color: $color-white;
+            }
+        }
+    }
+
+    .mapboxgl-ctrl-zoom-in,
+    .mapboxgl-ctrl-zoom-out {
+        position: relative;
+
+        &:disabled {
+            &::after {
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: calc(100% + 4px);
+                height: calc(100% + 4px);
+                background-color: #c3c1c2;
+                color: white;
             }
         }
     }

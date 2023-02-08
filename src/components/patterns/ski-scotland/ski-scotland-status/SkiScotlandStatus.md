@@ -81,10 +81,10 @@
         </div>
     </VsSkiScotlandStatus>
     <hr>
-    <VsHeading level="2">The Lecht Ski Status</VsHeading>
+    <VsHeading level="2">Glenshee Ski Status</VsHeading>
     <hr>
     <VsSkiScotlandStatus
-        ski-status-url="http://the-lecht.infonet-online.fr/json/snowreport.json"
+        ski-status-url="http://glenshee.infonet-online.fr/json/snowreport.json"
         locale="de-de"
     >
         <div slot="centre-information">

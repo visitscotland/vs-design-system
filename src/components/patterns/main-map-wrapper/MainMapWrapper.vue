@@ -82,7 +82,9 @@
                             @show-detail="showDetail"
                             @set-category="setCategory"
                             @map-ready="setMapReady"
+                            @zoom-reset="resetZoom = false"
                             :bounds-data="regionBounds"
+                            :reset-zoom="resetZoom"
                         >
                             <template slot="mapLoadingText">
                                 <!-- @slot Message to show when map is loading  -->
@@ -90,6 +92,14 @@
                             </template>
                             <template slot="infoMessage">
                                 {{ infoMessage }}
+                            </template>
+                            <template slot="zoomTooClose">
+                                <!-- @slot Message to show when map zoom is too close -->
+                                <slot name="zoomTooClose" />
+                            </template>
+                            <template slot="zoomTooFar">
+                                <!-- @slot Message to show when map zoom is too far -->
+                                <slot name="zoomTooFar" />
                             </template>
                             <template slot="noJs">
                                 <!-- @slot Message to show when JS is disabled  -->
@@ -321,6 +331,7 @@ export default {
             currentPanelEndpointFilters: '',
             totalEndpointPins: 0,
             focussedListItem: 0,
+            resetZoom: false,
         };
     },
     computed: {
@@ -364,6 +375,7 @@ export default {
         selectedSubCategory(val) {
             if (val === null) {
                 this.mapStatus = '';
+                this.resetZoom = true;
             }
         },
     },
@@ -374,6 +386,10 @@ export default {
             filters: this.filters,
             places: this.placesData,
             activePins: this.activePins,
+        });
+
+        this.$root.$on('clearSelectedSubcats', () => {
+            this.resetZoom = true;
         });
     },
     methods: {
@@ -480,7 +496,6 @@ export default {
          * provides a random 24 items for the side panel
          */
         getSubcatPanelData(endpointFilters, page) {
-            this.panelStatus = 'loading-data';
             const subCat = this.filters.filter((cat) => cat.id === this.selectedSubCategory);
             let endpoint = subCat[0].listProductsEndPoint;
             if (typeof endpointFilters !== 'undefined') {
@@ -491,8 +506,11 @@ export default {
                 endpoint += `${endpointFilters}&page=${page}`;
             }
 
+            this.panelStatus = 'loading-data';
+
             axios.get(endpoint).then((response) => {
-                if (response.data.data.products.length !== 0) {
+                if (typeof response.data.data.products !== 'undefined') {
+                    this.setStage(1);
                     if (page === 0) {
                         this.subCatList = response.data.data.products;
                         this.focussedListItem = 0;
@@ -500,8 +518,8 @@ export default {
                         this.focussedListItem = page * 24;
                         this.subCatList = this.subCatList.concat(response.data.data.products);
                     }
-
-                    this.setStage(1);
+                } else {
+                    this.mapStatus = 'no-results';
                 }
                 this.panelStatus = null;
             });
@@ -523,10 +541,10 @@ export default {
                 });
             } else {
                 mapStore.dispatch('setCurrentStage', num);
-
                 if (this.currentStage === 0) {
                     this.currentEndpointData = [];
                     if (this.selectedSubCategory === null) {
+                        this.resetZoom = true;
                         this.showAllPlaces();
                         this.mapStatus = '';
                     } else {
@@ -629,6 +647,7 @@ export default {
         }
 
         &__side-panel {
+            position: relative;
             width: 100%;
 
             @include media-breakpoint-up(lg) {
