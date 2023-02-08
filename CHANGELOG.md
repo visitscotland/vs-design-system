@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.1](https://github.com/visitscotland/design-system/compare/v0.8.0...v0.8.1) (2023-02-08)
+
+
+### Features
+
+* 🎸 messaging for no results ([e9b3bad](https://github.com/visitscotland/design-system/commit/e9b3bad50d879eca7b3e45fbb86dc1b764eb5b52))
+
+
+### Bug Fixes
+
+* 🐛 fix load more btn not showing in feature branch ([7519829](https://github.com/visitscotland/design-system/commit/7519829569dc78d022152ff23db7f4898892403f))
+* 🐛 fix positioning of map panel message ([7d89012](https://github.com/visitscotland/design-system/commit/7d890127efebafe02703b346b019d17d43312b09))
+* 🐛 remove console statements ([c480a32](https://github.com/visitscotland/design-system/commit/c480a32c784b648b3b1fcd049a408bbe748bb139))
+* 🐛 try to solve missing load more btn bug on feature branch ([c4ba8ce](https://github.com/visitscotland/design-system/commit/c4ba8ce6bac926df47c6fd90d98772133729a006))
+
+
+### Others
+
+* 🤖 fix conflicts from main merge ([11678cb](https://github.com/visitscotland/design-system/commit/11678cb1b78d378fb416e91f80fe977381bdc40d))
+
 ## [0.8.0](https://github.com/visitscotland/design-system/compare/v0.7.7...v0.8.0) (2023-02-03)
 
 

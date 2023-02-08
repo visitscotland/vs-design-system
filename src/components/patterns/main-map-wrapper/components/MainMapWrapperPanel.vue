@@ -316,7 +316,7 @@ export default {
     },
     data() {
         return {
-            placesLoaded: 0,
+            placesLoaded: 1,
         };
     },
     computed: {
@@ -421,8 +421,8 @@ export default {
             return headingStr;
         },
         showLoadMore() {
-            if (this.placesLoaded * 24 > this.totalPins
-                || this.placesLoaded === 0) {
+            if (this.subcategoryLocations.length >= this.totalPins
+                || this.subcategoryLocations.length === 0) {
                 return false;
             }
 
@@ -431,7 +431,7 @@ export default {
     },
     watch: {
         currentFilter() {
-            this.placesLoaded = 0;
+            this.placesLoaded = 1;
         },
     },
     methods: {
