@@ -6,18 +6,24 @@
         >
             {{ hintText }}
         </p>
-        <span
-            v-for="error in errorsList"
-            :key="error"
-            class="error"
+
+        <div
+            role="alert"
             aria-live="assertive"
+            v-if="$v.inputVal.$anyError || invalid"
+            :id="`error-${fieldName}`"
         >
-            <template
-                v-if="$v.inputVal.$anyError || invalid"
+            <p
+                v-for="error in errorsList"
+                v-show="!reAlertErrors"
+                :key="error"
+                class="error mb-0"
             >
+                <span class="sr-only">{{ fieldName }}</span>
                 {{ validationMessages[error] || genericValidation[error] }}
-            </template>
-        </span>
+            </p>
+        </div>
+
         <div class="vs-select__container  mt-2">
             <BFormSelect
                 v-model="inputVal"
@@ -31,7 +37,8 @@
                 class="vs-select__element"
                 :required="isRequired"
                 :aria-invalid="$v.inputVal.$anyError || invalid"
-                :aria-describedby="`hint-${fieldName}`"
+                :aria-describedby="$v.inputVal.$anyError || invalid ?
+                    `error-${fieldName}` : `hint-${fieldName}`"
                 :class="errorClass"
                 :autocomplete="autocompleteValue(fieldName)"
             />
@@ -154,6 +161,15 @@ export default {
                 return {
                 };
             },
+        },
+        /**
+         * Whether the parent form has just been submitted, if so all errors
+         * need to be wiped from then re-added to the DOM to inform screen
+         * readers that they should be re-declared
+         */
+        reAlertErrors: {
+            type: Boolean,
+            default: false,
         },
     },
     data() {
