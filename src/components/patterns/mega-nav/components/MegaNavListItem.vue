@@ -70,11 +70,12 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-mega-nav-list-item{
+.vs-list li.vs-mega-nav-list-item{
     position: relative;
     list-style-type: none;
     background-color: $color-gray-tint-7;
     border-top: 1px solid $color-gray-tint-6;
+    margin-bottom: 0;
 
     @include media-breakpoint-up(lg) {
         border-top: 0;
