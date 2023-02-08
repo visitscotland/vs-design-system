@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.6](https://github.com/visitscotland/design-system/compare/v0.8.5...v0.8.6) (2023-02-08)
+
+
+### Features
+
+* 🎸 Ensure all ski cards are equal height ([32436cc](https://github.com/visitscotland/design-system/commit/32436cc7f3bc673418e8b599c9ae6fcd3d2e2884))
+
+
+### Bug Fixes
+
+* 🐛 Improve screen reader consistency on form errors ([9677dae](https://github.com/visitscotland/design-system/commit/9677daed45336cc234ea948043c8cb4b1570b847))
+
 ### [0.8.5](https://github.com/visitscotland/design-system/compare/v0.8.4...v0.8.5) (2023-02-08)
 
 
