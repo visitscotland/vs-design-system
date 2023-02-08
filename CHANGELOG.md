@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.5](https://github.com/visitscotland/design-system/compare/v0.8.4...v0.8.5) (2023-02-08)
+
+
+### Bug Fixes
+
+* 🐛 increase btn z-index so it can be clicked over overlay ([2c3ed72](https://github.com/visitscotland/design-system/commit/2c3ed72be6f85ecdd84334d5f801d256fc1a97ed))
+
 ### [0.8.4](https://github.com/visitscotland/design-system/compare/v0.8.2...v0.8.4) (2023-02-08)
 
 ### [0.8.2](https://github.com/visitscotland/design-system/compare/v0.8.1...v0.8.2) (2023-02-08)
