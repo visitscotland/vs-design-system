@@ -2,12 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.8](https://github.com/visitscotland/design-system/compare/v0.8.7...v0.8.8) (2023-02-09)
+
 ### [0.8.7](https://github.com/visitscotland/design-system/compare/v0.8.6...v0.8.7) (2023-02-09)
+
+
+### Features
+
+* 🎸 add ability to toggle icentres in map toggles ([10f92f4](https://github.com/visitscotland/design-system/commit/10f92f40214d19a2f559f539bc7f4ac83d2e2c94))
+* 🎸 add new data for regional map example ([56b6160](https://github.com/visitscotland/design-system/commit/56b616071a8fc51ed1ed44c10368950a7f1b5d1f))
+
+
+### Bug Fixes
+
+* 🐛 ensure user can close map panel at all stages ([6c406dd](https://github.com/visitscotland/design-system/commit/6c406dd0a22b9fd7ae21d25eaad76e9c369674c0))
+* 🐛 fix layout error in map side panel ([363e405](https://github.com/visitscotland/design-system/commit/363e4056386ac4a59cd387d4c13f757e617d5970))
 
 
 ### Performance Improvements
 
 * ⚡️ Adding OS branding locally to improve performance ([6897e13](https://github.com/visitscotland/design-system/commit/6897e131689c16f570656edbaf1394b9a36a0732))
+* ⚡️ Make SSPro font-display swap to prevent render block ([7f3c3e5](https://github.com/visitscotland/design-system/commit/7f3c3e5979e20afbbcd5b872af016f6920f0a91a))
+
+
+### Styling
+
+* 💄 ensure close button is clickable on mobile ([19bfb38](https://github.com/visitscotland/design-system/commit/19bfb38ee0c47899a97eb547f4451b114713eada))
 
 ### [0.8.6](https://github.com/visitscotland/design-system/compare/v0.8.5...v0.8.6) (2023-02-08)
 

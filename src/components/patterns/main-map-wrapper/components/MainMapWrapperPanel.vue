@@ -5,7 +5,6 @@
         :class="panelClasses"
     >
         <div
-            v-if="currentHeading !== '' || currentStage > 0"
             class="vs-main-map-wrapper-panel__header-section"
             :class="headerClasses"
         >
@@ -352,9 +351,6 @@ export default {
         },
         panelClasses() {
             let panelClasses = '';
-            if (this.currentStage === 1) {
-                panelClasses += 'justify-content-between';
-            }
             if (this.currentStage === 2) {
                 panelClasses += ' vs-main-map-wrapper-panel--small-padding';
             }
@@ -541,7 +537,7 @@ export default {
 
 <style lang="scss">
     .vs-main-map-wrapper-panel {
-        padding: $spacer-11 $spacer-3 $spacer-0;
+        padding: $spacer-9 $spacer-3 $spacer-0;
         border: 1px solid $color-gray;
         height: 100%;
         overflow-y: auto;
@@ -575,6 +571,7 @@ export default {
         &__back {
             position: absolute;
             top: $spacer-3;
+            z-index: 5;
         }
 
         &__back {
@@ -628,7 +625,7 @@ export default {
         }
 
         &__list-container {
-            height: calc(100% - 140px);
+            flex-grow: 2;
             overflow-y: scroll;
             overflow-x: visible;
             display: block;
