@@ -5,7 +5,6 @@
         :class="panelClasses"
     >
         <div
-            v-if="currentHeading !== '' || currentStage > 0"
             class="vs-main-map-wrapper-panel__header-section"
             :class="headerClasses"
         >
