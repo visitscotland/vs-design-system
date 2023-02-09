@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.7](https://github.com/visitscotland/design-system/compare/v0.8.6...v0.8.7) (2023-02-09)
+
+
+### Performance Improvements
+
+* ⚡️ Adding OS branding locally to improve performance ([6897e13](https://github.com/visitscotland/design-system/commit/6897e131689c16f570656edbaf1394b9a36a0732))
+
 ### [0.8.6](https://github.com/visitscotland/design-system/compare/v0.8.5...v0.8.6) (2023-02-08)
 
 
