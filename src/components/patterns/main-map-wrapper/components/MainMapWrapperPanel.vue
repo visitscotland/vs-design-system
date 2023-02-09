@@ -352,9 +352,6 @@ export default {
         },
         panelClasses() {
             let panelClasses = '';
-            if (this.currentStage === 1) {
-                panelClasses += 'justify-content-between';
-            }
             if (this.currentStage === 2) {
                 panelClasses += ' vs-main-map-wrapper-panel--small-padding';
             }
@@ -628,7 +625,7 @@ export default {
         }
 
         &__list-container {
-            height: calc(100% - 140px);
+            flex-grow: 2;
             overflow-y: scroll;
             overflow-x: visible;
             display: block;
