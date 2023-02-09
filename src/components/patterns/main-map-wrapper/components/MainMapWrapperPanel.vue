@@ -5,7 +5,6 @@
         :class="panelClasses"
     >
         <div
-            v-if="currentHeading !== '' || currentStage > 0"
             class="vs-main-map-wrapper-panel__header-section"
             :class="headerClasses"
         >
@@ -538,7 +537,7 @@ export default {
 
 <style lang="scss">
     .vs-main-map-wrapper-panel {
-        padding: $spacer-11 $spacer-3 $spacer-0;
+        padding: $spacer-9 $spacer-3 $spacer-0;
         border: 1px solid $color-gray;
         height: 100%;
         overflow-y: auto;
@@ -572,6 +571,7 @@ export default {
         &__back {
             position: absolute;
             top: $spacer-3;
+            z-index: 5;
         }
 
         &__back {
