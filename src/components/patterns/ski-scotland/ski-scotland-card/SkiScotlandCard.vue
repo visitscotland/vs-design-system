@@ -610,7 +610,7 @@ export default {
         border: none;
         border-radius: $border_radius_xl;
         overflow: hidden;
-        box-shadow: $shadow_popover;
+        box-shadow: $shadow_card_dark;
         margin-bottom: $spacer-9;
         height: calc(100% - #{$spacer-9});
 
