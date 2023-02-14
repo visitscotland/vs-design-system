@@ -214,9 +214,9 @@ export default {
 
             this.createDataLayerObject(type, event, this.href);
 
-            // if (this.href !== '#' && this.href !== null) {
-            //     window.location.href = this.href;
-            // }
+            if (this.href !== '#' && this.href !== null) {
+                window.location.href = this.href;
+            }
         },
     },
 };
