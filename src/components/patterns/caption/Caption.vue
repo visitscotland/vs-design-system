@@ -161,7 +161,7 @@ export default {
             text-align: left;
         }
         .vs-caption__caption-info{
-            padding: $spacer-3 $spacer-3;
+            padding: $spacer-3 0;
         }
     }
 
