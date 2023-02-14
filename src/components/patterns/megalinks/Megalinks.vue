@@ -344,6 +344,23 @@ export default {
                                 from local markets to renowned restaurants.</p>
                             </template>
                         </VsMegalinkMultiImage>
+                        <VsModal
+                            modalId="g-Fhvj7vW-E"
+                            closeBtnText="Close"
+                            :isVideoModal="true"
+                        >
+                            <VsRow>
+                                <VsCol cols="12">
+                                    <VsVideo
+                                        videoId="g-Fhvj7vW-E"
+                                        class="mb-8"
+                                        no-js-message="You need Javascript enabled"
+                                        no-cookies-message="You need cookies enabled"
+                                        cookie-btn-text="Cookie button"
+                                    />
+                                </VsCol>
+                            </VsRow>
+                        </VsModal>
                     </VsCol>
                     <VsCol
                         cols="12"
