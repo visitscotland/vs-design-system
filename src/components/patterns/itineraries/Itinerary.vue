@@ -1,5 +1,8 @@
 <template>
-    <section class="vs-itinerary">
+    <section
+        class="vs-itinerary"
+        data-test="vs-itinerary"
+    >
         <div
             class="fixed-bottom"
             v-show="!isDesktop && withinItineraryMain"
@@ -9,6 +12,7 @@
                     class="vs-itinerary__map-toggle-button"
                     @click.native="toggleShowMap()"
                     :icon="showMap ? 'list' : 'map'"
+                    data-test="vs-itinerary-btn"
                 >
                     {{ showMap ? listViewText : mapViewText }}
                 </VsButton>
