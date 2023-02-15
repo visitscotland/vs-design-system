@@ -107,6 +107,7 @@
                             </template>
                         </VsMap>
                         <VsButtonToggleGroup
+                            v-if="!hideMobileToggle"
                             :initial-selected="selectedToggle"
                             :options="toggleData"
                             :buttons-label="buttonsLabel"
@@ -308,6 +309,13 @@ export default {
         panelMessage: {
             type: String,
             default: null,
+        },
+        /**
+         * Option to hide the mobile toggle buttons
+         */
+        hideMobileToggle: {
+            type: Boolean,
+            default: false,
         },
     },
     data() {
