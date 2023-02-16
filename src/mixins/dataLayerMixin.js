@@ -66,6 +66,13 @@ const dataLayerMixin = {
             let templateValues;
             let fullTemplate;
             let dataLayerData;
+            let clickText;
+
+            if (event.target.text) {
+                clickText = event.target.text.trim();
+            } else {
+                clickText = event.target.innerText;
+            }
 
             switch (type) {
             case 'pageViewTemplateDataEvent':
@@ -131,8 +138,8 @@ const dataLayerMixin = {
                 templateValues = {
                     event: eventName,
                     tag_name: tagName,
-                    click_text: this.targetText(event),
-                    click_URL: event.target.href,
+                    click_text: clickText,
+                    click_URL: href,
                 };
 
                 fullTemplate = this.compileFullTemplate(templateValues);
@@ -146,7 +153,7 @@ const dataLayerMixin = {
                 templateValues = {
                     event: eventName,
                     tag_name: tagName,
-                    click_text: event.target.text.trim(),
+                    click_text: clickText,
                     click_URL: href,
                 };
 
