@@ -1,6 +1,6 @@
 {
   "name": "@visitscotland/vs-component-library",
-  "version": "0.8.8",
+  "version": "0.8.9",
   "description": "visitscotland.com Component Library",
   "author": "VisitScotland",
   "main": "dist/library/manifest.json",
