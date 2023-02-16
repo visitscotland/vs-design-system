@@ -10,6 +10,7 @@ import {
     homePageLogoClickTemplate,
     formsTemplate,
     socialMediaExternalLinkTemplate,
+    shareTemplate,
 } from '../utils/data-layer-templates';
 
 /**
@@ -196,6 +197,23 @@ const dataLayerMixin = {
 
                 fullTemplate = this.compileFullTemplate(templateValues);
                 dataLayerData = this.templateFiller(videoTrackingTemplate, fullTemplate);
+
+                break;
+
+            case 'socialShareDataEvent':
+                eventName = 'share';
+                tagName = 'VS - GA - Share';
+
+                templateValues = {
+                    event: eventName,
+                    tag_name: tagName,
+                    click_text: event.target.text.trim(),
+                    click_URL: href,
+                };
+
+                fullTemplate = this.compileFullTemplate(templateValues);
+                dataLayerData = this.templateFiller(shareTemplate, fullTemplate);
+                console.log(dataLayerData);
 
                 break;
 
