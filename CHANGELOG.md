@@ -2,6 +2,51 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.10](https://github.com/visitscotland/design-system/compare/v0.8.9...v0.8.10) (2023-02-17)
+
+
+### Features
+
+* 🎸 Adjust buttons on mobile ([2d08de8](https://github.com/visitscotland/design-system/commit/2d08de83f4de008bc364a2c43865216f250ba4cd))
+
+
+### Bug Fixes
+
+* 🐛 Adjust shadow for ski cards ([69e5025](https://github.com/visitscotland/design-system/commit/69e502550a4f3f8ce6448e1fac104d8b3f2fc3b0))
+* 🐛 Move megalink video play button text onto a single line ([63ce300](https://github.com/visitscotland/design-system/commit/63ce30073b75a91b22c56bdf2b57b9983d8e73f2))
+* 🐛 Update stackla styles to use fontawesome icons ([134424e](https://github.com/visitscotland/design-system/commit/134424eacaeba0339a8c1c957a754c664b41f824))
+
+### [0.8.9](https://github.com/visitscotland/design-system/compare/v0.8.8...v0.8.9) (2023-02-16)
+
+
+### Bug Fixes
+
+* 🐛 add button link tracking ([ac8a68f](https://github.com/visitscotland/design-system/commit/ac8a68f5ae8d6d31d436fed2fea91e1a2e12830c))
+* 🐛 add share tracking to social share links ([982cc64](https://github.com/visitscotland/design-system/commit/982cc64ea12080189ffd9f63f18737d4f48ecce9))
+* 🐛 remove hardcoded content and replace with props ([eb64690](https://github.com/visitscotland/design-system/commit/eb646906a96c7884d51f372a203e550cc1b05008))
+* 🐛 undo commented out code ([bcfb4d5](https://github.com/visitscotland/design-system/commit/bcfb4d5115ecaebc2e43f6de313f734202d43f13))
+
+
+### Others
+
+* **release:** 0.8.7 ([be013f9](https://github.com/visitscotland/design-system/commit/be013f9d9d9ac074824cd65a8548bba7725be8ee))
+
+
+### Code Refactoring
+
+* 💡 Refactor out indentation lint error ([2563170](https://github.com/visitscotland/design-system/commit/256317050391c34bea1d8d91dad0e712d961cb12))
+
+
+### Tests
+
+* 💍 add unit tests ([5b76a66](https://github.com/visitscotland/design-system/commit/5b76a66d49929debe2392859cfb0eeca7f6fa795))
+
+
+### Styling
+
+* 💄 (ImageWithCaption) Correcting inconsistent padding ([48f046b](https://github.com/visitscotland/design-system/commit/48f046b64f4d2ddfcaa0f475cbe4ee3d46916800))
+* 💄 (Megalinks) Ensuring card sits over the warning block ([d924334](https://github.com/visitscotland/design-system/commit/d9243344c38dfba93ed3b84c777b6f957d752ddd))
+
 ### [0.8.8](https://github.com/visitscotland/design-system/compare/v0.8.7...v0.8.8) (2023-02-09)
 
 ### [0.8.7](https://github.com/visitscotland/design-system/compare/v0.8.6...v0.8.7) (2023-02-09)

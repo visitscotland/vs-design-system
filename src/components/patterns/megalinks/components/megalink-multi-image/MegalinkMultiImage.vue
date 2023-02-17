@@ -313,6 +313,7 @@ export default {
                 top: $spacer-10;
                 padding: $spacer-8;
                 transition: box-shadow $duration-slowly;
+                z-index: 10;
             }
 
             .vs-stretched-link-card__video-button {

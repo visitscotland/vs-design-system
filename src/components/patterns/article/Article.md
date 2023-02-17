@@ -164,20 +164,57 @@ On smaller devices, the sidebar is displayed above the related content in its se
             <VsArticleSidebar sidebar-align="left">
                 <template slot="vsArticleSidebarImg">
                     <VsImageWithCaption
-                        altText="Nevis ridge"
+                        :is-video="true"
+                        video-id="c05sg3G4oA4"
+                        video-title="This is the video title"
+                        :small-play-button="true"
+                        play-button-text="Play"
+                        toggle-button-text="Toggle image caption"
+                        error-message="Sorry, something's gone wrong. Please try again later"
+                        cookie-link-text="Manage cookies"
+                        no-js-message="You need Javascript enabled to see this video"
+                        no-cookies-message="You need cookies enabled to see this video"
                         image-src="../../../fixtures/article/images/nevis-ridge.jpg"
                     >
-                        <VsCaption slot="img-caption">
+                        <template slot="video-no-js-alert">
+                            JavaScript needs to be enabled to watch this video.
+                            You can turn this on in your browser settings.
+                        </template>
+                        <template slot="video-title">
+                            This is the video title
+                        </template>
+                        <template slot="video-duration">
+                            This is the video length
+                        </template>
+
+                        <VsCaption
+                            slot="img-caption"
+                        >
                             <span slot="caption">
                                 Nevis ridge
                             </span>
 
                             <span slot="credit">
-                                © iStockphoto.com / fotoVoyager
+                                © iStockphoto.com
                             </span>
                         </VsCaption>
                     </VsImageWithCaption>
+                    <VsModal
+                        modalId="c05sg3G4oA4"
+                        closeBtnText="Close"
+                        :isVideoModal="true"
+                    >
+                        <VsRow>
+                            <VsCol cols="12">
+                                <VsVideo
+                                    video-id="c05sg3G4oA4"
+                                    class="mb-8"
+                                />
+                            </VsCol>
+                        </VsRow>
+                    </VsModal>
                 </template>
+
                 <template slot="vsArticleSidebarQuote">
                     <VsQuote>
                         <p slot="quoteContent">
