@@ -8,6 +8,8 @@ props:
     value: "0 0 0 1px rgba(92,106,196,.1)"
   shadow_card:
     value: "10px 10px 20px $color-gray-tint-4"
+  shadow_card_dark:
+    value: "0 8px 8px rgba(0, 0, 0, 0.3)"
   shadow_popover:
     value: "0 0px 20px rgba(0, 0, 0, 0.3)"
   shadow_popover_dark:
