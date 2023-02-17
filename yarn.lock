@@ -5255,6 +5255,11 @@ conventional-changelog@3.1.25:
     conventional-changelog-jshint "^2.0.9"
     conventional-changelog-preset-loader "^2.3.4"
 
+conventional-commit-types-emoji@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/conventional-commit-types-emoji/-/conventional-commit-types-emoji-0.1.0.tgz#f3193a5f9e66dbc6dee5a380d111d8391a4809f6"
+  integrity sha512-3hLa62ZEGfEohLJGhIbM9pAFOUTSJr4aWBiUGW3aFsOsSEv2ElG1+cITvuBi4tlcI/VC016i9do78jjqHndMqQ==
+
 conventional-commit-types@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/conventional-commit-types/-/conventional-commit-types-3.0.0.tgz#7c9214e58eae93e85dd66dbfbafe7e4fffa2365b"
@@ -5852,7 +5857,19 @@ cypress@^10.0.3:
     untildify "^4.0.0"
     yauzl "^2.10.0"
 
-cz-conventional-changelog@3.3.0, cz-conventional-changelog@^3.3.0:
+cz-conventional-changelog-emoji@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/cz-conventional-changelog-emoji/-/cz-conventional-changelog-emoji-0.1.0.tgz#8eadd1798b8e3e1bd1568de8577107988c97efff"
+  integrity sha512-+MdJK0xUPnlroQiBZMHWHOxW10GNYOy9vy8CMqPGWCH492kq0eHaWT41/dP0Sg4aS6NzFZapbg27WLQtAynXIg==
+  dependencies:
+    conventional-commit-types-emoji "^0.1.0"
+    lodash.map "^4.6.0"
+    longest "^1.0.1"
+    pad-right "^0.2.2"
+    right-pad "^1.0.1"
+    word-wrap "^1.1.0"
+
+cz-conventional-changelog@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/cz-conventional-changelog/-/cz-conventional-changelog-3.3.0.tgz#9246947c90404149b3fe2cf7ee91acad3b7d22d2"
   integrity sha512-U466fIzU5U22eES5lTNiNbZ+d8dfcHcssH4o7QsdWaCcRs/feIPCxKYSWkYBNs5mny7MvEfwpTLWjvbm94hecw==
@@ -8409,11 +8426,6 @@ gifsicle@^5.0.0:
     bin-build "^3.0.0"
     bin-wrapper "^4.0.0"
     execa "^5.0.0"
-
-git-cz@^4.9.0:
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/git-cz/-/git-cz-4.9.0.tgz#c0604ff85b37046d51fd85e265040032c9617bf2"
-  integrity sha512-cSRL8IIOXU7UFLdbziCYqg8f8InwLwqHezkiRHNSph7oZqGv0togId1kMTfKil6gzK0VaSXeVBb4oDl0fQCHiw==
 
 git-raw-commits@^2.0.8:
   version "2.0.11"
@@ -11554,7 +11566,7 @@ lodash.kebabcase@^4.1.1:
   resolved "https://registry.yarnpkg.com/lodash.kebabcase/-/lodash.kebabcase-4.1.1.tgz#8489b1cb0d29ff88195cceca448ff6d6cc295c36"
   integrity sha512-N8XRTIMMqqDgSy4VLKPnJ/+hpGZN+PHQiJnSenYqPaVV/NCqEogTnAdZLQiGKhxX+JCs8waWq2t1XHWKOmlY8g==
 
-lodash.map@^4.5.1:
+lodash.map@^4.5.1, lodash.map@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.map/-/lodash.map-4.6.0.tgz#771ec7839e3473d9c4cde28b19394c3562f4f6d3"
   integrity sha512-worNHGKLDetmcEYDvh2stPCrrQRkP20E4l0iIS7F8EvzMqBBi7ltvFN5m1HvTf1P7Jk1txKhvFcmYsCr8O2F1Q==
@@ -13290,6 +13302,13 @@ package-json@^6.3.0:
     registry-auth-token "^4.0.0"
     registry-url "^5.0.0"
     semver "^6.2.0"
+
+pad-right@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/pad-right/-/pad-right-0.2.2.tgz#6fbc924045d244f2a2a244503060d3bfc6009774"
+  integrity sha512-4cy8M95ioIGolCoMmm2cMntGR1lPLEbOMzOKu8bzjuJP6JpzEMQcDHmh7hHLYGgob+nKe1YHFMaG4V59HQa89g==
+  dependencies:
+    repeat-string "^1.5.2"
 
 pako@~1.0.5:
   version "1.0.11"
@@ -15490,6 +15509,11 @@ right-align@^0.1.1:
   integrity sha512-yqINtL/G7vs2v+dFIZmFUDbnVyFUJFKd6gK22Kgo6R4jfJGFtisKyncWDDULgjfqf4ASQuIQyjJ7XZ+3aWpsAg==
   dependencies:
     align-text "^0.1.1"
+
+right-pad@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/right-pad/-/right-pad-1.0.1.tgz#8ca08c2cbb5b55e74dafa96bf7fd1a27d568c8d0"
+  integrity sha512-bYBjgxmkvTAfgIYy328fmkwhp39v8lwVgWhhrzxPV3yHtcSqyYKe9/XOhvW48UFjATg3VuJbpsp5822ACNvkmw==
 
 rimraf@2.6.3:
   version "2.6.3"
@@ -18697,7 +18721,7 @@ with@^5.0.0:
     acorn "^3.1.0"
     acorn-globals "^3.0.0"
 
-word-wrap@^1.0.3, word-wrap@^1.2.3, word-wrap@~1.2.3:
+word-wrap@^1.0.3, word-wrap@^1.1.0, word-wrap@^1.2.3, word-wrap@~1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
