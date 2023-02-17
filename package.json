@@ -71,7 +71,7 @@
     "codemirror": "^5.63.0",
     "commitizen": "^4.2.5",
     "core-js": "^3.6.5",
-    "cz-conventional-changelog-emoji": "^0.1.0",
+    "cz-emoji-conventional-changelog": "^0.0.0",
     "dotenv": "^7.0.0",
     "dotenv-webpack": "^7.1.0",
     "eslint-watch": "^7.0.0",
@@ -230,7 +230,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog-emoji"
+      "path": "./node_modules/cz-emoji-conventional-changelog"
     }
   }
 }
