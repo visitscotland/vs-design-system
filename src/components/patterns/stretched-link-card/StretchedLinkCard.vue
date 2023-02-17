@@ -682,7 +682,7 @@ export default {
         }
 
         .vs-stretched-link-card__video-btn-text {
-            display: block;
+            display: inline-block;
         }
     }
 
