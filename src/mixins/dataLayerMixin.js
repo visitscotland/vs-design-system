@@ -220,7 +220,6 @@ const dataLayerMixin = {
 
                 fullTemplate = this.compileFullTemplate(templateValues);
                 dataLayerData = this.templateFiller(shareTemplate, fullTemplate);
-                console.log(dataLayerData);
 
                 break;
 
