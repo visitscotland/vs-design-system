@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.10](https://github.com/visitscotland/design-system/compare/v0.8.9...v0.8.10) (2023-02-17)
+
+
+### Features
+
+* 🎸 Adjust buttons on mobile ([2d08de8](https://github.com/visitscotland/design-system/commit/2d08de83f4de008bc364a2c43865216f250ba4cd))
+
+
+### Bug Fixes
+
+* 🐛 Adjust shadow for ski cards ([69e5025](https://github.com/visitscotland/design-system/commit/69e502550a4f3f8ce6448e1fac104d8b3f2fc3b0))
+* 🐛 Move megalink video play button text onto a single line ([63ce300](https://github.com/visitscotland/design-system/commit/63ce30073b75a91b22c56bdf2b57b9983d8e73f2))
+* 🐛 Update stackla styles to use fontawesome icons ([134424e](https://github.com/visitscotland/design-system/commit/134424eacaeba0339a8c1c957a754c664b41f824))
+
 ### [0.8.9](https://github.com/visitscotland/design-system/compare/v0.8.8...v0.8.9) (2023-02-16)
 
 
