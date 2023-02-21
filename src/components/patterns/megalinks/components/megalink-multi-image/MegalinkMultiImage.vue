@@ -1,43 +1,45 @@
 <template>
-    <VsStretchedLinkCard
-        :link="linkUrl"
-        :type="linkType"
-        class="vs-megalink-multi-image p-2"
-        :class="multiImageClasses"
-        :img-src="imgSrc"
-        :img-alt="imgAlt"
-        :data-test="featured ? 'megalink-multi-image-featured' : 'megalink-multi-image-card'"
-        :theme="theme"
-        :video-id="videoId"
-        :video-btn-text="videoBtnText"
-        :error-message="errorMessage"
-        :warning-size="featured ? 'normal' : 'small'"
-    >
-        <VsStretchedLinkPanels
-            v-if="days && transport"
-            :days="days"
-            :transport="transport"
-            :transport-name="transportName"
-            slot="stretchedCardPanels"
-            :days-label="daysLabel"
-            data-test="vs-itinerary-panels"
-        />
-
-        <span
-            slot="stretchedCardHeader"
-            class="vs-megalink-multi-image__title"
-            data-test="megalink-multi-image__title"
-        ><!-- @slot Slot to contain heading --><slot name="vsMultiImageHeading" /></span>
-
-        <VsRichTextWrapper
-            slot="stretchedCardContent"
-            class="vs-megalink-multi-image__content"
-            data-test="megalink-multi-image__content"
+    <div class="vs-megalink-multi-image">
+        <VsStretchedLinkCard
+            :link="linkUrl"
+            :type="linkType"
+            class="vs-megalink-multi-image-card p-2"
+            :class="multiImageClasses"
+            :img-src="imgSrc"
+            :img-alt="imgAlt"
+            :data-test="featured ? 'megalink-multi-image-featured' : 'megalink-multi-image-card'"
+            :theme="theme"
+            :video-id="videoId"
+            :video-btn-text="videoBtnText"
+            :error-message="errorMessage"
+            :warning-size="featured ? 'normal' : 'small'"
         >
-            <!-- @slot Slot to contain content -->
-            <slot name="vsMultiImageContent" />
-        </VsRichTextWrapper>
-    </VsStretchedLinkCard>
+            <VsStretchedLinkPanels
+                v-if="days && transport"
+                :days="days"
+                :transport="transport"
+                :transport-name="transportName"
+                slot="stretchedCardPanels"
+                :days-label="daysLabel"
+                data-test="vs-itinerary-panels"
+            />
+
+            <span
+                slot="stretchedCardHeader"
+                class="vs-megalink-multi-image-card__title"
+                data-test="megalink-multi-image-card__title"
+            ><!-- @slot Slot to contain heading --><slot name="vsMultiImageHeading" /></span>
+
+            <VsRichTextWrapper
+                slot="stretchedCardContent"
+                class="vs-megalink-multi-image-card__content"
+                data-test="megalink-multi-image-card__content"
+            >
+                <!-- @slot Slot to contain content -->
+                <slot name="vsMultiImageContent" />
+            </VsRichTextWrapper>
+        </VsStretchedLinkCard>
+    </div>
 </template>
 
 <script>
@@ -172,10 +174,10 @@ export default {
     computed: {
         multiImageClasses() {
             return [
-                `vs-megalink-multi-image--${this.theme}`,
+                `vs-megalink-multi-image-card--${this.theme}`,
                 {
-                    'vs-megalink-multi-image--featured': this.featured,
-                    'vs-megalink-multi-image--featured-last': this.lastFeatured,
+                    'vs-megalink-multi-image-card--featured': this.featured,
+                    'vs-megalink-multi-image-card--featured-last': this.lastFeatured,
                 },
             ];
         },
@@ -184,7 +186,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .vs-megalink-multi-image.card {
+    .vs-megalink-multi-image-card.card {
         border: none;
         background: transparent;
         position: relative;
@@ -194,7 +196,7 @@ export default {
         &:hover {
             box-shadow: $shadow_popover;
 
-            .vs-megalink-multi-image__title {
+            .vs-megalink-multi-image-card__title {
                 text-decoration: underline;
             }
         }
@@ -204,11 +206,11 @@ export default {
             width: 100%;
         }
 
-        .vs-megalink-multi-image__img {
+        .vs-megalink-multi-image-card__img {
             max-width: 100%;
         }
 
-        .vs-megalink-multi-image__title {
+        .vs-megalink-multi-image-card__title {
             font-size: $font-size-2;
             line-height: $line-height-s;
             letter-spacing: $letter-spacing-xl;
@@ -224,7 +226,7 @@ export default {
             width: 12px;
         }
 
-        .vs-megalink-multi-image__content {
+        .vs-megalink-multi-image-card__content {
             margin-top: $spacer-2;
             line-height: $line-height-s;
 
@@ -234,7 +236,7 @@ export default {
         }
     };
 
-    .vs-megalink-multi-image--dark.card {
+    .vs-megalink-multi-image-card--dark.card {
         .vs-stretched-link-card__title {
             color: $color-white;
 
@@ -246,27 +248,27 @@ export default {
         &:hover {
             box-shadow: $shadow_popover_dark;
 
-            &:not(.vs-megalink-multi-image--featured) {
+            &:not(.vs-megalink-multi-image-card--featured) {
                 background-color: $color-secondary-gray-shade-5;
             }
         }
     }
 
     @include media-breakpoint-up(xl) {
-        .vs-megalinks--multi-image .vs-megalinks__links-wrapper .row {
+        .vs-megalinks--multi-image .vs-megalinks__links-wrapper{
             width: calc(100% + #{$spacer-10} + #{$spacer-3});
             margin-left: -#{$spacer-8};
 
-            [class*=col-] {
-                padding-left: $spacer-8;
-                padding-right: $spacer-8;
+            .vs-megalink-multi-image {
+                padding-left: $spacer-5;
+                padding-right: $spacer-5;
             }
         }
 
-        .vs-megalink-multi-image.card {
+        .vs-megalink-multi-image-card.card {
             margin-bottom: $spacer-11;
 
-            .vs-megalink-multi-image__title {
+            .vs-megalink-multi-image-card__title {
                 font-size: $font-size-3;
                 line-height: $line-height-s;
             }
@@ -276,14 +278,14 @@ export default {
             }
         }
 
-        .vs-megalink-multi-image--featured.card {
+        .vs-megalink-multi-image-card--featured.card {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
             width: 100%;
             transform: rotate(0deg);
 
-            .vs-megalink-multi-image__title {
+            .vs-megalink-multi-image-card__title {
                 font-size: $font-size-5;
                 letter-spacing: $letter-spacing-xxl;
             }
@@ -335,7 +337,7 @@ export default {
                 margin-left: 0;
             }
 
-            &.vs-megalink-multi-image--featured-last {
+            &.vs-megalink-multi-image-card--featured-last {
                 flex-direction: row-reverse;
 
                 .vs-stretched-link-panels {
@@ -362,7 +364,7 @@ export default {
                 }
             }
 
-            &.vs-megalink-multi-image--dark {
+            &.vs-megalink-multi-image-card--dark {
                 .card-body {
                     background-color: $color-secondary-gray-shade-5;
                 }
@@ -376,134 +378,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-    ```js
-    <VsMegalinks variant="multi-image">
-        <VsContainer>
-            <VsRow>
-                <VsCol
-                    cols="12"
-                    lg="6"
-                    xl="12"
-                >
-                    <VsMegalinkMultiImage
-                        featured
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        imgAlt="This is the alt text"
-                        linkType="internal"
-                        linkUrl="www.visitscotland.com"
-                        days="2"
-                        daysLabel="days"
-                        transport="bus"
-                        transportName="bus"
-                    >
-                        <template slot="vsMultiImageHeading">
-                            The Edinburgh International Festival and summer festival</template>
-                        <template slot="vsMultiImageContent">
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink from local markets to renowned
-                            restaurants.</p>
-                        </template>
-                    </VsMegalinkMultiImage>
-                </VsCol>
-                <VsCol
-                    cols="12"
-                    md="6"
-                    xl="4"
-                >
-                    <VsMegalinkMultiImage
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        imgAlt="This is the alt text 1"
-                        linkType="external"
-                        linkUrl="www.visitscotland.com"
-                    >
-                        <template slot="vsMultiImageHeading">
-                            Count 7,000 shining stars in the iconic
-                            galloway forest</template>
-                        <template slot="vsMultiImageContent">
-                            <p>Right across the country, you’ll find amazing
-                            places to eat and drink from local markets to renowned
-                            restaurants. Here are some recomm…</p>
-                        </template>
-                    </VsMegalinkMultiImage>
-                </VsCol>
-                <VsCol
-                    cols="12"
-                    md="6"
-                    xl="4"
-                >
-                    <VsMegalinkMultiImage
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        imgAlt="This is the alt text 2"
-                        linkType="external"
-                        linkUrl="www.visitscotland.com"
-                    >
-                        <template slot="vsMultiImageHeading">
-                            Count 7,000 shining stars in the iconic galloway forest</template>
-                        <template slot="vsMultiImageContent">
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink
-                            from local markets to renowned restaurants.
-                            Here are some recomm…</p>
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink
-                            from local markets to renowned restaurants.
-                            Here are some recomm…</p>
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink
-                            from local markets to renowned restaurants.
-                            Here are some recomm…</p>
-                        </template>
-                    </VsMegalinkMultiImage>
-                </VsCol>
-                <VsCol
-                    cols="12"
-                    md="6"
-                    xl="4"
-                >
-                    <VsMegalinkMultiImage
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        linkType="download"
-                        linkUrl="www.visitscotland.com"
-                    >
-                        <template slot="vsMultiImageHeading">
-                            Soar through the air on a boat of Falkirk Wheel (PDF 3MB)</template>
-                        <template slot="vsMultiImageContent">
-                            <p>Right across the country, you’ll find amazing
-                            places to eat and drink from local markets to renowned
-                            restaurants. Here are some recomm…</p>
-                        </template>
-                    </VsMegalinkMultiImage>
-                </VsCol>
-                <VsCol
-                    cols="12"
-                    lg="6"
-                    xl="12"
-                >
-                    <vs-megalink-multi-image
-                        featured
-                        lastFeatured
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        imgAlt="This is the alt text"
-                        linkType="internal"
-                        linkUrl="www.visitscotland.com"
-                        days="6"
-                        daysLabel="days"
-                        transport="bus"
-                        transportName="bus"
-                    >
-                        <template slot="vsMultiImageHeading">
-                            The Edinburgh International Festival and summer festival</template>
-                        <template slot="vsMultiImageContent">
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink from local markets to renowned
-                            restaurants.</p>
-                        </template>
-                    </vs-megalink-multi-image>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
-    </VsMegalinks>
-    ```
-</docs>

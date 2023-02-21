@@ -33,13 +33,13 @@ beforeEach(() => {
 describe('VsMegalinkMultiImage', () => {
     describe(':props', () => {
         it('if the featured prop is true, it should render an element with class "megalink-multi-image--featured"', () => {
-            expect(wrapper.find('[data-test="megalink-multi-image-featured"]').classes()).toContain('vs-megalink-multi-image--featured');
+            expect(wrapper.find('[data-test="megalink-multi-image-featured"]').classes()).toContain('vs-megalink-multi-image-card--featured');
         });
         it('renders with a `megalink-multi-image--featured-last` class if the lastFeatured prop is true', () => {
-            expect(wrapper.find('[data-test="megalink-multi-image-featured"]').classes()).toContain('vs-megalink-multi-image--featured-last');
+            expect(wrapper.find('[data-test="megalink-multi-image-featured"]').classes()).toContain('vs-megalink-multi-image-card--featured-last');
         });
         it('renders the correct theme class', () => {
-            expect(wrapper.find('[data-test="megalink-multi-image-featured"]').classes()).toContain('vs-megalink-multi-image--dark');
+            expect(wrapper.find('[data-test="megalink-multi-image-featured"]').classes()).toContain('vs-megalink-multi-image-card--dark');
         });
         it('renders card panels if days and transport are provided', () => {
             expect(wrapper.find('[data-test="vs-itinerary-panels"]').exists()).toBe(true);
@@ -58,11 +58,11 @@ describe('VsMegalinkMultiImage', () => {
 
     describe(':slots', () => {
         it('renders content inserted in a vsMultiImageHeading slot', () => {
-            expect(wrapper.find('[data-test="megalink-multi-image__title"]').text()).toBe('Multi-image heading');
+            expect(wrapper.find('[data-test="megalink-multi-image-card__title"]').text()).toBe('Multi-image heading');
         });
 
         it('renders content inserted in a vsMultiImageContent slot', () => {
-            expect(wrapper.find('[data-test="megalink-multi-image__content"]').html()).toContain('<p>Multi-image content</p>');
+            expect(wrapper.find('[data-test="megalink-multi-image-card__content"]').html()).toContain('<p>Multi-image content</p>');
         });
     });
 });
