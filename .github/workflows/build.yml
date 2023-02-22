@@ -45,10 +45,10 @@ jobs:
         run: |
           echo "${{ secrets.VS_ENV_FILE }}" > .env
       - name: 'Build system files'
-        run: |
-          yarn system:build
         with:
             path: ./../
+        run: |
+          yarn system:build
       - name: Upload a Build Artifact
         uses: actions/upload-pages-artifact@v1.0.7
         with:
