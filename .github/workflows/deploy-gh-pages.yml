@@ -22,12 +22,6 @@ concurrency:
 jobs:
   build:
     uses: visitscotland/design-system/.github/workflows/build.yml@s3-workflow-test-branch
-    steps:       
-      - name: Upload a Build Artifact
-        uses: actions/upload-pages-artifact@v1.0.7
-        with:
-          name: github-pages
-          path: ./dist/system
   # Deployment job
   deploy:
     name: Deploy
