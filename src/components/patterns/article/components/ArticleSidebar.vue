@@ -111,14 +111,10 @@ export default {
     }
 
     .vs-caption .vs-caption__caption-info {
-        padding: $spacer-4 $spacer-2 $spacer-3;
+        padding: $spacer-3 $spacer-2 $spacer-3;
 
         @include media-breakpoint-up(sm) {
-            padding: $spacer-4 $spacer-5 $spacer-5;
-        }
-
-        @include media-breakpoint-up(lg) {
-            padding: $spacer-4 $spacer-2 $spacer-3;
+            padding: $spacer-3;
         }
     }
 

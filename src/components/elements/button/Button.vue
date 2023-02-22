@@ -7,7 +7,7 @@
         :class="buttonClasses"
         :size="size"
         v-bind="$attrs"
-        @click="animateHandler"
+        @click="animateHandler($event)"
         @keyup.tab="tabbedIn"
     >
         <VsIcon
@@ -28,6 +28,7 @@
 <script>
 import { BButton } from 'bootstrap-vue';
 import VsIcon from '@components/elements/icon/Icon';
+import dataLayerMixin from '../../../mixins/dataLayerMixin';
 
 /**
  * Buttons are used to let users carry out actions on
@@ -44,6 +45,9 @@ export default {
         BButton,
         VsIcon,
     },
+    mixins: [
+        dataLayerMixin,
+    ],
     props: {
         /**
          * Use this option to render the button as an anchor element with the given href.
@@ -184,16 +188,35 @@ export default {
         },
     },
     methods: {
-        animateHandler() {
+        animateHandler(event) {
             this.isAnimating = true;
             setTimeout(() => {
                 this.isAnimating = false;
             }, 1000);
+
+            if (this.href !== null) {
+                event.preventDefault();
+                this.trackLink(event);
+            }
         },
         tabbedIn(event) {
             // provides option for parent component to listen to emitted event
             // when button is tabbed into
             this.$emit('btnFocus', event);
+        },
+        trackLink(event) {
+            let type;
+            if (this.href.includes('http')) {
+                type = 'externalLinkDataEvent';
+            } else {
+                type = 'internalLinkDataEvent';
+            }
+
+            this.createDataLayerObject(type, event, this.href);
+
+            if (this.href !== '#' && this.href !== null) {
+                window.location.href = this.href;
+            }
         },
     },
 };

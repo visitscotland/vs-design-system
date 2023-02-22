@@ -682,11 +682,11 @@ export default {
         }
 
         .vs-stretched-link-card__video-btn-text {
-            display: block;
+            display: inline-block;
         }
     }
 
-    .vs-stretched-link-card.vs-megalink-multi-image {
+    .vs-stretched-link-card.vs-megalink-multi-image-card {
         .vs-stretched-link-card__video-button {
             position: absolute;
             bottom: 100%;
@@ -696,7 +696,7 @@ export default {
         @include square-video-button();
 
         @include media-breakpoint-up(lg) {
-            &.vs-megalink-multi-image--featured {
+            &.vs-megalink-multi-image-card--featured {
                 .vs-stretched-link-card__video-button {
                     bottom: 100%;
                     left: $spacer-0;
@@ -707,7 +707,7 @@ export default {
         }
 
         @include media-breakpoint-up(xl) {
-            &.vs-megalink-multi-image--featured {
+            &.vs-megalink-multi-image-card--featured {
 
                 .vs-stretched-link-card__video-button {
                     bottom: $spacer-2;

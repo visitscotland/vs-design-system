@@ -215,7 +215,7 @@ export default {
         &__details {
             background-color: $color-gray-shade-6;
             color: $color-white;
-            padding: $spacer-4 $spacer-2 $spacer-3;
+            padding: $spacer-3;
         }
 
         &__buttons-container {
@@ -304,7 +304,7 @@ export default {
             .vs-video-caption__details {
                 display: flex;
                 align-items: baseline;
-                padding: $spacer-4 $spacer-5 $spacer-5;
+                padding: $spacer-4 $spacer-3 $spacer-5;
             }
 
             .vs-video-caption__title {
