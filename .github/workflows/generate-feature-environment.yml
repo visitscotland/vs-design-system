@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    uses: visitscotland/design-system/.github/workflows/build.yml@s3-workflow-test-branch
+    uses: visitscotland/design-system/.github/workflows/build.yml@feature/s3-workflow-test-branch
   
   deploy:
     needs: build
