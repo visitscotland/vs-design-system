@@ -107,6 +107,7 @@
                             </template>
                         </VsMap>
                         <VsButtonToggleGroup
+                            data-test="vs-main-map-wrapper__map-toggle-group"
                             v-if="!hideMobileToggle"
                             :initial-selected="selectedToggle"
                             :options="toggleData"
