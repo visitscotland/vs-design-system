@@ -1,10 +1,18 @@
-name: Build & Deploy Design System to GitHub Pages
+name: Build Design System
 
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
-
+    branches: ["feature/*"]
+  # # Runs on pushes targeting the default branch
+  # pull_request_target:
+  #   types:
+  #     - opened
+  #     - edited
+  #     - synchronize
+  #     - reopened
+  # Allows this workflow to be called from other workflows
+  workflow_call:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -33,30 +41,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: prepare
     steps:
-      - name: 'Setup Yarn'
-        uses: DerYeger/yarn-setup-action@master
-        with:
-          node-version: 16
       - name: 'Create .env file'
         run: |
           echo "${{ secrets.VS_ENV_FILE }}" > .env
       - name: 'Build system files'
         run: |
           yarn system:build
-      - name: Upload a Build Artifact
-        uses: actions/upload-pages-artifact@v1.0.7
-        with:
-          name: github-pages
-          path: ./dist/system
-  # Deployment job
-  deploy:
-    name: Deploy
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
