@@ -1,27 +1,20 @@
 .stacklapopup-container {
     .stacklapopup-arrow-icon {
-        // background-image: url('~@/assets/svg/icons/internal-link.svg');
-        background-position: center;
-        background-repeat: no-repeat;
         filter: brightness(0) invert(1);
-
-        &:before {
-            content: "" !important;
-        }
     }
 
-    .stacklapopup-arrow-left {
-        transform: rotate(180deg);
+    .stacklapopup-arrow-icon:before {
+        left: 0 !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
     }
 
-    .stacklapopup-interaction-link {
-        // background-image: url('~@/assets/svg/icons/share.svg');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
+    .stacklapopup-arrow-left .stacklapopup-arrow-icon:before {
+        transform:translateX(-6px) translateY(-5px);
+    }
 
-        .fs-share:before {
-            content: "" !important;
-        }
+    .stacklapopup-arrow-right .stacklapopup-arrow-icon:before {
+        transform: translateX(-2px) translateY(-5px);
     }
 }

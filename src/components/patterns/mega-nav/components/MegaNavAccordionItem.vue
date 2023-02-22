@@ -139,7 +139,7 @@ export default {
     &.vs-accordion-item.card {
         border-top: 0;
 
-        &.vs-accordion-item__panel.card-body{
+        .vs-accordion-item__panel.card-body{
             padding: 0;
         }
     }

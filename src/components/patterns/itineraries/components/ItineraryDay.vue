@@ -202,7 +202,7 @@ export default {
         &.vs-icon.vs-icon--size-xs {
             height: 32px;
             width: 32px;
-            padding: 8px;
+            padding: 6px 5px;
         }
     }
 

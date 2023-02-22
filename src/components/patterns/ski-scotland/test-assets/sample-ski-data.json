@@ -1,0 +1,249 @@
+{
+    "lastupdate": {
+        "year": "2023",
+        "month": "01",
+        "day": "16",
+        "hour12": "08",
+        "ampm": "am",
+        "hour24": "08",
+        "minute": "45",
+        "second": "42"
+    },
+    "report": {
+        "weather_forecast": "Mon 16th Jan, Light to moderate NW wind and sunshine.",
+        "runs": "Cold so please wrap up warm. Wind 10 to 15 mph. Lovely fresh snow on all runs.\r\n\r\nAll runs on the mountain are now complete and all uplift is able to run if required.\r\n\r\nPlenty of tickets for tomorrow, available online or from the ticket office. \r\n\r\nFirst uplift at 9am.\r\n",
+        "snow_level": "2200ft",
+        "vertical_runs": "1400ft",
+        "current_weather_conditions": "cold and clear with a moderate NW wind.",
+        "temperature": "0",
+        "windspeed": "15",
+        "wind_gusting_at": "20",
+        "wind_direction": "S",
+        "access_roads": "Access roads clear",
+        "news_from_the_slopes": " Cold so please wrap up warm. Wind 10 to 15 mph. Lovely fresh snow on all runs.\r\nAll runs on the mountain are now complete and all uplift is able to run if required.\r\n\r\nPlenty of tickets for tomorrow, available online or from the ticket office. \r\n\r\nFirst uplift at 9am.",
+        "upper_depth": "160cm",
+        "lower_depth": "70cm",
+        "snow_fallen_24h": "5cm",
+        "image_url": "",
+        "image_link": "",
+        "image_descr": ""
+    },
+    "contact": {
+        "telephone": "01855 851226",
+        "email": "admin@glencoemountain.co.uk",
+        "web": "www.glencoemountain.co.uk"
+    },
+    "lift": {
+        "sectors": [
+            {
+                "name": "Glencoe",
+                "lifts": [
+                    {
+                        "name": "Access Chairlift",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Cliffhanger Chairlift",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Coire Pollach Tow",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Main Basin T-Bar Tow",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Plateau Poma",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Rannoch Button Tow",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Rannoch Chairlift",
+                        "status": "1"
+                    },
+                    {
+                        "name": "The Wall T-Bar",
+                        "status": "1"
+                    }
+                ]
+            },
+            {
+                "name": "Glencoe summer",
+                "lifts": [
+                    {
+                        "name": "Access Chairlift",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Cliffhanger Chairlift",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Coire Pollach Tow",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Main Basin T-Bar Tow",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Plateau Poma",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Rannoch Button Tow",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Rannoch Chairlift",
+                        "status": "1"
+                    },
+                    {
+                        "name": "The Wall T-Bar",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Access Chairlift",
+                        "status": "2"
+                    },
+                    {
+                        "name": "Log cabin restaurant",
+                        "status": "1"
+                    },
+                    {
+                        "name": "Mountain biking",
+                        "status": "0"
+                    },
+                    {
+                        "name": "Tubing",
+                        "status": "0"
+                    }
+                ]
+            }
+        ]
+    },
+    "run": {
+        "areas": [
+            {
+                "name": "Glencoe",
+                "runs": [
+                    {
+                        "name": "Plateau Run",
+                        "status": 1,
+                        "difficulty": "green"
+                    },
+                    {
+                        "name": "The Low Road",
+                        "status": 3,
+                        "difficulty": "green"
+                    },
+                    {
+                        "name": "Access Return",
+                        "status": 1,
+                        "difficulty": "green"
+                    },
+                    {
+                        "name": "Mugs Alley",
+                        "status": 3,
+                        "difficulty": "green"
+                    },
+                    {
+                        "name": "Bunny Run",
+                        "status": 1,
+                        "difficulty": "blue"
+                    },
+                    {
+                        "name": "The High Road",
+                        "status": 1,
+                        "difficulty": "blue"
+                    },
+                    {
+                        "name": "Thrombosis",
+                        "status": 1,
+                        "difficulty": "red"
+                    },
+                    {
+                        "name": "Canyon",
+                        "status": 4,
+                        "difficulty": "black"
+                    },
+                    {
+                        "name": "The Wall",
+                        "status": 1,
+                        "difficulty": "red"
+                    },
+                    {
+                        "name": "Wall Crossover",
+                        "status": 1,
+                        "difficulty": "red"
+                    },
+                    {
+                        "name": "Etive Glades",
+                        "status": 0,
+                        "difficulty": "blue"
+                    },
+                    {
+                        "name": "Happy Valley",
+                        "status": 1,
+                        "difficulty": "blue"
+                    },
+                    {
+                        "name": "Main Basin",
+                        "status": 1,
+                        "difficulty": "blue"
+                    },
+                    {
+                        "name": "Rannoch Glades",
+                        "status": 1,
+                        "difficulty": "red"
+                    },
+                    {
+                        "name": "Spring Run",
+                        "status": 1,
+                        "difficulty": "red"
+                    },
+                    {
+                        "name": "Fly Paper",
+                        "status": 0,
+                        "difficulty": "black"
+                    },
+                    {
+                        "name": "Beginners Run",
+                        "status": 1,
+                        "difficulty": "green"
+                    },
+                    {
+                        "name": "Rankins Return",
+                        "status": 1,
+                        "difficulty": "green"
+                    },
+                    {
+                        "name": "Coire Pollach Run",
+                        "status": 1,
+                        "difficulty": "green"
+                    },
+                    {
+                        "name": "Sledging Area",
+                        "status": 1,
+                        "difficulty": "grey"
+                    },
+                    {
+                        "name": "Old Mugs Alley",
+                        "status": 1,
+                        "difficulty": "green"
+                    },
+                    {
+                        "name": "Test Itinerary",
+                        "status": 2,
+                        "difficulty": "orange"
+                    }
+                ]
+            }
+        ]
+    }
+}

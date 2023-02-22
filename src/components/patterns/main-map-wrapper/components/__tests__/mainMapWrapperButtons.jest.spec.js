@@ -21,6 +21,10 @@ const factoryShallowMount = () => shallowMount(VsMainMapWrapperButtons, {
             },
         },
     },
+    provide: {
+        filtersAppliedText: 'filters applied',
+        clearFiltersText: 'Clear filters',
+    },
 });
 
 describe('VsMainMapWrapperButtons', () => {
@@ -37,6 +41,20 @@ describe('VsMainMapWrapperButtons', () => {
             const discoverBtn = wrapper.find('[data-test="vs-main-map-wrapper-buttons__discover"]');
 
             expect(discoverBtn.text()).toBe('Discover Aberdeen');
+        });
+
+        it('should render filter buttons is the `filterCount` is greater than 0', async() => {
+            const wrapper = factoryShallowMount();
+
+            wrapper.setProps({
+                filterCount: 1,
+            });
+
+            await wrapper.vm.$nextTick();
+
+            const clearFiltersBtn = wrapper.find('[data-test="vs-main-map-wrapper-buttons__clear-filters"]');
+
+            expect(clearFiltersBtn.exists()).toBe(true);
         });
     });
 });
