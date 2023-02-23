@@ -782,11 +782,15 @@ export default {
                 ];
             } else if (this.boundsData.type === 'bounds') {
                 const southWest = new mapboxgl
-                    .LngLat(this.boundsData.coordinates[1][0],
-                            this.boundsData.coordinates[1][1]);
+                    .LngLat(
+                        this.boundsData.coordinates[1][0],
+                        this.boundsData.coordinates[1][1]
+                    );
                 const northEast = new mapboxgl
-                    .LngLat(this.boundsData.coordinates[0][0],
-                            this.boundsData.coordinates[0][1]);
+                    .LngLat(
+                        this.boundsData.coordinates[0][0],
+                        this.boundsData.coordinates[0][1]
+                    );
                 boundingBox = new mapboxgl.LngLatBounds(southWest, northEast);
             } else if (this.boundsData.type === 'Polygon') {
                 boundingBox = this.getBoundsFromPolygon();

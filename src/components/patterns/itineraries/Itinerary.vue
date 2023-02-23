@@ -1,5 +1,8 @@
 <template>
-    <section class="vs-itinerary">
+    <section
+        class="vs-itinerary"
+        data-test="vs-itinerary"
+    >
         <div
             class="fixed-bottom"
             v-show="!isDesktop && withinItineraryMain"
@@ -9,8 +12,9 @@
                     class="vs-itinerary__map-toggle-button"
                     @click.native="toggleShowMap()"
                     :icon="showMap ? 'list' : 'map'"
+                    data-test="vs-itinerary-btn"
                 >
-                    {{ showMap ? 'List View' : 'Map View' }}
+                    {{ showMap ? listViewText : mapViewText }}
                 </VsButton>
             </div>
         </div>
@@ -65,6 +69,22 @@ export default {
         VsCol,
         VsAccordion,
         VsButton,
+    },
+    props: {
+        /**
+         * Text for 'list view'
+         */
+        listViewText: {
+            type: String,
+            default: 'List view',
+        },
+        /**
+         * Text for 'map view'
+         */
+        mapViewText: {
+            type: String,
+            default: 'Map view',
+        },
     },
     data() {
         return {
@@ -189,7 +209,10 @@ export default {
     })
   })
 
-<VsItinerary>
+<VsItinerary
+    list-view-text="List"
+    map-view-text="Map"
+>
     <VsItineraryMap
         slot="map"
         overview-map-longitude="57.81"

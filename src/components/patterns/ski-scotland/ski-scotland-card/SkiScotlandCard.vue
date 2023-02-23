@@ -610,7 +610,7 @@ export default {
         border: none;
         border-radius: $border_radius_xl;
         overflow: hidden;
-        box-shadow: $shadow_popover;
+        box-shadow: $shadow_card_dark;
         margin-bottom: $spacer-9;
         height: calc(100% - #{$spacer-9});
 
@@ -639,11 +639,7 @@ export default {
 
         .card-body {
             position: relative;
-            padding: $spacer-4 $spacer-4 $spacer-10;
-
-            @include media-breakpoint-up(sm) {
-                padding-bottom: $spacer-12;
-            }
+            padding: $spacer-4 $spacer-4 $spacer-12;
 
             @include media-breakpoint-up(lg) {
                 padding-bottom: $spacer-10;
@@ -655,7 +651,7 @@ export default {
         }
 
         .vs-ski-scotland-card__button-holder {
-            width: calc(50% - #{$spacer-4});
+            width: calc(100% - #{$spacer-8});
             display: inline-block;
             padding: $spacer-1 $spacer-2;
             position: absolute;
@@ -663,23 +659,13 @@ export default {
 
             &--left {
                 left: $spacer-4;
+                right: $spacer-4;
+                bottom: $spacer-10;
             }
 
             &--right {
                 right: $spacer-4;
-            }
-
-            @include media-breakpoint-up(sm) {
-                width: calc(100% - #{$spacer-8});
-
-                &--left {
-                    right: $spacer-4;
-                    bottom: $spacer-10;
-                }
-
-                &--right {
-                    left: $spacer-4;
-                }
+                left: $spacer-4;
             }
 
             @include media-breakpoint-up(lg) {

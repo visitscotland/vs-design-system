@@ -8,7 +8,7 @@
         <VsLink
             class="vs-social-share-item__link"
             :href="shareUrl"
-            @click.native="copyToClipboard"
+            @click.native="copyToClipboard($event)"
             :id="`vs-share-${name}`"
         >
             <VsIcon
@@ -30,6 +30,7 @@
 import VsLink from '@components/elements/link/Link';
 import VsIcon from '@components/elements/icon/Icon';
 import { VsCol } from '@components/elements/grid';
+import dataLayerMixin from '../../../../mixins/dataLayerMixin';
 
 /**
  * This component displays an icon and link to a social sharing channel
@@ -45,6 +46,9 @@ export default {
         VsLink,
         VsIcon,
     },
+    mixins: [
+        dataLayerMixin,
+    ],
     inject: {
         /**
         * Page URL to share - provided by parent SocialShare
@@ -148,7 +152,7 @@ export default {
         },
     },
     methods: {
-        copyToClipboard() {
+        copyToClipboard(event) {
             if (this.name === 'link') {
                 this.$emit('copyLinkClicked');
 
@@ -164,6 +168,11 @@ export default {
                 this.show = true;
                 setTimeout(() => { this.show = false; }, 2000);
             }
+
+            this.trackShareClick(event);
+        },
+        trackShareClick(event) {
+            this.createDataLayerObject('socialShareDataEvent', event, this.href);
         },
     },
 };
