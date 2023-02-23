@@ -709,7 +709,7 @@ export default {
 
     .os-api-branding.logo,
     .os-api-branding.copyright {
-        margin-bottom: 2rem !important; //important needed for overriding OS styles
+        margin-bottom: $spacer-8 !important; //important needed for overriding OS styles
     }
 
     @include no-js {
