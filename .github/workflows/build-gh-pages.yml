@@ -42,7 +42,7 @@ jobs:
           echo "${{ secrets.VS_ENV_FILE }}" > .env
       - name: 'Build system files'
         run: |
-          yarn system:build
+          yarn --openssl-legacy-provider system:build
       - name: Upload a Build Artifact
         uses: actions/upload-pages-artifact@v1.0.7
         with:
