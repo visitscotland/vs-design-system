@@ -15,7 +15,8 @@
                     <VsRichTextWrapper
                         class="vs-module-wrapper__intro vs-embed-wrapper__intro"
                         v-if="!!$slots['embedIntroCopy']
-                            && cookiesInitStatus !== 'error'"
+                            && cookiesInitStatus !== 'error'
+                            || noCookiesRequired"
                         data-test="vs-module-wrapper__intro"
                     >
                         <!-- @slot Slot to contain intro text -->
@@ -27,7 +28,7 @@
                 >
                     <div
                         class="vs-embed-wrapper__container"
-                        :class="requiredCookiesExist ? '' : 'd-none'"
+                        :class="requiredCookiesExist || noCookiesRequired? '' : 'd-none'"
                         key="embeddedContent"
                     >
                         <!--
@@ -105,26 +106,41 @@ export default {
         verifyCookiesMixin,
     ],
     props: {
+        /**
+         * Set to true if the embedded code does not require a cookie check
+         */
+        noCookiesRequired: {
+            type: Boolean,
+            default: false,
+        },
+        /**
+         * Text to display when cookies have been rejected
+         */
         noCookieText: {
             type: String,
             required: true,
         },
+        /**
+         * Text to display when there is an error displaying the content
+         */
         errorText: {
             type: String,
             required: true,
         },
+        /**
+         * Text to display when javascript has been turned off
+         */
         noJsText: {
             type: String,
             required: true,
         },
     },
-    data() {
-        return {
-            requiredCookies: cookieValues,
-        };
-    },
     computed: {
         showError() {
+            if (this.noCookiesRequired) {
+                return false;
+            };
+
             if ((!this.requiredCookiesExist
                 && this.cookiesInitStatus === true)
                 || this.cookiesInitStatus === 'error') {
@@ -146,6 +162,12 @@ export default {
             }
 
             return text;
+        },
+        requiredCookies() {
+            if (this.noCookiesRequired) {
+                return null;
+            }
+            return cookieValues;
         },
     },
 };
@@ -186,26 +208,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-    <VsModuleWrapper>
-        <template slot="vsModuleWrapperHeading">
-            Your Pictures Of Scottish Castles
-        </template>
-
-        <VsEmbedWrapper
-            noCookieText="You need cookies enabled to view this content"
-            errorText="Sorry, there's been an error, please try again later"
-            noJsText="You need Javascript enabled to see this content"
-        >
-            <template slot="embedIntroCopy">
-                Share your snaps with us by using #ScottishCastle or #VisitScotland
-            </template>
-            <template slot="embedWidget">
-                Embed Tag Goes Here
-            </template>
-        </VsEmbedWrapper>
-    </VsModuleWrapper>
-```
-</docs>
