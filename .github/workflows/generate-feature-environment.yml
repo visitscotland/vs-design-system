@@ -77,8 +77,8 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: dist
-          path: dist
+          name: ds-build
+          path: ./dist/system
     
       - name: Deploying to S3
         id: aws-sync
