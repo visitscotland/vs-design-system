@@ -50,7 +50,7 @@ jobs:
           echo "${{ secrets.VS_ENV_FILE }}" > .env
       - name: 'Build system files'
         run: |
-          ls
+          echo ls
           cd ../
           export NODE_OPTIONS=--openssl-legacy-provider
           yarn system:build
