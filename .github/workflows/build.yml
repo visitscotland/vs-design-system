@@ -39,6 +39,7 @@ jobs:
       - name: 'Create .env file'
         run: |
           echo "${{ secrets.VS_ENV_FILE }}" > .env
+        working-directory: ./
       - name: 'Build system files'
         run: |
           export NODE_OPTIONS=--openssl-legacy-provider
