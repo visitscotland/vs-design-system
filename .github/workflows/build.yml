@@ -46,7 +46,6 @@ jobs:
       - run: ls -al
       - name: 'Build system files'
         run: |
-          cd ../
           export NODE_OPTIONS=--openssl-legacy-provider
           yarn system:build
       - name: Upload a Build Artifact
