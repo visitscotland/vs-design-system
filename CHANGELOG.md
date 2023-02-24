@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.12](https://github.com/visitscotland/design-system/compare/v0.8.11...v0.8.12) (2023-02-24)
+
+
+### Features
+
+* 🎸 (EmbedWrapper) Can now be used without checking cookies ([337e4ab](https://github.com/visitscotland/design-system/commit/337e4abd925a8dd60c7d8ec876d3c6fcd0f83ca5))
+
+
+### Tests
+
+* 💍 (EmbedWrapper) Adds missing unit tests ([e1f42f4](https://github.com/visitscotland/design-system/commit/e1f42f44dabaf03a4508f0598a2bf7218896e38e))
+
 ### [0.8.11](https://github.com/visitscotland/design-system/compare/v0.8.10...v0.8.11) (2023-02-23)
 
 
