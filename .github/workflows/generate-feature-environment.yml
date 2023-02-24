@@ -14,6 +14,8 @@ env:
 jobs:
   build:
     uses: visitscotland/design-system/.github/workflows/build.yml@feature/s3-workflow-test-branch
+    secrets:
+        VS_ENV_FILE: ${{ secrets.VS_ENV_FILE }}
   
   deploy:
     needs: build
