@@ -1,0 +1,93 @@
+name: Create SUT Environment
+
+# This Workflow creates a System Under Test Environment for feature branches
+# It uses an AWS S3 bucket to host the static files
+
+on:
+  # Runs on pushes targeting a feature branch
+  push:
+    branches: ["feature/*"]
+
+  # Allows you to run this workflow manually from the Actions tab in the GitHub dashboard
+  workflow_dispatch: {}
+
+env:
+  AWS_REGION: 'eu-west-2'
+
+jobs:
+    # Reuse the build workflow to avoid repetition
+  build:
+    uses: visitscotland/design-system/.github/workflows/build.yml
+
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    # Create a GitHub environment for the static hosting (to expose the S3 URL)
+    environment:
+      name: ds-s3-deployment
+      url: ${{ env.S3_URL }}
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
+          aws-region: ${{ env.AWS_REGION }}
+          role-duration-seconds: 1200
+
+      - name: Generate bucket name from branch name
+        run: |
+          # Short name for current branch. For PRs, use target branch (base ref)
+          GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
+          GIT_HASH=$(git rev-parse --short "$GITHUB_SHA")
+          echo "BUCKET_NAME=${GIT_BRANCH////-}-${GIT_HASH}-sutvs" >> $GITHUB_ENV
+
+      - name: Check if bucket already exists
+        id: check-bucket
+        run: |
+          DOES_BUCKET_EXIST=$(aws s3api head-bucket --bucket $BUCKET_NAME 2>/dev/null && echo "true" || echo "false")
+          echo "BUCKET_EXISTS=${DOES_BUCKET_EXIST}" >> $GITHUB_ENV
+
+      - name: Creating new S3 bucket
+        if: ${{ env.BUCKET_EXISTS }} === false
+        run: |
+          commit_hash=`git rev-parse HEAD`
+          aws s3api create-bucket --bucket ${{env.BUCKET_NAME}} --create-bucket-configuration LocationConstraint=eu-west-2
+          aws s3api put-public-access-block --bucket ${{env.BUCKET_NAME}} --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
+          aws s3api put-bucket-policy --bucket ${{env.BUCKET_NAME}} --policy "{
+            \"Version\": \"2012-10-17\",
+            \"Statement\": [
+                {
+                    \"Sid\": \"PublicReadGetObject\",
+                    \"Effect\": \"Allow\",
+                    \"Principal\": \"*\",
+                    \"Action\": \"s3:GetObject\",
+                    \"Resource\": \"arn:aws:s3:::${{env.BUCKET_NAME}}/*\"
+                }
+            ]
+          }"
+          aws s3 website s3://${{ env.BUCKET_NAME }} --index-document index.html
+
+      - name: Download GitHub artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ds-build
+          path: ./dist/system
+
+      - name: Synchronizing to S3
+        id: aws-sync
+        run: |
+          echo "Deploying branch ${{ env.GIT_BRANCH}}"
+          echo "Deploying to https://${{ env.BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com/index.html"
+          commit_hash=`git rev-parse HEAD`
+          aws s3 sync ./dist/system/ s3://${{env.BUCKET_NAME}}
+          echo "S3_URL=https://${{env.BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com/index.html" >> $GITHUB_ENV
+
