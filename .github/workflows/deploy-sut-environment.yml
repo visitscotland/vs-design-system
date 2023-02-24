@@ -4,9 +4,14 @@ name: Create SUT Environment
 # It uses an AWS S3 bucket to host the static files
 
 on:
-  # Runs on pushes targeting a feature branch
+  # Runs on pushes targeting the default branch
   push:
-    branches: ["feature/*"]
+    branches:
+      - feature/*
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches:
+      - feature/*
 
   # Allows you to run this workflow manually from the Actions tab in the GitHub dashboard
   workflow_dispatch: {}
