@@ -45,8 +45,6 @@ jobs:
         run: |
           echo "${{ secrets.VS_ENV_FILE }}" > .env
       - name: 'Build system files'
-        with:
-            path: ./../
         run: |
           yarn system:build
       - name: Upload a Build Artifact
