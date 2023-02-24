@@ -696,14 +696,20 @@ export default {
 
         .vs-button-toggle-group {
             position: absolute;
-            bottom: 0;
+            top: 100%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
+            margin-bottom: 0;
 
             @include media-breakpoint-up(lg) {
                 display: none;
             }
         }
+    }
+
+    .os-api-branding.logo,
+    .os-api-branding.copyright {
+        margin-bottom: $spacer-8 !important; //important needed for overriding OS styles
     }
 
     @include no-js {
