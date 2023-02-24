@@ -40,14 +40,14 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     needs: prepare
-    working-directory: ./design-system
     steps:
       - name: 'Create .env file'
         run: |
           echo "${{ secrets.VS_ENV_FILE }}" > .env
       - name: 'Build system files'
-        run: |
-          yarn system:build
+        run: yarn system:build
+        shell: bash
+        working-directory: ./design-system
       - name: Upload a Build Artifact
         uses: actions/upload-pages-artifact@v1.0.7
         with:
