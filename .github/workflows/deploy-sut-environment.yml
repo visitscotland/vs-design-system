@@ -26,8 +26,12 @@ jobs:
     uses: ./.github/workflows/build.yml
     secrets: inherit
 
+  auth:
+    uses: ./.github/workflows/setup-aws-credentials.yml
+    secrets: inherit
+
   deploy:
-    needs: build
+    needs: [build, auth]
     runs-on: ubuntu-latest
 
     # Create a GitHub environment for the static hosting (to expose the S3 URL)
@@ -41,7 +45,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/workflows/setup-aws-credentials.yml
 
       - name: Generate bucket name from branch name
         run: |
