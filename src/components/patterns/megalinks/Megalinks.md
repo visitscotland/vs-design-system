@@ -21,10 +21,8 @@ TBC
             Maecenas bibendum sodales nisi eu luctus.</p>
         </template>
         <VsCol
-            cols="12"
-            md="12"
-            lg="10"
-            class="offset-lg-1"
+            cols="10"
+            class="offset-1"
         >
             <VsContainer>
                 <VsRow>

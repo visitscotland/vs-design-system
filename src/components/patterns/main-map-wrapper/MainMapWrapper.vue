@@ -107,6 +107,8 @@
                             </template>
                         </VsMap>
                         <VsButtonToggleGroup
+                            data-test="vs-main-map-wrapper__map-toggle-group"
+                            v-if="!hideMobileToggle"
                             :initial-selected="selectedToggle"
                             :options="toggleData"
                             :buttons-label="buttonsLabel"
@@ -308,6 +310,13 @@ export default {
         panelMessage: {
             type: String,
             default: null,
+        },
+        /**
+         * Option to hide the mobile toggle buttons
+         */
+        hideMobileToggle: {
+            type: Boolean,
+            default: false,
         },
     },
     data() {
@@ -687,14 +696,20 @@ export default {
 
         .vs-button-toggle-group {
             position: absolute;
-            bottom: 0;
+            top: 100%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
+            margin-bottom: 0;
 
             @include media-breakpoint-up(lg) {
                 display: none;
             }
         }
+    }
+
+    .os-api-branding.logo,
+    .os-api-branding.copyright {
+        margin-bottom: $spacer-8 !important; //important needed for overriding OS styles
     }
 
     @include no-js {

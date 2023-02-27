@@ -1,6 +1,6 @@
 {
   "name": "@visitscotland/vs-component-library",
-  "version": "0.8.10",
+  "version": "0.8.12",
   "description": "visitscotland.com Component Library",
   "author": "VisitScotland",
   "main": "dist/library/manifest.json",
@@ -36,7 +36,7 @@
     "test:e2e": "yarn theo && cypress open",
     "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
     "theo:watch": "onchange \"./src/tokens/*.yml\" -- npm run _theo",
-    "commit": "git-cz",
+    "commit": "cz",
     "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
@@ -71,6 +71,7 @@
     "codemirror": "^5.63.0",
     "commitizen": "^4.2.5",
     "core-js": "^3.6.5",
+    "cz-emoji-conventional-changelog": "^0.0.0",
     "dotenv": "^7.0.0",
     "dotenv-webpack": "^7.1.0",
     "eslint-watch": "^7.0.0",
@@ -78,7 +79,6 @@
     "express-http-proxy": "^1.6.2",
     "extract-text-webpack-plugin": "^3.0.2",
     "get-port": "^5.1.1",
-    "git-cz": "^4.9.0",
     "image-webpack-loader": "^7.0.1",
     "js-beautify": "^1.11.0",
     "lodash": "^4.17.21",
@@ -136,7 +136,6 @@
     "css-loader": "^1.0.1",
     "cypress": "^10.0.3",
     "cypress-vue-unit-test": "^3.5.1",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-import-resolver-webpack": "^0.12.2",
@@ -231,7 +230,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/cz-emoji-conventional-changelog"
     }
   }
 }

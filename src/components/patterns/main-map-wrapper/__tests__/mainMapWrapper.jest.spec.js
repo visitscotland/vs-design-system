@@ -47,6 +47,23 @@ describe('VsMainMapWrapper', () => {
         expect(wrapper.attributes('data-test')).toBe('vs-main-map-wrapper');
     });
 
+    describe(':props', () => {
+        it('should show the toggle buttons by default', () => {
+            const wrapper = factoryShallowMount();
+
+            expect(wrapper.findAll('[data-test="vs-main-map-wrapper__map-toggle-group"]').exists()).toBe(true);
+        });
+
+        it('should not show the toggle buttons when the `hideToggleButtons` prop is true', async() => {
+            const wrapper = factoryShallowMount();
+            await wrapper.setProps({
+                hideMobileToggle: true,
+            });
+
+            expect(wrapper.findAll('[data-test="vs-main-map-wrapper__map-toggle-group"]').exists()).toBe(false);
+        });
+    });
+
     describe(':methods', () => {
         it('should hide the side panel after the `closePanel` method is fired', async() => {
             const wrapper = factoryShallowMount();

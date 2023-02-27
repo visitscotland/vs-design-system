@@ -16,12 +16,15 @@ const cookieCheckerMixin = {
         },
         requiredCookiesExist() {
             let cookiesExist = true;
-
-            this.requiredCookies.forEach((cookieVal) => {
-                if (this.cookiesSet.indexOf(cookieVal) === -1) {
-                    cookiesExist = false;
-                }
-            });
+            if (this.requiredCookies) {
+                this.requiredCookies.forEach((cookieVal) => {
+                    if (this.cookiesSet.indexOf(cookieVal) === -1) {
+                        cookiesExist = false;
+                    }
+                });
+            } else {
+                cookiesExist = false;
+            }
 
             return cookiesExist;
         },

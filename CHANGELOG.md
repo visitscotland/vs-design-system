@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.12](https://github.com/visitscotland/design-system/compare/v0.8.11...v0.8.12) (2023-02-24)
+
+
+### Features
+
+* 🎸 (EmbedWrapper) Can now be used without checking cookies ([337e4ab](https://github.com/visitscotland/design-system/commit/337e4abd925a8dd60c7d8ec876d3c6fcd0f83ca5))
+
+
+### Tests
+
+* 💍 (EmbedWrapper) Adds missing unit tests ([e1f42f4](https://github.com/visitscotland/design-system/commit/e1f42f44dabaf03a4508f0598a2bf7218896e38e))
+
+### [0.8.11](https://github.com/visitscotland/design-system/compare/v0.8.10...v0.8.11) (2023-02-23)
+
+
+### Features
+
+* **Test:** test commit ([7787697](https://github.com/visitscotland/design-system/commit/7787697fb99553c246e68c974eabcd08dc767431))
+
+
+### Bug Fixes
+
+* 🐛 add option to hide mobile map toggles ([65eab32](https://github.com/visitscotland/design-system/commit/65eab321ecbb12e7c2ea4df9e1c6f9e4ccacd841))
+* 🐛 Add unit tests for toggle button prop ([f659001](https://github.com/visitscotland/design-system/commit/f659001de787eb20e3a95e40bee46d7c1cc7323c))
+* 🐛 ensure pin icon always sits to left of address ([330cfda](https://github.com/visitscotland/design-system/commit/330cfda7a9e68c20e46d9aee5198df86b0926a70))
+* 🐛 ensure that copy to clipboard tracks ([f2984f3](https://github.com/visitscotland/design-system/commit/f2984f3173f55465154b6194933aab0c46155674))
+* 🐛 Remove console statement ([7414d8c](https://github.com/visitscotland/design-system/commit/7414d8cde1d729f48db211e951bfd83a46f369da))
+
+
+### Code Refactoring
+
+* 💡 (Megalinks) Refactoring for more specific styles ([dba0bed](https://github.com/visitscotland/design-system/commit/dba0bed651f8e41b7d5d484568388f5da0189e20))
+
+
+### Build System
+
+* **Build:** Switch from git-cz to commitizen to enable scope ([480dc7a](https://github.com/visitscotland/design-system/commit/480dc7af3aa1a8005ad0dee7aff0aec43f0ce888))
+
 ### [0.8.10](https://github.com/visitscotland/design-system/compare/v0.8.9...v0.8.10) (2023-02-17)
 
 

@@ -167,9 +167,9 @@ export default {
                 // show success text on button
                 this.show = true;
                 setTimeout(() => { this.show = false; }, 2000);
-            } else {
-                this.trackShareClick(event);
             }
+
+            this.trackShareClick(event);
         },
         trackShareClick(event) {
             this.createDataLayerObject('socialShareDataEvent', event, this.href);
