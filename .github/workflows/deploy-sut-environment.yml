@@ -26,12 +26,8 @@ jobs:
     uses: ./.github/workflows/build.yml
     secrets: inherit
 
-  auth:
-    uses: ./.github/workflows/setup-aws-credentials.yml
-    secrets: inherit
-
   deploy:
-    needs: [build, auth]
+    needs: build
     runs-on: ubuntu-latest
 
     # Create a GitHub environment for the static hosting (to expose the S3 URL)
@@ -45,6 +41,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Authenticate with AWS
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
+          aws-region: 'eu-west-2'
+          role-duration-seconds: 1200
 
       - name: Generate bucket name from branch name
         run: |
