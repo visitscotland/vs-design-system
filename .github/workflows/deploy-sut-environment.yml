@@ -22,9 +22,9 @@ env:
 jobs:
     # Reuse the build workflow to avoid repetition
   build:
-    uses: visitscotland/design-system/.github/workflows/build.yml
+    uses: visitscotland/design-system/.github/workflows/build.yml@feature/s3-workflow-test-branch
   auth:
-    uses: visitscotland/design-system/.github/workflows/setup-aws-credentials.yml
+    uses: visitscotland/design-system/.github/workflows/setup-aws-credentials.yml@feature/s3-workflow-test-branch
 
   deploy:
     needs: build
