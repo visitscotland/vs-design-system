@@ -23,8 +23,10 @@ jobs:
     # Reuse the build workflow to avoid repetition
   build:
     uses: ./.github/workflows/build.yml
+    secrets: inherit
   auth:
     uses: ./.github/workflows/setup-aws-credentials.yml
+    secrets: inherit
 
   deploy:
     needs: build
