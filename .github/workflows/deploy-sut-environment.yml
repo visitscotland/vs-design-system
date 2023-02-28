@@ -61,7 +61,7 @@ jobs:
           echo "BUCKET_EXISTS=${DOES_BUCKET_EXIST}" >> $GITHUB_ENV
 
       - name: Creating new S3 bucket
-        if: ${{ env.BUCKET_EXISTS }} != true
+        if: env.BUCKET_EXISTS != true
         run: |
           commit_hash=`git rev-parse HEAD`
           aws s3api create-bucket --bucket ${{env.BUCKET_NAME}} --create-bucket-configuration LocationConstraint=eu-west-2
