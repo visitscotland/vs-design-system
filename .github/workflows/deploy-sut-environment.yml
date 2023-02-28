@@ -50,10 +50,9 @@ jobs:
           aws-region: 'eu-west-2'
           role-duration-seconds: 1200
 
-      - name: Generate bucket name from branch name
+      - name: Establish bucket name
         run: |
-          GIT_BRANCH=${{ github.ref_name }}
-          echo "BUCKET_NAME=${GIT_BRANCH////-}-sutvs" >> $GITHUB_ENV
+          echo "BUCKET_NAME=visitscotland-sut" >> $GITHUB_ENV
 
       - name: Check if bucket already exists
         id: check-bucket
@@ -86,6 +85,11 @@ jobs:
         with:
           name: ds-build
           path: ./dist/system
+          
+      - name: Generate folder name from branch name
+        run: |
+          GIT_BRANCH=${{ github.ref_name }}
+          echo "FOLDER_NAME=${GIT_BRANCH////-}-sutvs" >> $GITHUB_ENV
 
       - name: Synchronizing to S3
         id: aws-sync
@@ -93,6 +97,6 @@ jobs:
           echo "Deploying branch ${{ env.GIT_BRANCH}}"
           echo "Deploying to https://${{ env.BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com/index.html"
           commit_hash=`git rev-parse HEAD`
-          aws s3 sync ./dist/system/ s3://${{env.BUCKET_NAME}}
-          echo "S3_URL=https://${{env.BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com/index.html" >> $GITHUB_ENV
+          aws s3 sync ./dist/system/ s3://${{env.BUCKET_NAME}}/${{env.FOLDER_NAME}}
+          echo "S3_URL=https://${{env.BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com/${{env.FOLDER_NAME}}/index.html" >> $GITHUB_ENV
 
