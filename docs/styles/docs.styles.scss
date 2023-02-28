@@ -244,7 +244,7 @@ td[class^='rsg--cell'] span[class^='rsg--text']{
 /* HEADER BAR/NAV
  --------------------------------------------- */
 div[class^=rsg--mainContent] > header[class^='rsg--header']{
-    border-top: 10px solid $color-purple;
+    border-top: 10px solid $color_secondary_teal;
     padding: $space-m $space-m;
     margin-bottom: $space-base;
 
