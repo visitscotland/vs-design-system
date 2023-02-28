@@ -36,4 +36,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v1
         with:
-          name: ds-build
+          artifact_name: ds-build
