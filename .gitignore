@@ -22,3 +22,6 @@ dist/
 # Ignore compiled tokens
 src/assets/tokens/
 .yarn/
+
+# Act Github Action testing
+bin/

@@ -1,0 +1,76 @@
+name: Create SUT Environment
+
+# This Workflow creates a System Under Test Environment for feature branches
+# It uses an AWS S3 bucket to host the static files
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    branches:
+      - 'main'
+
+  # Allows you to run this workflow manually from the Actions tab in the GitHub dashboard
+  workflow_dispatch: {}
+
+env:
+  AWS_REGION: 'eu-west-2'
+  
+
+jobs:
+    # Reuse the build workflow to avoid repetition
+  build:
+    uses: ./.github/workflows/build.yml
+    secrets: inherit
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    # Create a GitHub environment for the static hosting (to expose the S3 URL)
+    environment:
+      name: ds-s3-deployment
+      url: ${{ env.S3_URL }}
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Authenticate with AWS
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
+          aws-region: 'eu-west-2'
+          role-duration-seconds: 1200
+
+      - name: Generate bucket name
+        run: |
+          echo "BUCKET_NAME=visitscotland-sut" >> $GITHUB_ENV
+
+      - name: Download GitHub artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ds-build
+          path: ./dist/system
+          
+      - name: Generate folder name from branch name
+        run: |
+          GIT_BRANCH=${{ github.ref_name }}
+          echo "FOLDER_NAME=${GIT_BRANCH////-}-sutvs" >> $GITHUB_ENV
+
+      - name: Synchronizing to S3
+        id: aws-sync
+        run: |
+          echo "Deploying branch ${{ env.GIT_BRANCH}}"
+          echo "Deploying to https://${{ env.BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com/index.html"
+          commit_hash=`git rev-parse HEAD`
+          aws s3 sync ./dist/system/ s3://${{env.BUCKET_NAME}}/${{env.FOLDER_NAME}}
+          echo "S3_URL=https://${{env.BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com/${{env.FOLDER_NAME}}/index.html" >> $GITHUB_ENV
+
