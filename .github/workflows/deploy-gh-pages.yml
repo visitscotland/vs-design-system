@@ -1,4 +1,4 @@
-name: Build & Deploy Design System to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   # Runs on pushes targeting trunk
