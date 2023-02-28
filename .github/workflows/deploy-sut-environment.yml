@@ -52,10 +52,8 @@ jobs:
 
       - name: Generate bucket name from branch name
         run: |
-          # Short name for current branch. For PRs, use target branch (base ref)
           GIT_BRANCH=${{ github.ref_name }}
-          GIT_HASH=$(git rev-parse --short "$GITHUB_SHA")
-          echo "BUCKET_NAME=${GIT_BRANCH////-}-${GIT_HASH}-sutvs" >> $GITHUB_ENV
+          echo "BUCKET_NAME=${GIT_BRANCH////-}-sutvs" >> $GITHUB_ENV
 
       - name: Check if bucket already exists
         id: check-bucket
