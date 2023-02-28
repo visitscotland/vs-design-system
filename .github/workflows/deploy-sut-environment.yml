@@ -59,6 +59,9 @@ jobs:
         run: |
           DOES_BUCKET_EXIST=$(aws s3api head-bucket --bucket ${{ env.BUCKET_NAME }} 2>/dev/null && echo "true" || echo "false")
           echo "BUCKET_EXISTS=${DOES_BUCKET_EXIST}" >> $GITHUB_ENV
+          echo ${{ env.BUCKET_NAME }}
+          echo "Test"
+          echo env.BUCKET_EXISTS != true
 
       - name: Creating new S3 bucket
         if: env.BUCKET_EXISTS != true
