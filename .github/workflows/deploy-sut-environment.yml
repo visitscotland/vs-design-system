@@ -54,34 +54,6 @@ jobs:
         run: |
           echo "BUCKET_NAME=visitscotland-sut" >> $GITHUB_ENV
 
-      - name: Check if bucket already exists
-        id: check-bucket
-        run: |
-          aws s3api head-bucket --bucket ${{ env.BUCKET_NAME }} 2>/dev/null && echo "BUCKET_EXISTS=true" >> $GITHUB_ENV || echo "BUCKET_EXISTS=false" >> $GITHUB_ENV
-          echo ${{ env.BUCKET_EXISTS }}
-          echo "Test"
-          echo ${{ env.BUCKET_EXISTS != true }}
-
-      - name: Creating new S3 bucket
-        if: ${{ env.BUCKET_EXISTS != true }}
-        run: |
-          commit_hash=`git rev-parse HEAD`
-          aws s3api create-bucket --bucket ${{env.BUCKET_NAME}} --create-bucket-configuration LocationConstraint=eu-west-2
-          aws s3api put-public-access-block --bucket ${{env.BUCKET_NAME}} --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
-          aws s3api put-bucket-policy --bucket ${{env.BUCKET_NAME}} --policy "{
-            \"Version\": \"2012-10-17\",
-            \"Statement\": [
-                {
-                    \"Sid\": \"PublicReadGetObject\",
-                    \"Effect\": \"Allow\",
-                    \"Principal\": \"*\",
-                    \"Action\": \"s3:GetObject\",
-                    \"Resource\": \"arn:aws:s3:::${{env.BUCKET_NAME}}/*\"
-                }
-            ]
-          }"
-          aws s3 website s3://${{ env.BUCKET_NAME }} --index-document index.html
-
       - name: Download GitHub artifact
         uses: actions/download-artifact@v3
         with:
