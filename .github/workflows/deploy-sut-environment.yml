@@ -10,7 +10,7 @@ on:
       - reopened
       - synchronize
     branches:
-      - 'feature/*'
+      - 'main'
 
   # Allows you to run this workflow manually from the Actions tab in the GitHub dashboard
   workflow_dispatch: {}
