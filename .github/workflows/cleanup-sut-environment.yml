@@ -22,11 +22,20 @@ jobs:
           role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
           aws-region: 'eu-west-2'
           role-duration-seconds: 1200
+          
+      - name: Establish bucket name
+        run: |
+          echo "BUCKET_NAME=visitscotland-sut" >> $GITHUB_ENV
 
       - name: Generate bucket name from PR branch name
         run: |
           GIT_BRANCH=${{ github.ref_name }}
           echo "BUCKET_NAME=${GIT_BRANCH////-}-sutvs" >> $GITHUB_ENV
+          
+      - name: Generate folder name from branch name
+        run: |
+          GIT_BRANCH=${{ github.ref_name }}
+          echo "FOLDER_NAME=${GIT_BRANCH////-}-sutvs" >> $GITHUB_ENV
 
       - run: |
-          aws s3api delete-bucket --bucket ${{env.BUCKET_NAME}}
+          aws s3api delete-object --bucket ${{env.BUCKET_NAME}} --key ${{env.FOLDER_NAME}}
