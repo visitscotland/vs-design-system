@@ -6,7 +6,7 @@ name: Create SUT Environment
 on:
   pull_request:
     types:
-      - closed
+      - opened
     branches:
       - 'feature/*'
 
