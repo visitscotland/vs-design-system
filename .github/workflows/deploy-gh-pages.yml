@@ -27,13 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Download GitHub artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: ds-build
-          path: ./dist/system
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
         with:
-          artifact_name: ds-build
+          artifact_name: ds-build-pages
