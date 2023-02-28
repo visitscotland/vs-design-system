@@ -50,7 +50,7 @@ jobs:
           aws-region: 'eu-west-2'
           role-duration-seconds: 1200
 
-      - name: Establish bucket name
+      - name: Generate bucket name
         run: |
           echo "BUCKET_NAME=visitscotland-sut" >> $GITHUB_ENV
 
