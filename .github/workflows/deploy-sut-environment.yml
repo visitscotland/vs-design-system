@@ -4,11 +4,11 @@ name: Create SUT Environment
 # It uses an AWS S3 bucket to host the static files
 
 on:
-  pull_request_target:
+  pull_request:
     types:
-      - opened
+      - closed
     branches:
-      - 'main'
+      - 'feature/*'
 
   # Allows you to run this workflow manually from the Actions tab in the GitHub dashboard
   workflow_dispatch: {}
