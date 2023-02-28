@@ -57,7 +57,7 @@ jobs:
       - name: Check if bucket already exists
         id: check-bucket
         run: |
-          $(aws s3api head-bucket --bucket ${{ env.BUCKET_NAME }} 2>/dev/null && echo BUCKET_EXISTS = "true" >> $GITHUB_ENV || echo BUCKET_EXISTS = "false" >> $GITHUB_ENV)
+          $(aws s3api head-bucket --bucket ${{ env.BUCKET_NAME }}test 2>/dev/null && echo BUCKET_EXISTS = "true" >> $GITHUB_ENV || echo BUCKET_EXISTS = "false" >> $GITHUB_ENV)
           echo ${{ env.BUCKET_EXISTS }}
           echo "Test"
           echo ${{ env.BUCKET_EXISTS != true }}
