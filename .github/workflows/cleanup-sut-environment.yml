@@ -1,21 +1,36 @@
 name: Cleanup S3
+
 on:
   pull_request:
     types:
       - closed
+    branches:
+      - 'main'
 
 jobs:
-  auth:
-    uses: ./.github/workflows/setup-aws-credentials.yml
-  if_merged:
-    if: github.event.pull_request.merged == true
+  cleanup:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Generate bucket name from PR branch name
+      - uses: actions/checkout@v3
+        
+      - name: Authenticate with AWS
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
+          aws-region: 'eu-west-2'
+          role-duration-seconds: 1200
+          
+      - name: Establish bucket name
         run: |
-          # Short name for current branch. For PRs, use target branch (base ref)
-          GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
-          GIT_HASH=$(git rev-parse --short "$GITHUB_SHA")
-          echo "BUCKET_NAME=${GIT_BRANCH////-}-${GIT_HASH}-sutvs" >> $GITHUB_ENV
+          echo "BUCKET_NAME=visitscotland-sut" >> $GITHUB_ENV
+          
+      - name: Generate folder name from branch name
+        run: |
+          GIT_BRANCH=${{ github.ref_name }}
+          echo "FOLDER_NAME=${GIT_BRANCH////-}-sutvs" >> $GITHUB_ENV
+
       - run: |
-          aws s3api delete-bucket --bucket ${{env.BUCKET_NAME}}
+          aws s3api delete-object --bucket ${{env.BUCKET_NAME}} --key ${{env.FOLDER_NAME}}

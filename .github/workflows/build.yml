@@ -1,15 +1,6 @@
 name: Build Design System
 
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
-  pull_request:
-    types:
-      - opened
-    branches:
-      - 'main'
-
   # Allows this workflow to be called from other workflows
   workflow_call:
   # Allows you to run this workflow manually from the Actions tab
