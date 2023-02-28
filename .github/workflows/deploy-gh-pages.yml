@@ -37,4 +37,3 @@ jobs:
         uses: actions/deploy-pages@v1
         with:
           name: ds-build
-          path: ./dist/system
