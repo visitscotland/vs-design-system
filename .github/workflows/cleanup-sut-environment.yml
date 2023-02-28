@@ -1,8 +1,11 @@
 name: Cleanup S3
+
 on:
-  pull_request:
+  pull_request_target:
     types:
       - closed
+    branches:
+      - 'main'
 
 jobs:
   cleanup:
