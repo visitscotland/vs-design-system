@@ -26,11 +26,6 @@ jobs:
       - name: Establish bucket name
         run: |
           echo "BUCKET_NAME=visitscotland-sut" >> $GITHUB_ENV
-
-      - name: Generate bucket name from PR branch name
-        run: |
-          GIT_BRANCH=${{ github.ref_name }}
-          echo "BUCKET_NAME=${GIT_BRANCH////-}-sutvs" >> $GITHUB_ENV
           
       - name: Generate folder name from branch name
         run: |
