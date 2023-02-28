@@ -44,8 +44,13 @@ jobs:
         run: |
           export NODE_OPTIONS=--openssl-legacy-provider
           yarn system:build
-      - name: Upload a Build Artifact
+      - name: Upload a Build Artifact for S3
         uses: actions/upload-artifact@master
         with:
           name: ds-build
+          path: ./dist/system
+      - name: Upload a Build Artifact for Pages
+        uses: actions/upload-pages-artifact@v1.0.7
+        with:
+          name: ds-build-pages
           path: ./dist/system
