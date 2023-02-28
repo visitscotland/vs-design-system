@@ -26,8 +26,7 @@ jobs:
       - name: Generate bucket name from PR branch name
         run: |
           GIT_BRANCH=${{ github.ref_name }}
-          GIT_HASH=$(git rev-parse --short "$GITHUB_SHA")
-          echo "BUCKET_NAME=${GIT_BRANCH////-}-${GIT_HASH}-sutvs" >> $GITHUB_ENV
+          echo "BUCKET_NAME=${GIT_BRANCH////-}-sutvs" >> $GITHUB_ENV
 
       - run: |
           aws s3api delete-bucket --bucket ${{env.BUCKET_NAME}}
