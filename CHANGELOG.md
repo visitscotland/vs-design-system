@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.13](https://github.com/visitscotland/design-system/compare/v0.8.12...v0.8.13) (2023-03-06)
+
+
+### Others
+
+* 🤖 update to workflow job name ([31bf703](https://github.com/visitscotland/design-system/commit/31bf703077825e1d1709ec82facbc1d37d2566a9))
+
 ### [0.8.12](https://github.com/visitscotland/design-system/compare/v0.8.11...v0.8.12) (2023-02-24)
 
 
