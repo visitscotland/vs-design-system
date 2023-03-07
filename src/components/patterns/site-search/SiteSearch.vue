@@ -11,7 +11,7 @@
     >
         <!-- Default slot for Search button text -->
         <span
-            class="sr-only-xl-down"
+            class="sr-only-xxl-down"
         >
             <slot />
         </span>
@@ -97,7 +97,7 @@ export default {
         }
     }
 
-    @include media-breakpoint-up(xl) {
+    @include media-breakpoint-up(xxl) {
         .vs-icon {
             margin-right: $spacer-2;
         }
