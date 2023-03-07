@@ -68,10 +68,12 @@ const dataLayerMixin = {
             let dataLayerData;
             let clickText;
 
-            if (event.target.text) {
-                clickText = event.target.text.trim();
-            } else {
-                clickText = event.target.innerText;
+            if (event) {
+                if (event.target.text) {
+                    clickText = event.target.text.trim();
+                } else {
+                    clickText = event.target.innerText;
+                }
             }
 
             switch (type) {
