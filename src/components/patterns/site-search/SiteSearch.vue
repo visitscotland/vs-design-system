@@ -11,7 +11,7 @@
     >
         <!-- Default slot for Search button text -->
         <span
-            class="sr-only-lg-down"
+            class="sr-only-xxl-down"
         >
             <slot />
         </span>
@@ -85,7 +85,7 @@ export default {
         height: 55px;
 
         .vs-icon{
-            margin-right: $spacer-2;
+            margin-right: $spacer-0;
         }
 
         &.vs-button.btn-md{
@@ -94,6 +94,12 @@ export default {
 
         span.sr-only-lg-down {
             overflow: visible;
+        }
+    }
+
+    @include media-breakpoint-up(xxl) {
+        .vs-icon {
+            margin-right: $spacer-2;
         }
     }
 }
