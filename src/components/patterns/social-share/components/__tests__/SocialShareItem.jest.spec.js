@@ -16,6 +16,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsSocialShareItem, {
         ...propsData,
         name: 'facebook',
         linkText: 'Facebook',
+        linkCopiedText: 'Link copied',
     },
     provide: {
         pageUrl: url,

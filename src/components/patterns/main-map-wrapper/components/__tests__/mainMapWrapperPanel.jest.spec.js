@@ -13,6 +13,8 @@ const factoryShallowMount = (propsData) => shallowMount(VsMainMapWrapperPanel, {
         ...propsData,
     },
     provide: {
+        mapId: '12345',
+        focussedListItem: 1,
         placesData: [{
             properties: {
                 category: {

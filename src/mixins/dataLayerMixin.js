@@ -67,6 +67,7 @@ const dataLayerMixin = {
             let fullTemplate;
             let dataLayerData;
             let clickText;
+            let socialTargetText = '';
 
             if (event) {
                 if (event.target.text) {
@@ -213,10 +214,14 @@ const dataLayerMixin = {
                 eventName = 'share';
                 tagName = 'VS - GA - Share';
 
+                if (typeof event.target.text !== 'undefined') {
+                    socialTargetText = event.target.text.trim();
+                }
+
                 templateValues = {
                     event: eventName,
                     tag_name: tagName,
-                    click_text: event.target.text.trim(),
+                    click_text: socialTargetText,
                     click_URL: href,
                 };
 
