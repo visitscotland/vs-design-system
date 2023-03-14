@@ -15,10 +15,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab in the GitHub dashboard
   workflow_dispatch: {}
 
-env:
-  AWS_REGION: 'eu-west-2'
-  
-
 jobs:
     # Reuse the build workflow to avoid repetition
   build:
@@ -40,19 +36,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      
-      - name: Authenticate with AWS
-        uses: aws-actions/configure-aws-credentials@v1-node16
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
-          aws-region: 'eu-west-2'
-          role-duration-seconds: 1200
-
+          role-to-assume: arn:aws:iam::522018539762:role/GitHubOIDC
+          aws-region: eu-west-2
       - name: Get bucket name
         run: |
-          echo "BUCKET_NAME=visitscotland-sut" >> $GITHUB_ENV
+          echo "BUCKET_NAME=dev-visitscotland-sut" >> $GITHUB_ENV
 
       - name: Download GitHub artifact
         uses: actions/download-artifact@v3
@@ -68,7 +59,7 @@ jobs:
       - name: Synchronizing to S3
         id: aws-sync
         run: |
-          echo "Deploying to https://${{ env.BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com/index.html"
+          echo "Deploying to https://${{ env.BUCKET_NAME }}.s3.eu-west-2.amazonaws.com/index.html"
           aws s3 sync ./dist/system/ s3://${{env.BUCKET_NAME}}/${{env.FOLDER_NAME}}
-          echo "S3_URL=https://${{env.BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com/${{env.FOLDER_NAME}}/index.html" >> $GITHUB_ENV
+          echo "S3_URL=https://${{env.BUCKET_NAME}}.s3.eu-west-2.amazonaws.com/${{env.FOLDER_NAME}}/index.html" >> $GITHUB_ENV
 
