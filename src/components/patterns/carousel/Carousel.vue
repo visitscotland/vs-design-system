@@ -504,11 +504,8 @@ export default {
                 }
             }
 
-            // only show hover/active text on buttons
-            // if device supports hover or has a larger viewport
-            @media (hover: hover) or (min-width: 992px) {
-                &:hover
-                &:focus {
+            @media (hover: hover) {
+                &:hover, &:focus {
                     outline: none;
                     background-color: $color-theme-primary;
                     border-color: $color-theme-primary;
