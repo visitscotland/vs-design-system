@@ -8,13 +8,13 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
 jobs:
   aws-s3-deploy:
     runs-on: ubuntu-latest
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint.
+    permissions:
+      id-token: write
+      contents: read
 
     # Create an environment for the static hosting enabled & Pulumi created S3 Bucket
     environment:
@@ -22,16 +22,12 @@ jobs:
       url: ${{ steps.aws-sync.outputs.s3_url }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set environment variables
-        run: |
-          # Short name for current branch. For PRs, use target branch (base ref)
-          GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
-          echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
-      - name: Create bucket in S3
-        uses: aitorres/aws-s3-create-bucket@v1.2.0
+        uses: actions/checkout@v3
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          bucket-name: 'ds-test-bucket'
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: 'eu-west-2'
+          role-to-assume: arn:aws:iam::522018539762:role/GitHubOIDC
+          aws-region: eu-west-2
+      - name: Create bucket in S3
+        run: |
+          aws s3 mb s3://ds-test-bucket
