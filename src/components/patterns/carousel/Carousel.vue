@@ -504,7 +504,9 @@ export default {
                 }
             }
 
-            @media (hover: hover) {
+            // only show hover/active text on buttons
+            // if device supports hover or has a larger viewport
+            @media (hover: hover) or (min-width: 992px) {
                 &:hover
                 &:focus {
                     outline: none;
