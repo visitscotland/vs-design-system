@@ -320,7 +320,7 @@ export default {
             // the same position they were at before the resize
             this.sliderNavigate(null, this.currentPage);
         },
-        sliderNavigate(event, direction, keypressNavigation) {
+        sliderNavigate(event, direction) {
             if (event) {
                 event.preventDefault();
             }
@@ -364,24 +364,22 @@ export default {
 
             this.navigating = false;
 
-            if (keypressNavigation) {
-                if (direction === 'next') {
-                    // if 'next' movement has happened via keypress automatically focus
-                    // on the next slide link
-                    const firstActiveSlide = this.getFirstActiveSlide();
-                    const firstLink = firstActiveSlide.querySelectorAll('a')[0];
-                    setTimeout(() => {
-                        firstLink.focus();
-                    }, 250);
-                } else if (direction === 'prev' && this.currentPage >= 0) {
-                    // if 'previous' movement has happened via keypress automatically focus
-                    // on the previous slide link
-                    const lastActiveSlide = this.getLastActiveSlide();
-                    const lastLink = lastActiveSlide.querySelectorAll('a')[0];
-                    setTimeout(() => {
-                        lastLink.focus();
-                    }, 250);
-                }
+            if (direction === 'next') {
+                // if 'next' movement has happened via keypress automatically focus
+                // on the next slide link
+                const firstActiveSlide = this.getFirstActiveSlide();
+                const firstLink = firstActiveSlide.querySelectorAll('a')[0];
+                setTimeout(() => {
+                    firstLink.focus();
+                }, 250);
+            } else if (direction === 'prev' && this.currentPage >= 0) {
+                // if 'previous' movement has happened via keypress automatically focus
+                // on the previous slide link
+                const lastActiveSlide = this.getLastActiveSlide();
+                const lastLink = lastActiveSlide.querySelectorAll('a')[0];
+                setTimeout(() => {
+                    lastLink.focus();
+                }, 250);
             }
         },
         getFirstActiveSlide() {
@@ -491,6 +489,7 @@ export default {
                 transition: max-width $duration-slowly ease;
                 max-width: 0;
                 overflow: hidden;
+                display: inline-block;
             }
 
             &:active {
@@ -505,13 +504,15 @@ export default {
                 }
             }
 
-            &:hover, &:focus {
-                outline: none;
-                background-color: $color-theme-primary;
-                border-color: $color-theme-primary;
+            @media (hover: hover) {
+                &:hover, &:focus {
+                    outline: none;
+                    background-color: $color-theme-primary;
+                    border-color: $color-theme-primary;
 
-                .vs-carousel__control-label-container {
-                    max-width: 15rem;
+                    .vs-carousel__control-label-container {
+                        max-width: 15rem;
+                    }
                 }
             }
         }
