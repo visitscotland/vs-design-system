@@ -63,7 +63,6 @@
                         <VsButton
                             class="vs-main-map-wrapper__map-toggle"
                             size="sm"
-                            variant="secondary"
                             @click.native="openPanel"
                             data-test="vs-main-map-wrapper__map-toggle"
                         >
@@ -679,8 +678,9 @@ export default {
 
         &__map-toggle.vs-button {
             position: absolute;
-            top: $spacer-4;
-            left: $spacer-4;
+            top: $spacer-2;
+            left: $spacer-2;
+            max-width: 70%;
             // ensure button can always be clicked
             // to avoid user getting trapped by overlay
             z-index: 100;
