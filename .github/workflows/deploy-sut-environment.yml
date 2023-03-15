@@ -39,9 +39,9 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::522018539762:role/GitHubOIDC
+          role-to-assume: arn:aws:iam::${{ env.AWS_DEV_ACCOUNT_ID }}:role/GitHubOIDC
           aws-region: eu-west-2
-      - name: Get bucket name
+      - name: Set bucket name
         run: |
           echo "BUCKET_NAME=dev-visitscotland-sut" >> $GITHUB_ENV
 
@@ -59,7 +59,7 @@ jobs:
       - name: Synchronizing to S3
         id: aws-sync
         run: |
-          echo "Deploying to https://${{ env.BUCKET_NAME }}.s3.eu-west-2.amazonaws.com/index.html"
+          echo "Deploying to https://${{ env.BUCKET_NAME }}.s3.eu-west-2.amazonaws.com"
           aws s3 sync ./dist/system/ s3://${{env.BUCKET_NAME}}/${{env.FOLDER_NAME}}
           echo "S3_URL=https://${{env.BUCKET_NAME}}.s3.eu-west-2.amazonaws.com/${{env.FOLDER_NAME}}/index.html" >> $GITHUB_ENV
 
