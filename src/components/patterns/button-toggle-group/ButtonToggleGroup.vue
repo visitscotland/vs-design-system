@@ -246,11 +246,6 @@ export default {
                 border-top-right-radius: $border-radius-pill;
                 border-bottom-right-radius: $border-radius-pill;
             }
-
-            .btn {
-                padding-left: $spacer-4;
-                padding-right: $spacer-4;
-            }
         }
     }
 </style>

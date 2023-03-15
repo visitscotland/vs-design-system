@@ -14,12 +14,10 @@ user to filter and search for data contained on the map.
         {
             text: 'Regions',
             value: 'regions',
-            icon: 'map',
         },
         {
             text: 'Places',
             value: 'places',
-            icon: 'map-marker',
         },
     ]"
     buttonsLabel="Select map type"
