@@ -868,7 +868,7 @@ export default {
     }
 
     .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
-        margin: $spacer-4;
+        margin: $spacer-2;
 
         & > button {
             border: 2px solid $color-theme-primary;
