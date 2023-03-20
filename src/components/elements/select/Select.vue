@@ -52,7 +52,6 @@ import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 import { BFormSelect } from 'bootstrap-vue';
 import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
-import initFontAwesome from '../../../utils/init-font-awesome';
 
 Vue.use(Vuelidate);
 
@@ -221,9 +220,6 @@ export default {
                     this.countryList = response.data.countries;
                 });
         }
-    },
-    mounted() {
-        initFontAwesome();
     },
     methods: {
         autocompleteValue(fieldName) {

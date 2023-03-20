@@ -18,7 +18,6 @@
 <script>
 import { get } from 'lodash';
 import designTokens from '@/assets/tokens/tokens.raw.json';
-import initFontAwesome from '../../../utils/init-font-awesome';
 
 /**
  * Icons are used to visually communicate available actions
@@ -233,9 +232,6 @@ export default {
 
             return formattedNameLookup !== undefined ? formattedNameLookup.value : this.name;
         },
-    },
-    mounted() {
-        initFontAwesome();
     },
 };
 </script>
