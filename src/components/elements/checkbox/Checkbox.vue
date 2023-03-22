@@ -58,7 +58,6 @@ import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 import { BFormCheckbox } from 'bootstrap-vue';
 import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
-import initFontAwesome from '../../../utils/init-font-awesome';
 
 Vue.use(Vuelidate);
 
@@ -197,9 +196,6 @@ export default {
         triggerValidate() {
             this.manualValidate();
         },
-    },
-    mounted() {
-        initFontAwesome();
     },
     validations() {
         return {

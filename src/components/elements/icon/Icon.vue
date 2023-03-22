@@ -18,14 +18,10 @@
 <script>
 import { get } from 'lodash';
 import designTokens from '@/assets/tokens/tokens.raw.json';
-import initFontAwesome from '../../../utils/init-font-awesome';
 
 /**
  * Icons are used to visually communicate available actions
  * or ideas and can help users navigate the product.
- *
- * Our icons come in specific sizes - xxs, xs, sm, md, lg and xl - and can be any colour,
- * including any of the theme colours.
  *
  * @displayName Icon
  */
@@ -236,9 +232,6 @@ export default {
 
             return formattedNameLookup !== undefined ? formattedNameLookup.value : this.name;
         },
-    },
-    mounted() {
-        initFontAwesome();
     },
 };
 </script>
