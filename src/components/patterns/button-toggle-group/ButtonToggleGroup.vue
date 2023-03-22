@@ -49,7 +49,6 @@ import {
     BFormRadio,
 } from 'bootstrap-vue';
 import VsIcon from '@components/elements/icon/Icon';
-import initFontAwesome from '../../../utils/init-font-awesome';
 
 /**
  * A group of buttons that allow only one to be selected at a time
@@ -103,7 +102,6 @@ export default {
         },
     },
     mounted() {
-        initFontAwesome();
         if (this.initialSelected === '') {
             this.selected = this.options[0].value;
         }
