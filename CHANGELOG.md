@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.16](https://github.com/visitscotland/design-system/compare/v0.8.14...v0.8.16) (2023-03-22)
+
+
+### Reverts
+
+* Revert "🎨style(map): improve styling on map buttons" ([41bf590](https://github.com/visitscotland/design-system/commit/41bf590a0586829b33166f79b383eedac17e5aa0))
+
+
+### Others
+
+* **release:** 0.8.15 ([ef6c773](https://github.com/visitscotland/design-system/commit/ef6c773ed581cc0e19994cbc0590d96fc9646e98))
+
 ### [0.8.15](https://github.com/visitscotland/design-system/compare/v0.8.14...v0.8.15) (2023-03-17)
 
 
