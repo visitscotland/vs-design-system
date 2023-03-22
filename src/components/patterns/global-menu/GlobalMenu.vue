@@ -96,8 +96,8 @@ export default {
                     siteUrl: 'https://traveltrade.visitscotland.org/',
                 },
                 {
-                    siteName: 'Media Centre',
-                    siteUrl: 'https://media.visitscotland.org/',
+                    siteName: 'Toolkit',
+                    siteUrl: 'https://toolkit.visitscotland.org/',
                 },
                 {
                     siteName: 'Corporate',
