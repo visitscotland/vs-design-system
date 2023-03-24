@@ -122,8 +122,6 @@ export default {
         keyHandler(event) {
             event.preventDefault();
 
-            console.log(event.keyCode);
-
             if (event.keyCode === 13 || event.keyCode === 32) {
                 this.clickHandler(event);
             }
