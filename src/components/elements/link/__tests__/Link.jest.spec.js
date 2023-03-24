@@ -12,11 +12,11 @@ const factoryShallowMount = (propsData) => shallowMount(VsLink, {
 });
 
 describe('VsLink', () => {
-    it('should render a b-link with class vs-link', () => {
+    it('should render an anchor with class vs-link', () => {
         const wrapper = factoryShallowMount();
 
         expect(wrapper.classes()).toContain('vs-link');
-        expect(wrapper.element.tagName).toBe('BLINK-STUB');
+        expect(wrapper.element.tagName).toBe('A');
     });
 
     describe(':slots', () => {
