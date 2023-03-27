@@ -260,6 +260,7 @@ $variants: (
     color: $color-black;
     overflow: visible;
     pointer-events: none;
+    line-height: 1;
 
     @each $size in map-keys($sizes) {
         $this-size: map-get($sizes, $size);
