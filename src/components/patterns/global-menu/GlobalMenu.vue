@@ -9,13 +9,15 @@
                     cols="12"
                     class="vs-global-menu__wrapper"
                 >
-                    <!-- Small Screens Menu -->
-                    <VsGlobalMenuDropdown
-                        class="d-lg-none"
-                        :active-site="activeSite"
-                        :dropdown-label="dropdownLabel"
-                        :websites="websites"
-                    />
+                    <LazyHydrate on-interaction>
+                        <!-- Small Screens Menu -->
+                        <VsGlobalMenuDropdown
+                            class="d-lg-none"
+                            :active-site="activeSite"
+                            :dropdown-label="dropdownLabel"
+                            :websites="websites"
+                        />
+                    </LazyHydrate>
 
                     <!-- Large Screens Menu -->
                     <VsGlobalMenuList
@@ -43,6 +45,7 @@
 import {
     VsContainer, VsRow, VsCol,
 } from '@components/elements/grid';
+import LazyHydrate from 'vue-lazy-hydration';
 import VsGlobalMenuDropdown from './components/GlobalMenuDropdown';
 import VsGlobalMenuList from './components/GlobalMenuList';
 
@@ -63,6 +66,7 @@ export default {
         VsCol,
         VsGlobalMenuDropdown,
         VsGlobalMenuList,
+        LazyHydrate,
     },
     props: {
         /**

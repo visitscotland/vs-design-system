@@ -3,20 +3,23 @@
         class="vs-footer-nav-list"
         data-test="vs-footer-nav-list"
     >
-        <div class="vs-footer-nav-list">
-            <VsAccordion :break-point="breakPoint">
-                <VsRow>
-                    <!-- @slot Default slot to contain Accordion Items in the footer -->
-                    <slot />
-                </VsRow>
-            </VsAccordion>
-        </div>
+        <LazyHydrate on-interaction>
+            <div class="vs-footer-nav-list">
+                <VsAccordion :break-point="breakPoint">
+                    <VsRow>
+                        <!-- @slot Default slot to contain Accordion Items in the footer -->
+                        <slot />
+                    </VsRow>
+                </VsAccordion>
+            </div>
+        </LazyHydrate>
     </VsContainer>
 </template>
 
 <script>
 import VsAccordion from '@components/patterns/accordion/Accordion';
 import { VsRow, VsContainer } from '@components/elements/grid';
+import LazyHydrate from 'vue-lazy-hydration';
 
 /**
  * The FooterNavList is a set of menu items used for
@@ -33,6 +36,7 @@ export default {
         VsAccordion,
         VsRow,
         VsContainer,
+        LazyHydrate,
     },
     props: {
         /**
