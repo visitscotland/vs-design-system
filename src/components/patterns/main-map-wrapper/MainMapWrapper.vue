@@ -680,7 +680,8 @@ export default {
             position: absolute;
             top: $spacer-2;
             left: $spacer-2;
-            max-width: 70%;
+            max-width: calc(100% - 60px);
+            padding: $spacer-1 $spacer-3;
             // ensure button can always be clicked
             // to avoid user getting trapped by overlay
             z-index: 100;
