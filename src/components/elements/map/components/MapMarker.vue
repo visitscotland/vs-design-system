@@ -11,16 +11,17 @@
         @focusin="handleHover(feature.properties.id)"
         @focusout="handleHover('')"
     >
-        <VsSvg
-            class="vs-map-marker__icon"
-            slot="svg"
-            :path="getMarkerIcon"
+        <VsMainMapWrapperIcon
+            class="vs-main-map-category__icon"
+            :id="getMarkerIcon"
+            :is-map-marker="true"
         />
     </button>
 </template>
 
 <script>
-import VsSvg from '@components/elements/svg/Svg';
+// import VsSvg from '@components/elements/svg/Svg';
+import VsMainMapWrapperIcon from '@/components/patterns/main-map-wrapper/components/MainMapWrapperIcon';
 import mapStore from '../../../../stores/map.store';
 
 /**
@@ -34,7 +35,8 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsSvg,
+        // VsSvg,
+        VsMainMapWrapperIcon,
     },
     props: {
         /**
@@ -81,14 +83,14 @@ export default {
         getMarkerIcon() {
             let markerName;
             if (this.feature.properties.type !== '') {
-                markerName = `marker-${this.feature.properties.type}`;
+                markerName = this.feature.properties.type;
             } else if (this.activeSubCat !== null) {
-                markerName = `marker-${this.activeSubcat}`;
+                markerName = this.activeSubcat;
             } else {
-                markerName = 'marker-featured';
+                markerName = 'featured';
             }
 
-            if (markerName === 'marker-null') {
+            if (markerName === 'null') {
                 markerName = '';
             }
 
@@ -155,14 +157,6 @@ export default {
     &:focus,
     &--active {
         z-index: 1 !important;
-
-        .vs-map-marker__icon {
-            transform: scale(1.2, 1.2) translateY(-10px);
-        }
-    }
-
-    &__icon {
-        transition: $transition-base;
     }
 
     &__count {

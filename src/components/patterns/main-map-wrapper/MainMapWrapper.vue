@@ -4,19 +4,6 @@
     >
         <VsRow>
             <VsCol>
-                <div class="marker-icon">
-                    <VsIcon
-                        name="map-marker-filled"
-                        class="marker-icon__marker"
-                    />
-
-                    <VsIcon
-                        class="marker-icon__icon"
-                        name="food"
-                        size="xxs"
-                        variant="color-white"
-                    />
-                </div>
                 <div
                     class="vs-main-map-wrapper"
                     :ref="mapId"
@@ -733,29 +720,5 @@ export default {
                 display: flex;
             }
         }
-    }
-
-    .marker-icon {
-        position: relative;
-        display: inline-block;
-
-        &:hover {
-            .marker-icon__marker {
-                -webkit-text-stroke-color: white;
-                -webkit-text-stroke-width: 1px;
-            }
-        }
-    }
-
-    .marker-icon__marker {
-        font-size: 30px !important;
-    }
-
-    .marker-icon__icon {
-        position: absolute;
-        left: 50%;
-        top: 5px;
-        transform: translateX(-50%);
-        font-size: 12px !important;
     }
 </style>
