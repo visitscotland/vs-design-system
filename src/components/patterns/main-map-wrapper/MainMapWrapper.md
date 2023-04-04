@@ -5,8 +5,8 @@ user to filter and search for data contained on the map.
 ```jsx
 <VsMainMapWrapper
     categoryHeading="Explore places to go"
-    :filters="maps.mapFiltersRegional"
-    :places-data="maps.placesDataRegional.features"
+    :filters="maps.mapFiltersSubcategories"
+    :places-data="maps.placesDataFeatured.features"
     discover-text="discover"
     map-id="vs-map"
     initialSelected="places"
