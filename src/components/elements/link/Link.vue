@@ -120,9 +120,9 @@ export default {
          * to the click handler to ensure analytics events are properly initiated.
          */
         keyHandler(event) {
-            event.preventDefault();
-
             if (event.keyCode === 13 || event.keyCode === 32) {
+                event.preventDefault();
+
                 this.clickHandler(event);
             }
         },
