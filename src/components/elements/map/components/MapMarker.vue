@@ -20,7 +20,6 @@
 </template>
 
 <script>
-// import VsSvg from '@components/elements/svg/Svg';
 import VsMainMapWrapperIcon from '@/components/patterns/main-map-wrapper/components/MainMapWrapperIcon';
 import mapStore from '../../../../stores/map.store';
 
@@ -35,7 +34,6 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        // VsSvg,
         VsMainMapWrapperIcon,
     },
     props: {
