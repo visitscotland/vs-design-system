@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.21](https://github.com/visitscotland/design-system/compare/v0.8.20...v0.8.21) (2023-04-04)
+
+
+### Bug Fixes
+
+* **links:** only prevent default on necessary keys so tab nav works ([c985366](https://github.com/visitscotland/design-system/commit/c98536627d3172ff5c32b60ea3d19bb14a024f2e))
+
 ### [0.8.20](https://github.com/visitscotland/design-system/compare/v0.8.19...v0.8.20) (2023-04-03)
 
 ### [0.8.19](https://github.com/visitscotland/design-system/compare/v0.8.18...v0.8.19) (2023-03-30)
