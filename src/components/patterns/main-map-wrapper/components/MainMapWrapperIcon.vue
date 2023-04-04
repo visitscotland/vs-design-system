@@ -87,7 +87,7 @@ export default {
         }
 
         .vs-main-map-marker-icon__marker {
-            -webkit-text-stroke-color: white;
+            -webkit-text-stroke-color: $color-white;;
             -webkit-text-stroke-width: 1px;
         }
     }
@@ -96,7 +96,7 @@ export default {
         font-size: 30px !important;
 
         &--outline {
-            -webkit-text-stroke-color: white;
+            -webkit-text-stroke-color: $color-white;;
             -webkit-text-stroke-width: 1px;
         }
     }

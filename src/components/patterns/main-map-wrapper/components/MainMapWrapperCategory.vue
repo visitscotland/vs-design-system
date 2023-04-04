@@ -23,11 +23,6 @@
                     :id="type"
                     :is-hovered="isHovered"
                 />
-                <!-- <VsSvg
-                    class="vs-main-map-category__icon"
-                    slot="svg"
-                    :path="`marker-${type}`"
-                /> -->
                 {{ categoryName }}
             </div>
         </VsButton>
