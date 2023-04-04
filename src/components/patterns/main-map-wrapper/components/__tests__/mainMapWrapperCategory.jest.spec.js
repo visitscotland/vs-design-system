@@ -22,8 +22,8 @@ describe('VsMainMapWrapperCategory', () => {
 
         it('should display the marker corresponding to the `type` prop', () => {
             const wrapper = factoryShallowMount();
-            const svgStub = wrapper.find('vssvg-stub');
-            expect(svgStub.attributes('path')).toBe('marker-cities');
+            const iconStub = wrapper.find('vsmainmapwrappericon-stub');
+            expect(iconStub.attributes('id')).toBe('cities');
         });
     });
 

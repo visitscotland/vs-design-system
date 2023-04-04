@@ -13,7 +13,7 @@
     background-color: $background;
     border-color: $border;
 
-    .vs-icon {
+    .vs-icon:not(.vs-main-map-marker-icon__marker, .vs-main-map-marker-icon__icon) {
         color: $color;
     }
 

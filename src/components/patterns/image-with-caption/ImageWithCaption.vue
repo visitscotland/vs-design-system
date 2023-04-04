@@ -40,7 +40,7 @@
             >
                 <VsVideoCaption
                     :video-btn-text="playButtonText"
-                    :with-toggle-btn="true"
+                    :with-toggle-btn="showToggle"
                     @toggleAction="toggleCaption"
                     :video-id="videoId"
                     :cookie-link-text="cookieLinkText"
@@ -223,6 +223,13 @@ export default {
         errorMessage: {
             type: String,
             default: '',
+        },
+        /**
+         * whether or not to show toggle button
+         */
+        showToggle: {
+            type: Boolean,
+            default: true,
         },
     },
     data() {

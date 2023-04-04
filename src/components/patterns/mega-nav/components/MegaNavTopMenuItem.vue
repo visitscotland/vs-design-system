@@ -4,69 +4,72 @@
         data-test="vs-mega-nav-top-menu-item"
         ref="menuToggle"
     >
-        <VsMegaNavDropdown
-            menu-toggle-alt-text="Toggle Menu"
-        >
-            <template #buttonContent>
-                <!-- @slot For top menu item button content -->
-                <slot name="buttonContent" />
-            </template>
+        <LazyHydrate on-interaction>
+            <VsMegaNavDropdown
+                menu-toggle-alt-text="Toggle Menu"
+            >
+                <template #buttonContent>
+                    <!-- @slot For top menu item button content -->
+                    <slot name="buttonContent" />
+                </template>
 
-            <template #ctaLink>
-                <VsLink
-                    v-if="href && ctaText"
-                    :href="href"
-                    role="menuitem"
-                    data-test="vs-mega-nav-top-menu-item__cta-link"
-                    class="vs-mega-nav-top-menu-item__cta-link"
-                >
-                    {{ ctaText }}
-                </VsLink>
-                <hr class="vs-mega-nav-top-menu-item__divider">
-            </template>
-
-            <template #dropdownContent>
-                <!-- @slot Slot for dropdown menu list content -->
-                <div class="vs-mega-nav-top-menu-item__columns-wrapper">
-                    <slot name="dropdownContent" />
-
-                    <div
-                        class="
-                            vs-mega-nav-top-menu-item__featured
-                            vs-mega-nav-top-menu-item__featured--left
-                        "
-                        :class="alignmentClass"
-                        data-test="vs-mega-nav-top-menu-item__featured"
-                        v-if="hasFeaturedItemLeft"
+                <template #ctaLink>
+                    <VsLink
+                        v-if="href && ctaText"
+                        :href="href"
+                        role="menuitem"
+                        data-test="vs-mega-nav-top-menu-item__cta-link"
+                        class="vs-mega-nav-top-menu-item__cta-link"
                     >
-                        <slot name="navFeaturedItemLeft" />
-                    </div>
+                        {{ ctaText }}
+                    </VsLink>
+                    <hr class="vs-mega-nav-top-menu-item__divider">
+                </template>
 
-                    <div
-                        class="vs-mega-nav-top-menu-item__featured"
-                        :class="alignmentClass"
-                        data-test="vs-mega-nav-top-menu-item__featured"
-                        v-if="hasFeaturedItem"
-                    >
-                        <slot name="navFeaturedItem" />
-                    </div>
+                <template #dropdownContent>
+                    <!-- @slot Slot for dropdown menu list content -->
+                    <div class="vs-mega-nav-top-menu-item__columns-wrapper">
+                        <slot name="dropdownContent" />
 
-                    <div
-                        class="vs-mega-nav-top-menu-item__featured-event"
-                        data-test="vs-mega-nav-top-menu-item__featured-event"
-                        v-if="hasFeaturedEvent"
-                    >
-                        <slot name="navFeaturedEvent" />
+                        <div
+                            class="
+                                vs-mega-nav-top-menu-item__featured
+                                vs-mega-nav-top-menu-item__featured--left
+                            "
+                            :class="alignmentClass"
+                            data-test="vs-mega-nav-top-menu-item__featured"
+                            v-if="hasFeaturedItemLeft"
+                        >
+                            <slot name="navFeaturedItemLeft" />
+                        </div>
+
+                        <div
+                            class="vs-mega-nav-top-menu-item__featured"
+                            :class="alignmentClass"
+                            data-test="vs-mega-nav-top-menu-item__featured"
+                            v-if="hasFeaturedItem"
+                        >
+                            <slot name="navFeaturedItem" />
+                        </div>
+
+                        <div
+                            class="vs-mega-nav-top-menu-item__featured-event"
+                            data-test="vs-mega-nav-top-menu-item__featured-event"
+                            v-if="hasFeaturedEvent"
+                        >
+                            <slot name="navFeaturedEvent" />
+                        </div>
                     </div>
-                </div>
-            </template>
-        </VsMegaNavDropdown>
+                </template>
+            </VsMegaNavDropdown>
+        </LazyHydrate>
     </li>
 </template>
 
 <script>
 import VsMegaNavDropdown from '@components/patterns/mega-nav/components/MegaNavDropdown';
 import VsLink from '@components/elements/link/Link';
+import LazyHydrate from 'vue-lazy-hydration';
 
 /**
  *  Mega nav top level menu items with a slots for toggle button and dropdown content
@@ -80,6 +83,7 @@ export default {
     components: {
         VsMegaNavDropdown,
         VsLink,
+        LazyHydrate,
     },
     props: {
         /**

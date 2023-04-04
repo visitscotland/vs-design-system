@@ -354,13 +354,8 @@ export default {
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    height: $spacer-8;
-                    width: $spacer-8;
+                    font-size: $font-size-9;
                 }
-            }
-
-            .vs-toggle-btn {
-                display: none;
             }
         }
     }

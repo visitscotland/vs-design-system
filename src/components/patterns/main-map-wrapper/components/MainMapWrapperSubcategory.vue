@@ -16,10 +16,9 @@
                     :value="item.id"
                     @change="emitChange"
                 >
-                    <VsIcon
-                        class="mr-4"
-                        :name="getSubCatIcon.name"
-                        :custom-colour="getSubCatIcon.colour"
+                    <VsMainMapWrapperIcon
+                        class="vs-main-map-category__icon"
+                        :id="selectedSubCategory"
                     />
                     {{ item.name }}
                 </BFormCheckbox>
@@ -34,8 +33,8 @@ import {
     BFormCheckboxGroup,
     BFormCheckbox,
 } from 'bootstrap-vue';
-import VsIcon from '@/components/elements/icon/Icon';
 import mapStore from '../../../../stores/map.store';
+import VsMainMapWrapperIcon from './MainMapWrapperIcon';
 
 export default {
     name: 'VsMainMapWrapperSubCategories',
@@ -45,7 +44,7 @@ export default {
         BFormGroup,
         BFormCheckboxGroup,
         BFormCheckbox,
-        VsIcon,
+        VsMainMapWrapperIcon,
     },
     props: {
         /** Data for subcategory */
@@ -65,39 +64,6 @@ export default {
         },
         selectedSubCategory() {
             return mapStore.getters.getSelectedSubcat;
-        },
-        getSubCatIcon() {
-            const icon = {
-            };
-            switch (this.selectedSubCategory) {
-            case 'acco':
-                icon.name = 'bed';
-                icon.colour = '#AF0E6E';
-                break;
-            case 'acti':
-                icon.name = 'walk';
-                icon.colour = '#700E57';
-                break;
-            case 'attr':
-                icon.name = 'camera';
-                icon.colour = '#187776';
-                break;
-            case 'even':
-                icon.name = 'events';
-                icon.colour = '#1066D6';
-                break;
-            case 'cate':
-                icon.name = 'food';
-                icon.colour = '#C31600';
-                break;
-            case 'reta':
-                icon.name = 'shopping-bag';
-                icon.colour = '#432FB2';
-                break;
-            default:
-                break;
-            }
-            return icon;
         },
     },
     mounted() {
@@ -143,6 +109,8 @@ export default {
 
 <style lang="scss">
     .vs-main-map-subcategory {
+        position: relative;
+
         .custom-checkbox {
             display: flex;
             flex-direction: row-reverse;

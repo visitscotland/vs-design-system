@@ -1,5 +1,5 @@
 <template>
-    <BLink
+    <a
         class="vs-link"
         :class="[
             `vs-link--variant-${variant}`,
@@ -10,6 +10,7 @@
         :disabled="disabled"
         v-bind="$attrs"
         @click="clickHandler($event)"
+        @keydown="keyHandler($event)"
     >
         <!-- @slot Default slot for link content -->
         <slot /><VsIcon
@@ -19,11 +20,10 @@
             :size="iconSize"
             class="ml-1 vs-link__icon"
         />
-    </BLink>
+    </a>
 </template>
 
 <script>
-import { BLink } from 'bootstrap-vue';
 import VsIcon from '@components/elements/icon/Icon';
 import dataLayerMixin from '../../../mixins/dataLayerMixin';
 
@@ -39,7 +39,6 @@ export default {
     status: 'prototype',
     release: '0.0.2',
     components: {
-        BLink,
         VsIcon,
     },
     mixins: [
@@ -114,6 +113,17 @@ export default {
             // don't navigate if it's an empty or anchor link
             if (this.href !== '#' && this.href !== null) {
                 window.location.href = this.href;
+            }
+        },
+        /**
+         * Fires on keypress events on the link, and passes 'space' and 'enter' events
+         * to the click handler to ensure analytics events are properly initiated.
+         */
+        keyHandler(event) {
+            if (event.keyCode === 13 || event.keyCode === 32) {
+                event.preventDefault();
+
+                this.clickHandler(event);
             }
         },
     },

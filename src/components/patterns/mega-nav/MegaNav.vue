@@ -254,10 +254,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~bootstrap/scss/navbar';
-
 .vs-mega-nav {
-    position: relative;
+    position: sticky;
+    top: 0;
     display: flex;
     align-items: center;
     height: 45px;

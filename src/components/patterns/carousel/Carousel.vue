@@ -321,6 +321,7 @@ export default {
             this.sliderNavigate(null, this.currentPage);
         },
         sliderNavigate(event, direction) {
+            const initialFirstActive = this.activeSlides[0];
             if (event) {
                 event.preventDefault();
             }
@@ -374,11 +375,14 @@ export default {
                 }, 250);
             } else if (direction === 'prev' && this.currentPage >= 0) {
                 // if 'previous' movement has happened via keypress automatically focus
-                // on the previous slide link
-                const lastActiveSlide = this.getLastActiveSlide();
-                const lastLink = lastActiveSlide.querySelectorAll('a')[0];
+                // on the previous item to the one that was shown first
+                const previousActive = this.$refs.carousel
+                    .querySelectorAll('.card')[initialFirstActive - 1];
+
+                const newFocus = previousActive.querySelectorAll('a')[0];
+
                 setTimeout(() => {
-                    lastLink.focus();
+                    newFocus.focus();
                 }, 250);
             }
         },
