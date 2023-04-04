@@ -4,13 +4,14 @@
         data-test="vs-main-map-category"
     >
         <VsButton
-            class="vs-main-map-category__button text-capitalize"
+            class="vs-main-map-category__button"
             :class="`vs-main-map-category__button--${type}`"
             data-test="vs-main-map-category__button"
             variant="transparent"
             icon="internal-link"
             icon-position="right"
             size="sm"
+            :uppercase="false"
             @click.native="selectCategory(type)"
             @mouseover.native="isHovered = true"
             @mouseout.native="isHovered = false"
