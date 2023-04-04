@@ -322,25 +322,27 @@ export default {
         }
 
         &.btn-transparent{
-            @include vs-button-variant(
-                $color-gray-shade-7, transparent, transparent,
-                $color-pink, transparent, transparent,
-                $color-pink, transparent, transparent,
-            );
-
-            &:focus{
-                box-shadow: $shadow-button-focus;
-            }
-
-            &.vs-button--on-dark{
+            &:not(.vs-main-map-category__button) {
                 @include vs-button-variant(
-                    $color-white, transparent, transparent,
-                    $color-gray-tint-6, transparent, transparent,
-                    $color-white, transparent, transparent,
+                    $color-gray-shade-7, transparent, transparent,
+                    $color-pink, transparent, transparent,
+                    $color-pink, transparent, transparent,
                 );
 
                 &:focus{
-                    box-shadow: $shadow-button-focus-on-dark;
+                    box-shadow: $shadow-button-focus;
+                }
+
+                &.vs-button--on-dark{
+                    @include vs-button-variant(
+                        $color-white, transparent, transparent,
+                        $color-gray-tint-6, transparent, transparent,
+                        $color-white, transparent, transparent,
+                    );
+
+                    &:focus{
+                        box-shadow: $shadow-button-focus-on-dark;
+                    }
                 }
             }
         }

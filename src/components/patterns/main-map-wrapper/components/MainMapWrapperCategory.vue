@@ -12,12 +12,16 @@
             icon-position="right"
             size="sm"
             @click.native="selectCategory(type)"
+            @mouseover.native="isHovered = true"
+            @mouseout.native="isHovered = false"
+            @focusin.native="isHovered = true"
+            @focusout.native="isHovered = false"
         >
             <div>
-                <VsSvg
+                <VsMainMapWrapperIcon
                     class="vs-main-map-category__icon"
-                    slot="svg"
-                    :path="`marker-${type}`"
+                    :id="type"
+                    :is-hovered="isHovered"
                 />
                 {{ categoryName }}
             </div>
@@ -27,7 +31,7 @@
 
 <script>
 import VsButton from '@components/elements/button/Button';
-import VsSvg from '@components/elements/svg/Svg';
+import VsMainMapWrapperIcon from './MainMapWrapperIcon';
 
 export default {
     name: 'VsMainMapWrapperCategories',
@@ -35,7 +39,7 @@ export default {
     release: '0.0.1',
     components: {
         VsButton,
-        VsSvg,
+        VsMainMapWrapperIcon,
     },
     props: {
         /**
@@ -60,6 +64,11 @@ export default {
             type: Boolean,
             default: false,
         },
+    },
+    data() {
+        return {
+            isHovered: false,
+        };
     },
     methods: {
         /**
@@ -94,7 +103,7 @@ export default {
         }
 
         &__icon {
-            width: 1.875rem;
+            vertical-align: middle;
             margin-right: $spacer-4;
         }
 
@@ -110,7 +119,7 @@ export default {
             padding: $spacer-4 $spacer-4;
             border: none;
 
-            .vs-icon {
+            .vs-icon--internal-link {
                 color: $color-pink;
             }
 
@@ -123,7 +132,7 @@ export default {
                 border: none;
                 box-shadow: none;
 
-                .vs-icon {
+                .vs-icon--internal-link {
                     color: $color-white;
                 }
 
