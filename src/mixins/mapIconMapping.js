@@ -29,7 +29,7 @@ const mapIconMapping = {
                 icon.name = '';
                 break;
             case 'serv':
-                icon.name = 'information-filled';
+                icon.name = 'icentre-information';
                 break;
             default:
                 break;

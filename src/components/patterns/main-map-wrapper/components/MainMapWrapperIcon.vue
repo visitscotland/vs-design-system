@@ -49,11 +49,11 @@ export default {
     },
     computed: {
         mapMarkerType() {
-            const type = 'map-marker-filled';
+            let type = 'map-marker-filled';
 
-            // if (this.id === 'twnv') {
-            //     type = 'map-marker';
-            // }
+            if (this.id === 'twnv') {
+                type = 'places-map-pin';
+            }
 
             return type;
         },
