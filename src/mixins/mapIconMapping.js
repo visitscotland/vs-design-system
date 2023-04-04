@@ -4,6 +4,18 @@ const mapIconMapping = {
             const icon = {
             };
             switch (name) {
+            case 'cities':
+                icon.name = 'city';
+                break;
+            case 'towns':
+                icon.name = 'home';
+                break;
+            case 'islands':
+                icon.name = 'boat';
+                break;
+            case 'regions':
+                icon.name = 'map';
+                break;
             case 'acco':
                 icon.name = 'bed';
                 break;
