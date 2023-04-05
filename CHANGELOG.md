@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.25](https://github.com/visitscotland/design-system/compare/v0.8.24...v0.8.25) (2023-04-05)
+
+
+### 🐛 Bug Fixes
+
+* **changelog:** switch to non-emoji commitizen messages ([3d31b10](https://github.com/visitscotland/design-system/commit/3d31b10918141196a71fc5e95d7e666d8c89e07a))
+
+
+### ⏪ Revertions
+
+* **changelog:** revert test feature ([5b16cbd](https://github.com/visitscotland/design-system/commit/5b16cbdd24cbf692036fbc8adf1de449d9a66187))
+
+
+### ✨ Features
+
+* **changelog:** a test feature ([b2609a3](https://github.com/visitscotland/design-system/commit/b2609a3a7619dd985aa51687d94ed447fb96dc97))
+* **psr:** remove fixed top spacing on psr, control in site ([bc357d7](https://github.com/visitscotland/design-system/commit/bc357d748548f6df881a9338d183c45ecc559367))
+
+### [0.8.24](https://github.com/visitscotland/design-system/compare/v0.8.23...v0.8.24) (2023-04-04)
+
 ### [0.8.23](https://github.com/visitscotland/design-system/compare/v0.8.21...v0.8.23) (2023-04-04)
 
 ### [0.8.22](https://github.com/visitscotland/design-system/compare/v0.8.21...v0.8.22) (2023-04-04)
