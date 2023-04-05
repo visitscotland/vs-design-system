@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-product-search pt-9">
+    <div class="vs-product-search">
         <VsContainer>
             <VsRow>
                 <VsCol
