@@ -1,6 +1,6 @@
 {
   "name": "@visitscotland/vs-component-library",
-  "version": "0.8.21",
+  "version": "0.8.24",
   "description": "visitscotland.com Component Library",
   "author": "VisitScotland",
   "main": "dist/library/manifest.json",
@@ -71,7 +71,6 @@
     "codemirror": "^5.63.0",
     "commitizen": "^4.2.5",
     "core-js": "^3.6.5",
-    "cz-emoji-conventional-changelog": "^0.0.0",
     "dotenv": "^7.0.0",
     "dotenv-webpack": "^7.1.0",
     "eslint-watch": "^7.0.0",
@@ -137,6 +136,7 @@
     "css-loader": "^1.0.1",
     "cypress": "^10.0.3",
     "cypress-vue-unit-test": "^3.5.1",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-import-resolver-webpack": "^0.12.2",
@@ -231,7 +231,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-emoji-conventional-changelog"
+      "path": "./node_modules/cz-conventional-changelog"
     }
   }
 }

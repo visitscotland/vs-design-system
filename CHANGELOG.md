@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.24](https://github.com/visitscotland/design-system/compare/v0.8.23...v0.8.24) (2023-04-04)
+
+### [0.8.23](https://github.com/visitscotland/design-system/compare/v0.8.21...v0.8.23) (2023-04-04)
+
+### [0.8.22](https://github.com/visitscotland/design-system/compare/v0.8.21...v0.8.22) (2023-04-04)
+
 ### [0.8.21](https://github.com/visitscotland/design-system/compare/v0.8.20...v0.8.21) (2023-04-04)
 
 
