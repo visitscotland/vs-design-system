@@ -255,8 +255,7 @@ export default {
 
 <style lang="scss">
 .vs-mega-nav {
-    position: sticky;
-    top: 0;
+    position: relative;
     display: flex;
     align-items: center;
     height: 45px;
