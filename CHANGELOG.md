@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/visitscotland/design-system/compare/v0.8.25...v1.0.0) (2023-04-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* Cludo and Stackla will no longer have our CSS applied until we update where they
+are used to link to the new minified files
+
+VSD-333
+
+* ♻️ refactor(global styles): third party scripts no longer globally loaded and now released separatly ([2391dc0](https://github.com/visitscotland/design-system/commit/2391dc0090f7ae5dd679430d1eac6a41bdcaf0ad))
+
+
+### ♻️ Code Refactoring
+
+* **meganav:** undoing testing changes to meganav ([5f01ac1](https://github.com/visitscotland/design-system/commit/5f01ac1481b0e46099022006c94f6fbc686066f9))
+
 ### [0.8.25](https://github.com/visitscotland/design-system/compare/v0.8.24...v0.8.25) (2023-04-05)
 
 
