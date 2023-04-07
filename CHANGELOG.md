@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/visitscotland/design-system/compare/v1.0.1...v1.0.2) (2023-04-07)
+
+
+### 🎨 Styling
+
+* **cludo:** fixes icon direction for previous button ([3dbc1e2](https://github.com/visitscotland/design-system/commit/3dbc1e2d78e910f1c6d10ed0f2592c42d198ba59))
+
 ### [1.0.1](https://github.com/visitscotland/design-system/compare/v1.0.0...v1.0.1) (2023-04-07)
 
 
