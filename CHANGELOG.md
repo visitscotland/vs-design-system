@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/visitscotland/design-system/compare/v1.0.0...v1.0.1) (2023-04-07)
+
+
+### ⚡️ Performance Improvements
+
+* **psr:** make the psr bundle async to prevent render blocking ([045a794](https://github.com/visitscotland/design-system/commit/045a7940131139abfbbbb523895cbf11083dade9))
+
+
+### 🎨 Styling
+
+* **cludo:** switches Cludo icon svgs for font-awesome CSS icon ([7213317](https://github.com/visitscotland/design-system/commit/721331771d0c8bf6ca41f87787db2e17d6fa280d))
+
 ## [1.0.0](https://github.com/visitscotland/design-system/compare/v0.8.25...v1.0.0) (2023-04-06)
 
 
