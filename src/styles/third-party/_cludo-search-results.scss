@@ -206,12 +206,12 @@
                             }
 
                             &:after {
-                                content: '';
-                                background-image: url(../assets/images/icons/internal-link.svg);
-                                background-size: contain;
-                                width: 16px;
-                                height: 16px;
-                                display: inline-block;
+                                font-family: "Font Awesome Kit";
+                                content: "\e03b";
+                                color: $color-pink;
+                                font-size: $font-size-4;
+                                top: -4px;
+                                position: relative;
                             }
                         }
 
@@ -306,14 +306,11 @@
 
                     &.next-mobile a:after, 
                     &.previous a:before{
-                        content: '';
-                        background-image: url(../assets/images/icons/internal-link.svg);
-                        background-size: contain;
-                        width: 12px;
-                        height: 12px;
-                        display: inline-block;
-                        margin-top: -3px;
-                        vertical-align: middle;
+                        font-family: "Font Awesome Kit";
+                        content: "\e03b";
+                        color: $color-pink;
+                        font-weight: $font-weight-normal;
+                        font-size: $font-size-3;
                     }
 
                     &.next-mobile{
