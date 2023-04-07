@@ -8,15 +8,15 @@
             <slot name="vs-panel-title" />
         </template>
 
-        <BCardText class="vs-panel__text">
+        <div class="vs-panel__text">
             <!-- @slot Default slot containing main body text -->
             <slot />
-        </BCardText>
+        </div>
     </BCard>
 </template>
 
 <script>
-import { BCard, BCardText } from 'bootstrap-vue';
+import { BCard } from 'bootstrap-vue';
 
 /**
  * The panel component is a container
@@ -30,7 +30,6 @@ export default {
     release: '0.0.1',
     components: {
         BCard,
-        BCardText,
     },
 };
 </script>
