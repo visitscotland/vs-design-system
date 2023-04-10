@@ -22,6 +22,7 @@
                 :img-src="imageSrc"
                 :toggle-id="uniqueCaptionId"
                 @toggleAction="toggleCaption"
+                v-if="showToggle"
             >
                 {{ toggleButtonText }}
 
