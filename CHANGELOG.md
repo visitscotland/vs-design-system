@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/visitscotland/design-system/compare/v1.0.2...v1.0.3) (2023-04-10)
+
+
+### 🐛 Bug Fixes
+
+* **imagewithcaption:** prevent toggle button from showing on smaller screens if prop is false ([31e74dd](https://github.com/visitscotland/design-system/commit/31e74ddea99a5fe1df1c93d123a05c6eb898d08e))
+
 ### [1.0.2](https://github.com/visitscotland/design-system/compare/v1.0.1...v1.0.2) (2023-04-07)
 
 
