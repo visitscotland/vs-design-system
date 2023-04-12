@@ -360,7 +360,6 @@ export default {
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    font-size: $font-size-9;
                 }
             }
         }
@@ -392,6 +391,12 @@ export default {
         .vs-video-caption__buttons-container {
             .container {
                 padding: $spacer-0;
+            }
+
+            .vs-video-caption__button {
+                .vs-icon {
+                    font-size: $font-size-9;
+                }
             }
         }
 
