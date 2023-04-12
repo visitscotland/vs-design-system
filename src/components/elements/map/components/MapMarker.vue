@@ -155,6 +155,11 @@ export default {
     &:focus,
     &--active {
         z-index: 1 !important;
+
+        .vs-main-map-marker-icon--map-marker {
+            transform: scale(1.2);
+            transition: $transition-base;
+        }
     }
 
     &__count {
