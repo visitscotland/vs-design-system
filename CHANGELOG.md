@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.6](https://github.com/visitscotland/design-system/compare/v1.0.5...v1.0.6) (2023-04-12)
+
+
+### 🐛 Bug Fixes
+
+* **mapmarker:** fix marker animation on place hover ([ae91956](https://github.com/visitscotland/design-system/commit/ae91956873dbfe177d379530b8e29f2008b28dde))
+
 ### [1.0.5](https://github.com/visitscotland/design-system/compare/v1.0.4...v1.0.5) (2023-04-12)
 
 
