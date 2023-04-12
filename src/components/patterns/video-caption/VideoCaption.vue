@@ -29,7 +29,6 @@
                 </div>
 
                 <VsToggleButton
-                    class="vs-video-caption__toggle"
                     v-if="withToggleBtn"
                     @toggleAction="emitToggle"
                 />
