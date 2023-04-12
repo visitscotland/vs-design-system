@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/visitscotland/design-system/compare/v1.0.3...v1.0.4) (2023-04-12)
+
+
+### 🐛 Bug Fixes
+
+* **videocaption:** prevent duplicate toggle button showing on video caption at smaller viewports ([2058f01](https://github.com/visitscotland/design-system/commit/2058f0158fb8116ef32a85d17ac68b2594a5f546))
+
+
+### ♻️ Code Refactoring
+
+* **videocaption:** remove unneeded class ([f0d2f1d](https://github.com/visitscotland/design-system/commit/f0d2f1da0d6e95a29c9c2ae8c276657900d1bf6f))
+
 ### [1.0.3](https://github.com/visitscotland/design-system/compare/v1.0.2...v1.0.3) (2023-04-10)
 
 
