@@ -29,6 +29,7 @@
                 </div>
 
                 <VsToggleButton
+                    class="vs-video-caption__toggle"
                     v-if="withToggleBtn"
                     @toggleAction="emitToggle"
                 />
@@ -224,10 +225,16 @@ export default {
             width: 100%;
 
             .vs-toggle-btn {
-                display: block;
-                position: absolute;
-                right: $spacer-2;
-                top: calc(-24px - #{$spacer-3});
+                display: none;
+            }
+
+            @include media-breakpoint-up(lg) {
+                .vs-toggle-btn {
+                    display: block;
+                    position: absolute;
+                    right: $spacer-2;
+                    top: calc(-24px - #{$spacer-3});
+                }
             }
         }
 
