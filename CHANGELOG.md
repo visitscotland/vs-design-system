@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.7](https://github.com/visitscotland/design-system/compare/v1.0.6...v1.0.7) (2023-04-13)
+
+
+### 🐛 Bug Fixes
+
+* **psr:** revert async load change ([a43d968](https://github.com/visitscotland/design-system/commit/a43d9683c6bf0a78b4c8b4a989c2aaf284c08e63))
+
 ### [1.0.6](https://github.com/visitscotland/design-system/compare/v1.0.5...v1.0.6) (2023-04-12)
 
 
