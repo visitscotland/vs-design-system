@@ -8,6 +8,7 @@
         target="_self"
         :download="type === 'download'"
         :disabled="disabled"
+        :tabindex="disabled ? '-1' : '0'"
         v-bind="$attrs"
         @click="clickHandler($event)"
         @keydown="keyHandler($event)"
