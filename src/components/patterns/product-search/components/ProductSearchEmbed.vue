@@ -105,7 +105,7 @@ export default {
         document.head.appendChild(langScriptEl);
 
         const psrScriptEl = document.createElement('script');
-        psrScriptEl.async = true;
+        psrScriptEl.async = false;
         psrScriptEl.setAttribute('src', 'https://api.visitscotland.com/dev/ui/product-search/static/js/bundle.js');
         // psrScriptEl.setAttribute('src', 'http://localhost:9999/static/js/bundle.js');
         document.head.appendChild(psrScriptEl);
