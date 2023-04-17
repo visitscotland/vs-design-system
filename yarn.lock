@@ -1815,6 +1815,13 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
+"@tgwf/co2@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@tgwf/co2/-/co2-0.13.0.tgz#cb84f6701d29464be63fadbb658b572668da674c"
+  integrity sha512-uVJYwiRNoso+Xjn1/4t0XgoRqi30H3HLuEoWF6Jpy2cw8F0fXsCN5KvoDZ3C2EClayb/kthy8O/Ov9kpzn+/vg==
+  dependencies:
+    debug "^4.3.4"
+
 "@tsconfig/node10@^1.0.7":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@tsconfig/node10/-/node10-1.0.9.tgz#df4907fc07a886922637b15e02d4cebc4c0021b2"
@@ -5953,7 +5960,7 @@ debug@^3.0.1, debug@^3.1.0, debug@^3.1.1, debug@^3.2.5, debug@^3.2.7:
   dependencies:
     ms "^2.1.1"
 
-debug@^4.0.0, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2:
+debug@^4.0.0, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
