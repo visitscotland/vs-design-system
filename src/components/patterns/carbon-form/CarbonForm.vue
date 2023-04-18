@@ -3,7 +3,7 @@
         class="vs-carbon-form"
         data-test="vs-carbon-form"
     >
-        <form @submit.prevent="calculate">
+        <form @submit.prevent="preSubmit">
             <fieldset>
                 <legend
                     class="vs-form__main-heading vs-heading--style-level-2"
@@ -94,7 +94,7 @@
                 variant="primary"
                 type="submit"
                 class="vs-form__submit mt-9"
-                @click.native="calculate"
+                @click.native="preSubmit"
             >
                 {{ getTranslatedContent('submit') }}
             </VsButton>
@@ -108,9 +108,9 @@
                 >
                     Results
                 </VsHeading>
-                <p>Total tons: {{ totalTons }}</p>
+                <p>Total tons: {{ totalTons.toFixed(2) }}</p>
                 <hr>
-                <p>Travel tons: {{ travelTons }}</p>
+                <p>Travel tons: {{ travelTons.toFixed(2) }}</p>
             </div>
         </form>
     </div>
@@ -220,11 +220,6 @@ export default {
             axios.get(this.dataUrl)
                 .then((response) => {
                     this.formData = response.data;
-
-                    if (window.MktoForms2) {
-                        window.MktoForms2
-                            .loadForm(this.marketoInstance, this.munchkinId, this.formId);
-                    }
 
                     response.data.fields.forEach((field) => {
                         // create a data entry for each field
@@ -473,11 +468,66 @@ export default {
             return true;
         },
         /**
-         * TODO
+         * before calculating validate fields
          */
-        calculate(e) {
+        preSubmit(e) {
             e.preventDefault();
 
+            this.submitted = false;
+            this.formIsInvalid = false;
+
+            function isRequired(value) {
+                return value.validation && value.validation.required;
+            }
+
+            this.triggerValidate = true;
+
+            const fieldIsRequired = this.formData.fields.filter(isRequired);
+
+            if (fieldIsRequired.length === 0) {
+                this.formIsInvalid = false;
+            } else {
+                fieldIsRequired.forEach((field) => {
+                    if (this.form[field.name] === '') {
+                        if (
+                            !(field.name in this.conditionalFields)
+                            || this.conditionalFields[field.name]
+                        ) {
+                            this.formIsInvalid = true;
+                        }
+                    }
+                });
+            }
+
+            this.showErrorMessage = this.formIsInvalid.length > 1;
+
+            // check conditional fields - if they're not shown
+            // then clear any value they may have
+            Object.entries(this.conditionalFields).forEach(([key, value]) => {
+                if (!value) {
+                    this.form[key] = '';
+                }
+            });
+
+            if (this.errorFields.length > 0) {
+                this.formIsInvalid = true;
+            }
+
+            if (!this.formIsInvalid) {
+                this.calculate();
+            } else {
+                this.showErrorMessage = true;
+                this.reAlertErrors = true;
+
+                setTimeout(() => {
+                    this.reAlertErrors = false;
+                }, 100);
+            }
+        },
+        /**
+         * TODO
+         */
+        calculate() {
             this.travelTons = this.calculateTravelTons();
             this.foodTons = this.calculateFoodTons();
 
@@ -485,62 +535,8 @@ export default {
             this.submitted = true;
         },
         calculateTravelTons() {
-            let transportTonsTo;
-
-            if (this.form.transportModeTo === 'none') {
-                transportTonsTo = 0;
-            } else {
-                let perMile;
-
-                switch (this.form.transportModeTo) {
-                case ('flight'):
-                    perMile = 0.05;
-                    break;
-                case ('carPetrol'):
-                    perMile = 0.01;
-                    break;
-                case ('carDiesel'):
-                    perMile = 0.011;
-                    break;
-                case ('carElectric'):
-                    perMile = 0.005;
-                    break;
-                case ('train'):
-                    perMile = 0.003;
-                    break;
-                default:
-                    perMile = 0;
-                    break;
-                }
-
-                transportTonsTo = perMile * this.form.transportToDistance;
-            }
-
-            let transportTonsWithin;
-
-            switch (this.form.transportModeWithin) {
-            case ('none'):
-                transportTonsWithin = 0;
-                break;
-            case ('carPetrol'):
-                transportTonsWithin = 0.01;
-                break;
-            case ('carDiesel'):
-                transportTonsWithin = 0.011;
-                break;
-            case ('carElectric'):
-                transportTonsWithin = 0.005;
-                break;
-            case ('train'):
-                transportTonsWithin = 0.003;
-                break;
-            case ('flight'):
-                transportTonsWithin = 0.03;
-                break;
-            default:
-                transportTonsWithin = 0;
-                break;
-            }
+            const transportTonsTo = this.form.transportModeTo * this.form.transportToDistance;
+            const transportTonsWithin = this.form.transportModeWithin * 100;
 
             return transportTonsTo + transportTonsWithin;
         },
@@ -575,6 +571,7 @@ export default {
                         this.conditionalFields[field] = true;
                     } else {
                         this.conditionalFields[field] = false;
+                        this.manageErrorStatus(field, []);
                     }
                 });
             });
