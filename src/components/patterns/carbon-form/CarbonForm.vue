@@ -3,7 +3,9 @@
         class="vs-carbon-form"
         data-test="vs-carbon-form"
     >
-        <VsRow>
+        <VsRow
+            class="vs-carbon-calculator__survey"
+        >
             <VsCol>
                 <form @submit.prevent="preSubmit">
                     <fieldset>
@@ -123,7 +125,7 @@
         </VsRow>
         <VsRow
             v-if="submitted"
-            class="pt-8"
+            class="pt-8 vs-carbon-calculator__results"
         >
             <VsCol cols="12">
                 <VsHeading
@@ -147,7 +149,7 @@
                     />
                     Travel
                 </VsHeading>
-                <p>Tons emitted: {{ travelTons.toFixed(2) }}</p>
+                <p>Tons emitted: {{ transportTons.toFixed(2) }}</p>
                 <VsRow
                     v-if="transportTip"
                 >
@@ -165,6 +167,38 @@
                     </VsCol>
                     <VsCol cols="10">
                         <p>{{ transportTip.text }}</p>
+                    </VsCol>
+                </VsRow>
+            </VsCol>
+            <VsCol
+                cols="6"
+            >
+                <VsHeading
+                    level="5"
+                >
+                    <VsIcon
+                        name="food"
+                    />
+                    Food
+                </VsHeading>
+                <p>Tons emitted: {{ foodTons.toFixed(2) }}</p>
+                <VsRow
+                    v-if="foodTip"
+                >
+                    <VsCol cols="12">
+                        <VsHeading
+                            level="6"
+                        >
+                            Tips
+                        </VsHeading>
+                    </VsCol>
+                    <VsCol cols="2">
+                        <VsIcon
+                            :name="foodTip.icon"
+                        />
+                    </VsCol>
+                    <VsCol cols="10">
+                        <p>{{ foodTip.text }}</p>
                     </VsCol>
                 </VsRow>
             </VsCol>
@@ -258,7 +292,7 @@ export default {
             inputVal: '',
             reAlertErrors: false,
             totalTons: 0,
-            travelTons: 0,
+            transportTons: 0,
             foodTons: 0,
             transportTip: null,
         };
@@ -619,33 +653,47 @@ export default {
          * TODO
          */
         calculate() {
-            this.travelTons = this.calculateTravelTons();
-            this.foodTons = this.calculateFoodTons();
-
-            this.totalTons = this.travelTons + this.foodTons;
-            this.submitted = true;
-        },
-        calculateTravelTons() {
+            this.transportTons = 0;
             this.transportTip = null;
-
             let transportTips = [];
 
-            const perMileTo = this.getFieldValue('transportModeTo', this.form.transportModeTo);
-            const transportTonsTo = perMileTo * this.form.transportToDistance;
+            this.foodTons = 0;
+            this.foodTip = null;
+            let foodTips = [];
 
-            transportTips = transportTips.concat(this.getTips('transportModeTo', this.form.transportModeTo));
+            for (let x = 0; x < this.formData.fields.length; x++) {
+                const currentField = this.formData.fields[x];
 
-            const perMileWithin = this.getFieldValue('transportModeWithin', this.form.transportModeWithin);
-            const transportTonsWithin = perMileWithin * 100;
+                switch (currentField.category) {
+                case 'transport':
+                    this.transportTons += this.getFieldValue(
+                        currentField.name,
+                        this.form[currentField.name]
+                    );
+                    transportTips = transportTips.concat(
+                        this.getTips(currentField.name, this.form[currentField.name])
+                    );
+                    break;
+                case 'food':
+                    this.foodTons += this.getFieldValue(
+                        currentField.name,
+                        this.form[currentField.name]
+                    );
+                    foodTips = transportTips.concat(
+                        this.getTips(currentField.name, this.form[currentField.name])
+                    );
+                    break;
+                default:
+                    break;
+                }
+            }
 
-            transportTips = transportTips.concat(this.getTips('transportModeWithin', this.form.transportModeWithin));
+            this.totalTons = this.transportTons + this.foodTons;
 
             this.transportTip = transportTips[Math.floor(Math.random() * transportTips.length)];
+            this.foodTip = foodTips[Math.floor(Math.random() * foodTips.length)];
 
-            return transportTonsTo + transportTonsWithin;
-        },
-        calculateFoodTons() {
-            return 0;
+            this.submitted = true;
         },
         /**
          * checks whether conditional fields meet the rules to show them
