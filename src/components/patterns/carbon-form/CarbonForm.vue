@@ -5,11 +5,13 @@
     >
         <VsRow
             class="vs-carbon-calculator__survey"
+            v-if="formData && formData.fields"
         >
-            <VsCol>
+            <VsCol
+                v-show="activeQuestion <= formData.fields.length"
+            >
                 <form
                     @submit.prevent="preSubmit"
-                    v-if="formData && formData.fields"
                 >
                     <fieldset>
                         <legend
@@ -118,110 +120,68 @@
                             </div>
                         </BFormGroup>
                     </fieldset>
-
-                    <VsButton
-                        variant="primary"
-                        type="submit"
-                        class="vs-form__submit mt-9 float-left"
-                        v-if="activeQuestion > 1"
-                        @click.native="backwardPage()"
-                    >
-                        Previous
-                    </VsButton>
-
-                    <VsButton
-                        variant="primary"
-                        type="submit"
-                        class="vs-form__submit mt-9 float-right"
-                        v-if="activeQuestion < formData.fields.length"
-                        :disabled="!answerSet"
-                        @click.native="forwardPage()"
-                    >
-                        Next
-                    </VsButton>
                 </form>
             </VsCol>
-        </VsRow>
-        <VsRow
-            class="pt-8 vs-carbon-calculator__results"
-            v-if="formData && formData.fields"
-        >
-            <VsCol cols="12">
-                <VsHeading
-                    level="4"
+            <VsCol
+                v-show="activeQuestion > formData.fields.length"
+            >
+                <VsCarbonFormResults
+                    :total-tons="totalTons"
+                    :transport-tons="transportTons"
+                    :food-tons="foodTons"
+                    :transport-tip="transportTip"
+                    :food-tip="foodTip"
+                    :full-results="true"
+                />
+            </VsCol>
+            <VsCol
+                cols="12"
+            >
+                <VsButton
+                    variant="primary"
+                    type="submit"
+                    class="vs-form__submit mt-9 float-left"
+                    v-if="activeQuestion > 1"
+                    @click.native="backwardPage()"
+                >
+                    Previous
+                </VsButton>
+
+                <VsButton
+                    variant="primary"
+                    type="submit"
+                    class="vs-form__submit mt-9 float-right"
+                    v-if="activeQuestion < formData.fields.length"
+                    :disabled="!answerSet"
+                    @click.native="forwardPage()"
+                >
+                    Next
+                </VsButton>
+
+                <VsButton
+                    variant="primary"
+                    type="submit"
+                    class="vs-form__submit mt-9 float-right"
+                    v-if="activeQuestion === formData.fields.length"
+                    :disabled="!answerSet"
+                    @click.native="forwardPage()"
                 >
                     Results
-                </VsHeading>
-            </VsCol>
-            <VsCol cols="12">
-                <p>Total tons: {{ totalTons.toFixed(3) }}</p>
-                <hr>
-            </VsCol>
-            <VsCol
-                cols="6"
-            >
-                <VsHeading
-                    level="5"
-                >
-                    <VsIcon
-                        name="transport"
-                    />
-                    Travel
-                </VsHeading>
-                <p>Tons emitted: {{ transportTons.toFixed(3) }}</p>
-                <VsRow
-                    v-if="transportTip"
-                >
-                    <VsCol cols="12">
-                        <VsHeading
-                            level="6"
-                        >
-                            Tips
-                        </VsHeading>
-                    </VsCol>
-                    <VsCol cols="2">
-                        <VsIcon
-                            :name="transportTip.icon"
-                        />
-                    </VsCol>
-                    <VsCol cols="10">
-                        <p>{{ transportTip.text }}</p>
-                    </VsCol>
-                </VsRow>
-            </VsCol>
-            <VsCol
-                cols="6"
-            >
-                <VsHeading
-                    level="5"
-                >
-                    <VsIcon
-                        name="food"
-                    />
-                    Food
-                </VsHeading>
-                <p>Tons emitted: {{ foodTons.toFixed(3) }}</p>
-                <VsRow
-                    v-if="foodTip"
-                >
-                    <VsCol cols="12">
-                        <VsHeading
-                            level="6"
-                        >
-                            Tips
-                        </VsHeading>
-                    </VsCol>
-                    <VsCol cols="2">
-                        <VsIcon
-                            :name="foodTip.icon"
-                        />
-                    </VsCol>
-                    <VsCol cols="10">
-                        <p>{{ foodTip.text }}</p>
-                    </VsCol>
-                </VsRow>
+                </VsButton>
             </VsCol>
         </VsRow>
+        <div
+            class="pt-8 vs-carbon-calculator__results"
+            v-if="formData && formData.fields && activeQuestion <= formData.fields.length"
+        >
+            <VsCarbonFormResults
+                :total-tons="totalTons"
+                :transport-tons="transportTons"
+                :food-tons="foodTons"
+                :transport-tip="transportTip"
+                :food-tip="foodTip"
+            />
+        </div>
     </VsContainer>
 </template>
 
@@ -235,8 +195,7 @@ import VsInput from '../../elements/input/Input';
 import VsSelect from '../../elements/select/Select';
 import VsCheckbox from '../../elements/checkbox/Checkbox';
 import VsButton from '../../elements/button/Button';
-import VsHeading from '../../elements/heading/Heading';
-import VsIcon from '../../elements/icon/Icon';
+import VsCarbonFormResults from './CarbonFormResults';
 
 const axios = require('axios');
 
@@ -254,11 +213,10 @@ export default {
         VsCheckbox,
         BFormGroup,
         VsButton,
-        VsHeading,
-        VsIcon,
         VsContainer,
         VsCol,
         VsRow,
+        VsCarbonFormResults,
     },
     props: {
         /**
@@ -764,6 +722,11 @@ export default {
             this.checkNewAnswerSet();
         },
         checkNewAnswerSet() {
+            if (this.activeQuestion > this.formData.fields.length) {
+                this.answerSet = true;
+                return;
+            }
+
             const newQuestionKey = this.formData.fields[this.activeQuestion - 1].name;
             if (!this.form[newQuestionKey]) {
                 this.answerSet = false;
