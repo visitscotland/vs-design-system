@@ -1,129 +1,189 @@
 <template>
-    <div
+    <VsContainer
         class="vs-carbon-form"
         data-test="vs-carbon-form"
     >
-        <form @submit.prevent="preSubmit">
-            <fieldset>
-                <legend
-                    class="vs-form__main-heading vs-heading--style-level-2"
-                    data-test="vs-form__main-heading"
-                >
-                    {{ getTranslatedContent('heading') }}
-                </legend>
-                <BFormGroup
-                    v-for="(field, index) in formData.fields"
-                    :key="field.name"
-                    :label="needsLabel(field) ? getTranslatedLabel(field.name, index) : ''"
-                    :label-for="needsLabel(field) ? field.name : ''"
-                    :class="conditionalElementClass(field.name)"
-                >
-                    <legend
-                        v-if="!isUndefined(field.descriptor)
-                            && field.element === 'checkbox'"
+        <VsRow>
+            <VsCol>
+                <form @submit.prevent="preSubmit">
+                    <fieldset>
+                        <legend
+                            class="vs-form__main-heading vs-heading--style-level-2"
+                            data-test="vs-form__main-heading"
+                        >
+                            {{ getTranslatedContent('heading') }}
+                        </legend>
+                        <BFormGroup
+                            v-for="(field, index) in formData.fields"
+                            :key="field.name"
+                            :label="needsLabel(field) ? getTranslatedLabel(field.name, index) : ''"
+                            :label-for="needsLabel(field) ? field.name : ''"
+                            :class="conditionalElementClass(field.name)"
+                        >
+                            <legend
+                                v-if="!isUndefined(field.descriptor)
+                                    && field.element === 'checkbox'"
+                            >
+                                {{ getTranslatedLegend(field.name, index) }}
+                            </legend>
+                            <div
+                                :class="conditionalElementClass(field.name)"
+                            >
+                                <template v-if="field.element === 'input'">
+                                    <VsInput
+                                        :ref="field.name"
+                                        @status-update="updateFieldData"
+                                        :field-name="field.name"
+                                        :type="field.type"
+                                        :validation-rules="field.validation || {}"
+                                        :validation-messages="
+                                            getTranslatedValidation(field.name, index)
+                                                || {}
+                                        "
+                                        :generic-validation="
+                                            getMessagingData('validation', language)
+                                        "
+                                        :invalid="
+                                            errorFields.indexOf(field.name) > -1 ? true : false
+                                        "
+                                        :trigger-validate="triggerValidate"
+                                        :hint-text="getTranslatedHint(field.name, index)"
+                                        :placeholder="field.placeholder || ''"
+                                        :re-alert-errors="reAlertErrors"
+                                    />
+                                </template>
+
+                                <template v-if="field.element === 'select'">
+                                    <VsSelect
+                                        :options="getTranslatedOptions(field.name, index)"
+                                        :ref="field.name"
+                                        @status-update="updateFieldData"
+                                        :field-name="field.name"
+                                        :validation-rules="field.validation || {}"
+                                        :validation-messages="
+                                            getTranslatedValidation(field.name, index)
+                                                || {}
+                                        "
+                                        :generic-validation="
+                                            getMessagingData('validation', language)
+                                        "
+                                        :invalid="
+                                            errorFields.indexOf(field.name) > -1 ? true : false
+                                        "
+                                        :trigger-validate="triggerValidate"
+                                        :country-list-url="countryListUrl"
+                                        :countries="field.countries"
+                                        :hint-text="getTranslatedHint(field.name, index)"
+                                        :re-alert-errors="reAlertErrors"
+                                    />
+                                </template>
+
+                                <template v-if="field.element === 'checkbox'">
+                                    <VsCheckbox
+                                        :key="field.name"
+                                        :ref="field.name"
+                                        :name="field.name"
+                                        :value="field.value"
+                                        :id="field.name"
+                                        :label="getTranslatedLabel(field.name, index)"
+                                        @status-update="updateFieldData"
+                                        :field-name="field.name"
+                                        :validation-rules="field.validation || {}"
+                                        :validation-messages="
+                                            getTranslatedValidation(field.name, index)
+                                                || {}
+                                        "
+                                        :generic-validation="
+                                            getMessagingData('validation', language)
+                                        "
+                                        :invalid="
+                                            errorFields.indexOf(field.name) > -1 ? true : false
+                                        "
+                                        :trigger-validate="triggerValidate"
+                                        :optional-text="getMessagingData('optional', language)"
+                                        :hint-text="getTranslatedHint(field.name, index)"
+                                        :info-text="getTranslatedInfo(field.name, index)"
+                                        :re-alert-errors="reAlertErrors"
+                                    />
+                                </template>
+                            </div>
+                        </BFormGroup>
+                    </fieldset>
+
+                    <VsButton
+                        variant="primary"
+                        type="submit"
+                        class="vs-form__submit mt-9"
+                        @click.native="preSubmit"
                     >
-                        {{ getTranslatedLegend(field.name, index) }}
-                    </legend>
-                    <div
-                        :class="conditionalElementClass(field.name)"
-                    >
-                        <template v-if="field.element === 'input'">
-                            <VsInput
-                                :ref="field.name"
-                                @status-update="updateFieldData"
-                                :field-name="field.name"
-                                :type="field.type"
-                                :validation-rules="field.validation || {}"
-                                :validation-messages="getTranslatedValidation(field.name, index)
-                                    || {}"
-                                :generic-validation="getMessagingData('validation', language)"
-                                :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
-                                :trigger-validate="triggerValidate"
-                                :hint-text="getTranslatedHint(field.name, index)"
-                                :placeholder="field.placeholder || ''"
-                                :re-alert-errors="reAlertErrors"
-                            />
-                        </template>
-
-                        <template v-if="field.element === 'select'">
-                            <VsSelect
-                                :options="getTranslatedOptions(field.name, index)"
-                                :ref="field.name"
-                                @status-update="updateFieldData"
-                                :field-name="field.name"
-                                :validation-rules="field.validation || {}"
-                                :validation-messages="getTranslatedValidation(field.name, index)
-                                    || {}"
-                                :generic-validation="getMessagingData('validation', language)"
-                                :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
-                                :trigger-validate="triggerValidate"
-                                :country-list-url="countryListUrl"
-                                :countries="field.countries"
-                                :hint-text="getTranslatedHint(field.name, index)"
-                                :re-alert-errors="reAlertErrors"
-                            />
-                        </template>
-
-                        <template v-if="field.element === 'checkbox'">
-                            <VsCheckbox
-                                :key="field.name"
-                                :ref="field.name"
-                                :name="field.name"
-                                :value="field.value"
-                                :id="field.name"
-                                :label="getTranslatedLabel(field.name, index)"
-                                @status-update="updateFieldData"
-                                :field-name="field.name"
-                                :validation-rules="field.validation || {}"
-                                :validation-messages="getTranslatedValidation(field.name, index)
-                                    || {}"
-                                :generic-validation="getMessagingData('validation', language)"
-                                :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
-                                :trigger-validate="triggerValidate"
-                                :optional-text="getMessagingData('optional', language)"
-                                :hint-text="getTranslatedHint(field.name, index)"
-                                :info-text="getTranslatedInfo(field.name, index)"
-                                :re-alert-errors="reAlertErrors"
-                            />
-                        </template>
-                    </div>
-                </BFormGroup>
-            </fieldset>
-
-            <VsButton
-                variant="primary"
-                type="submit"
-                class="vs-form__submit mt-9"
-                @click.native="preSubmit"
-            >
-                {{ getTranslatedContent('submit') }}
-            </VsButton>
-
-            <div
-                v-if="submitted"
-                class="pt-8"
-            >
+                        {{ getTranslatedContent('submit') }}
+                    </VsButton>
+                </form>
+            </VsCol>
+        </VsRow>
+        <VsRow
+            v-if="submitted"
+            class="pt-8"
+        >
+            <VsCol cols="12">
                 <VsHeading
                     level="4"
                 >
                     Results
                 </VsHeading>
+            </VsCol>
+            <VsCol cols="12">
                 <p>Total tons: {{ totalTons.toFixed(2) }}</p>
                 <hr>
-                <p>Travel tons: {{ travelTons.toFixed(2) }}</p>
-            </div>
-        </form>
-    </div>
+            </VsCol>
+            <VsCol
+                cols="6"
+            >
+                <VsHeading
+                    level="5"
+                >
+                    <VsIcon
+                        name="transport"
+                    />
+                    Travel
+                </VsHeading>
+                <p>Tons emitted: {{ travelTons.toFixed(2) }}</p>
+                <VsRow
+                    v-if="transportTip"
+                >
+                    <VsCol cols="12">
+                        <VsHeading
+                            level="6"
+                        >
+                            Tips
+                        </VsHeading>
+                    </VsCol>
+                    <VsCol cols="2">
+                        <VsIcon
+                            :name="transportTip.icon"
+                        />
+                    </VsCol>
+                    <VsCol cols="10">
+                        <p>{{ transportTip.text }}</p>
+                    </VsCol>
+                </VsRow>
+            </VsCol>
+        </VsRow>
+    </VsContainer>
 </template>
 
 <script>
 import Vue from 'vue';
 import { BFormGroup } from 'bootstrap-vue';
+import {
+    VsContainer, VsCol, VsRow,
+} from '@components/elements/grid';
 import VsInput from '../../elements/input/Input';
 import VsSelect from '../../elements/select/Select';
 import VsCheckbox from '../../elements/checkbox/Checkbox';
 import VsButton from '../../elements/button/Button';
 import VsHeading from '../../elements/heading/Heading';
+import VsIcon from '../../elements/icon/Icon';
 
 const axios = require('axios');
 
@@ -142,6 +202,10 @@ export default {
         BFormGroup,
         VsButton,
         VsHeading,
+        VsIcon,
+        VsContainer,
+        VsCol,
+        VsRow,
     },
     props: {
         /**
@@ -196,6 +260,7 @@ export default {
             totalTons: 0,
             travelTons: 0,
             foodTons: 0,
+            transportTip: null,
         };
     },
     computed: {
@@ -467,6 +532,32 @@ export default {
 
             return true;
         },
+        getFieldValue(fieldName, key) {
+            let field;
+
+            for (let x = 0; x < this.formData.fields.length; x++) {
+                if (this.formData.fields[x].name === fieldName) {
+                    field = this.formData.fields[x];
+                }
+            }
+
+            return field.values[key];
+        },
+        getTips(fieldName, key) {
+            let field;
+
+            for (let x = 0; x < this.formData.fields.length; x++) {
+                if (this.formData.fields[x].name === fieldName) {
+                    field = this.formData.fields[x];
+                }
+            }
+
+            if (field.tips && field.tips[key]) {
+                return (field.tips[key]);
+            }
+
+            return [];
+        },
         /**
          * before calculating validate fields
          */
@@ -535,8 +626,21 @@ export default {
             this.submitted = true;
         },
         calculateTravelTons() {
-            const transportTonsTo = this.form.transportModeTo * this.form.transportToDistance;
-            const transportTonsWithin = this.form.transportModeWithin * 100;
+            this.transportTip = null;
+
+            let transportTips = [];
+
+            const perMileTo = this.getFieldValue('transportModeTo', this.form.transportModeTo);
+            const transportTonsTo = perMileTo * this.form.transportToDistance;
+
+            transportTips = transportTips.concat(this.getTips('transportModeTo', this.form.transportModeTo));
+
+            const perMileWithin = this.getFieldValue('transportModeWithin', this.form.transportModeWithin);
+            const transportTonsWithin = perMileWithin * 100;
+
+            transportTips = transportTips.concat(this.getTips('transportModeWithin', this.form.transportModeWithin));
+
+            this.transportTip = transportTips[Math.floor(Math.random() * transportTips.length)];
 
             return transportTonsTo + transportTonsWithin;
         },
