@@ -7,7 +7,10 @@
             class="vs-carbon-calculator__survey"
         >
             <VsCol>
-                <form @submit.prevent="preSubmit">
+                <form
+                    @submit.prevent="preSubmit"
+                    v-if="formData && formData.fields"
+                >
                     <fieldset>
                         <legend
                             class="vs-form__main-heading vs-heading--style-level-2"
@@ -15,8 +18,12 @@
                         >
                             {{ getTranslatedContent('heading') }}
                         </legend>
+                        <p>
+                            Question {{ activeQuestion }} / {{ formData.fields.length }}
+                        </p>
                         <BFormGroup
                             v-for="(field, index) in formData.fields"
+                            v-show="(index + 1) === activeQuestion"
                             :key="field.name"
                             :label="needsLabel(field) ? getTranslatedLabel(field.name, index) : ''"
                             :label-for="needsLabel(field) ? field.name : ''"
@@ -115,17 +122,29 @@
                     <VsButton
                         variant="primary"
                         type="submit"
-                        class="vs-form__submit mt-9"
-                        @click.native="preSubmit"
+                        class="vs-form__submit mt-9 float-left"
+                        v-if="activeQuestion > 1"
+                        @click.native="backwardPage()"
                     >
-                        {{ getTranslatedContent('submit') }}
+                        Previous
+                    </VsButton>
+
+                    <VsButton
+                        variant="primary"
+                        type="submit"
+                        class="vs-form__submit mt-9 float-right"
+                        v-if="activeQuestion < formData.fields.length"
+                        :disabled="!answerSet"
+                        @click.native="forwardPage()"
+                    >
+                        Next
                     </VsButton>
                 </form>
             </VsCol>
         </VsRow>
         <VsRow
-            v-if="submitted"
             class="pt-8 vs-carbon-calculator__results"
+            v-if="formData && formData.fields"
         >
             <VsCol cols="12">
                 <VsHeading
@@ -135,7 +154,7 @@
                 </VsHeading>
             </VsCol>
             <VsCol cols="12">
-                <p>Total tons: {{ totalTons.toFixed(2) }}</p>
+                <p>Total tons: {{ totalTons.toFixed(3) }}</p>
                 <hr>
             </VsCol>
             <VsCol
@@ -149,7 +168,7 @@
                     />
                     Travel
                 </VsHeading>
-                <p>Tons emitted: {{ transportTons.toFixed(2) }}</p>
+                <p>Tons emitted: {{ transportTons.toFixed(3) }}</p>
                 <VsRow
                     v-if="transportTip"
                 >
@@ -181,7 +200,7 @@
                     />
                     Food
                 </VsHeading>
-                <p>Tons emitted: {{ foodTons.toFixed(2) }}</p>
+                <p>Tons emitted: {{ foodTons.toFixed(3) }}</p>
                 <VsRow
                     v-if="foodTip"
                 >
@@ -295,6 +314,9 @@ export default {
             transportTons: 0,
             foodTons: 0,
             transportTip: null,
+            foodTip: null,
+            activeQuestion: 1,
+            answerSet: false,
         };
     },
     computed: {
@@ -530,8 +552,14 @@ export default {
                 this.formIsInvalid = data.errors;
             }
 
+            if (data.value) {
+                this.answerSet = true;
+            } else {
+                this.answerSet = false;
+            }
+
             this.manageErrorStatus(data.field, data.errors);
-            this.checkConditionalFields();
+            this.calculate();
         },
         /**
          * update error status of fields for validation feedback
@@ -567,6 +595,10 @@ export default {
             return true;
         },
         getFieldValue(fieldName, key) {
+            if (!key) {
+                return 0;
+            }
+
             let field;
 
             for (let x = 0; x < this.formData.fields.length; x++) {
@@ -614,12 +646,7 @@ export default {
             } else {
                 fieldIsRequired.forEach((field) => {
                     if (this.form[field.name] === '') {
-                        if (
-                            !(field.name in this.conditionalFields)
-                            || this.conditionalFields[field.name]
-                        ) {
-                            this.formIsInvalid = true;
-                        }
+                        this.formIsInvalid = true;
                     }
                 });
             }
@@ -679,7 +706,7 @@ export default {
                         currentField.name,
                         this.form[currentField.name]
                     );
-                    foodTips = transportTips.concat(
+                    foodTips = foodTips.concat(
                         this.getTips(currentField.name, this.form[currentField.name])
                     );
                     break;
@@ -727,6 +754,22 @@ export default {
                     }
                 });
             });
+        },
+        forwardPage() {
+            this.activeQuestion += 1;
+            this.checkNewAnswerSet();
+        },
+        backwardPage() {
+            this.activeQuestion -= 1;
+            this.checkNewAnswerSet();
+        },
+        checkNewAnswerSet() {
+            const newQuestionKey = this.formData.fields[this.activeQuestion - 1].name;
+            if (!this.form[newQuestionKey]) {
+                this.answerSet = false;
+            } else {
+                this.answerSet = true;
+            }
         },
         /**
          * return the correct class to show or hide
