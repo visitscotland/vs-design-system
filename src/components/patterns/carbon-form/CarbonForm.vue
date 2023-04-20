@@ -33,38 +33,39 @@
                             :label-for="needsLabel(field) ? field.name : ''"
                             :class="conditionalElementClass(field.name)"
                         >
-                            <legend
-                                v-if="!isUndefined(field.descriptor)
-                                    && field.element === 'checkbox'"
-                            >
-                                {{ getTranslatedLegend(field.name, index) }}
-                            </legend>
                             <div
                                 :class="conditionalElementClass(field.name)"
                             >
-                                <template v-if="field.element === 'select'">
-                                    <VsSelect
-                                        :options="getTranslatedOptions(field.name, index)"
-                                        :ref="field.name"
-                                        @status-update="updateFieldData"
-                                        :field-name="field.name"
-                                        :validation-rules="field.validation || {}"
-                                        :validation-messages="
-                                            getTranslatedValidation(field.name, index)
-                                                || {}
-                                        "
-                                        :generic-validation="
-                                            getMessagingData('validation', language)
-                                        "
-                                        :invalid="
-                                            errorFields.indexOf(field.name) > -1 ? true : false
-                                        "
-                                        :trigger-validate="triggerValidate"
-                                        :country-list-url="countryListUrl"
-                                        :countries="field.countries"
-                                        :hint-text="getTranslatedHint(field.name, index)"
-                                        :re-alert-errors="reAlertErrors"
-                                    />
+                                <template v-if="field.element === 'radio'">
+                                    <label
+                                        :for="field.name"
+                                    >
+                                        {{ getTranslatedLabel(field, index) }}
+                                        <BFormRadioGroup
+                                            :id="field.name"
+                                        >
+                                            <BFormRadio
+                                                v-for="
+                                                    (option, optionIndex) in
+                                                        getTranslatedOptions(field.name, index)
+                                                "
+                                                :key="optionIndex"
+                                                :value="option.value"
+                                                :hint-text="getTranslatedHint(field.name, index)"
+                                                :name="field.name + option.value"
+                                                :id="field.name + option.value"
+                                                @change="updateFieldData({
+                                                    field: field.name,
+                                                    value: option.value,
+                                                })"
+                                            >
+                                                <VsIcon
+                                                    :name="option.icon"
+                                                />
+                                                {{ option.text }}
+                                            </BFormRadio>
+                                        </BFormRadioGroup>
+                                    </label>
                                 </template>
                             </div>
                         </BFormGroup>
@@ -136,11 +137,14 @@
 
 <script>
 import Vue from 'vue';
-import { BFormGroup } from 'bootstrap-vue';
+import {
+    BFormGroup,
+    BFormRadioGroup,
+    BFormRadio,
+} from 'bootstrap-vue';
 import {
     VsContainer, VsCol, VsRow,
 } from '@components/elements/grid';
-import VsSelect from '../../elements/select/Select';
 import VsButton from '../../elements/button/Button';
 import VsCarbonFormResults from './CarbonFormResults';
 
@@ -155,8 +159,9 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsSelect,
         BFormGroup,
+        BFormRadioGroup,
+        BFormRadio,
         VsButton,
         VsContainer,
         VsCol,
@@ -455,12 +460,6 @@ export default {
          */
         updateFieldData(data) {
             this.form[data.field] = data.value || '';
-
-            if (Array.isArray(data.errors)) {
-                this.formIsInvalid = data.errors.length > 0;
-            } else {
-                this.formIsInvalid = data.errors;
-            }
 
             if (data.value) {
                 this.answerSet = true;
