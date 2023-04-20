@@ -38,6 +38,7 @@
                             >
                                 <template v-if="field.element === 'radio'">
                                     <label
+                                        class="vs-carbon-calculator__question"
                                         :for="field.name"
                                     >
                                         {{ getTranslatedLabel(field, index) }}
@@ -58,10 +59,14 @@
                                                     field: field.name,
                                                     value: option.value,
                                                 })"
+                                                class="vs-carbon-calculator__radio"
                                             >
-                                                <VsIcon
-                                                    :name="option.icon"
-                                                />
+                                                <div class="vs-carbon-calculator__radio-icon">
+                                                    <VsIcon
+                                                        :name="option.icon"
+                                                        size="xl"
+                                                    />
+                                                </div>
                                                 {{ option.text }}
                                             </BFormRadio>
                                         </BFormRadioGroup>
@@ -729,6 +734,66 @@ export default {
 
         &__no-js {
             display: none;
+        }
+    }
+
+    .vs-carbon-calculator__question {
+        width: 100%;
+    }
+
+    .vs-carbon-calculator__radio {
+        display: inline-block;
+        width: 50%;
+        text-align: center;
+        padding: $spacer-4 $spacer-2;
+        cursor: pointer;
+
+        * {
+            cursor: pointer;
+        }
+
+        .vs-icon {
+            width: 100%;
+        }
+
+        label {
+            width: 100%;
+        }
+
+        .vs-carbon-calculator__radio-icon {
+            aspect-ratio: 1/1;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $color-gray-tint-7;
+            margin-bottom: $spacer-3;
+        }
+
+        input {
+            display: none;
+        }
+
+        input:checked ~ label {
+            .vs-carbon-calculator__radio-icon {
+                background-color: $color-pink;
+
+                .vs-icon {
+                    color: $color-white;
+                }
+            }
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        .vs-carbon-calculator__radio {
+            width: calc(100% / 3);
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        .vs-carbon-calculator__radio {
+            width: 25%;
         }
     }
 

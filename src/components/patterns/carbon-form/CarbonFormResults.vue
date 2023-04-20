@@ -40,6 +40,7 @@
         <hr>
         <VsCol
             cols="6"
+            v-if="fullResults"
         >
             <VsHeading
                 level="5"
@@ -72,6 +73,7 @@
         </VsCol>
         <VsCol
             cols="6"
+            v-if="fullResults"
         >
             <VsHeading
                 level="5"
