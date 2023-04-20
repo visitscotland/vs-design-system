@@ -1,0 +1,114 @@
+{
+    "content": {
+        "heading": "Carbon Calculator",
+        "successHeading": "Success",
+        "successContent": "Success Content",
+        "noJs": "NOJS",
+        "submit": "Calculate"
+    },
+    "fields": [
+        {
+            "name": "transportModeTo",
+            "element": "radio",
+            "options": [
+                { "text": "I'm already here!", "value": "noTravel", "icon": "city" },
+                { "text": "Plane", "value": "plane", "icon": "plane" },
+                { "text": "Car (Petrol)", "value": "petrolCar", "icon": "car" },
+                { "text": "Car (Diesel)", "value": "dieselCar", "icon": "car" },
+                { "text": "Car (Electric)", "value": "electricCar", "icon": "car" },
+                { "text": "Train", "value": "train", "icon": "train" }
+            ],
+            "label": "How are you travelling to Scotland?",
+            "validation": {
+                "required": true
+            },
+            "validationMessages": {
+                "required": "Please choose an item"
+            },
+            "tips": {
+                "plane": {
+                    "text": "If you're travelling from within the UK, travelling by train instead of flying could save up to x tons of emissions per 100 miles!",
+                    "icon": "train"
+                }
+            },
+            "values": {
+                "noTravel": 0,
+                "plane": 1.1,
+                "petrolCar": 0.01,
+                "dieselCar": 0.011,
+                "electricCar": 0.005,
+                "train": 0.003
+            },
+            "category": "transport",
+            "stage": 1
+        },
+        {
+            "name": "transportModeWithin",
+            "element": "radio",
+            "options": [
+                { "text": "No internal travel", "value": "noTravel", "icon": "city" },
+                { "text": "Internal flight", "value": "plane", "icon": "plane" },
+                { "text": "Car (Petrol)", "value": "petrolCar", "icon": "car" },
+                { "text": "Car (Diesel)", "value": "dieselCar", "icon": "car" },
+                { "text": "Car (Electric)", "value": "electricCar", "icon": "car" },
+                { "text": "Train", "value": "train", "icon": "train" }
+            ],
+            "label": "Are you planning to travel within Scotland?",
+            "validation": {
+                "required": true
+            },
+            "validationMessages": {
+                "required": "Please choose an item"
+            },
+            "values": {
+                "noTravel": 0,
+                "plane": 1.1,
+                "petrolCar": 0.01,
+                "dieselCar": 0.011,
+                "electricCar": 0.005,
+                "train": 0.003
+            },
+            "category": "transport",
+            "stage": 1
+        },
+        {
+            "name": "redMeatConsumption",
+            "element": "radio",
+            "options": [
+                { "text": "Never", "value": "never", "icon": "leaf" },
+                { "text": "Once or Twice", "value": "onceOrTwice", "icon": "food" },
+                { "text": "Often", "value": "often", "icon": "food" },
+                { "text": "Every Meal", "value": "everyMeal", "icon": "food" }
+            ],
+            "label": "How often do you plan to eat red meat on your trip?",
+            "validation": {
+                "required": true
+            },
+            "validationMessages": {
+                "required": "Please choose an item"
+            },
+            "values": {
+                "never": 0,
+                "onceOrTwice": 0.001,
+                "often": 0.005,
+                "everyMeal": 0.01
+            },
+            "tips": {
+                "everyMeal": {
+                    "text": "Cutting red meat from one or two meals a week could save x emissions, and give you a chance to try some of Scotland's other great food like the Fish!",
+                    "icon": "food"
+                }
+            },
+            "category": "food",
+            "stage": 2
+        }
+    ],
+    "de": {
+        "selectexample": {
+            "label": "How are you travelling to Scotland? (de)",
+            "validationMessages": {
+                "required": "Please choose an item (de)"
+            }
+        }
+    }
+}
