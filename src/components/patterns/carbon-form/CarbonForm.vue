@@ -20,8 +20,10 @@
                         >
                             {{ getTranslatedContent('heading') }}
                         </legend>
-                        <p>
-                            Question {{ activeQuestion }} / {{ formData.fields.length }}
+                        <p
+                            v-if="currentQuestion"
+                        >
+                            Step {{ currentQuestion ? currentQuestion.stage : 4 }} / 4
                         </p>
                         <BFormGroup
                             v-for="(field, index) in formData.fields"
@@ -40,30 +42,6 @@
                             <div
                                 :class="conditionalElementClass(field.name)"
                             >
-                                <template v-if="field.element === 'input'">
-                                    <VsInput
-                                        :ref="field.name"
-                                        @status-update="updateFieldData"
-                                        :field-name="field.name"
-                                        :type="field.type"
-                                        :validation-rules="field.validation || {}"
-                                        :validation-messages="
-                                            getTranslatedValidation(field.name, index)
-                                                || {}
-                                        "
-                                        :generic-validation="
-                                            getMessagingData('validation', language)
-                                        "
-                                        :invalid="
-                                            errorFields.indexOf(field.name) > -1 ? true : false
-                                        "
-                                        :trigger-validate="triggerValidate"
-                                        :hint-text="getTranslatedHint(field.name, index)"
-                                        :placeholder="field.placeholder || ''"
-                                        :re-alert-errors="reAlertErrors"
-                                    />
-                                </template>
-
                                 <template v-if="field.element === 'select'">
                                     <VsSelect
                                         :options="getTranslatedOptions(field.name, index)"
@@ -85,35 +63,6 @@
                                         :country-list-url="countryListUrl"
                                         :countries="field.countries"
                                         :hint-text="getTranslatedHint(field.name, index)"
-                                        :re-alert-errors="reAlertErrors"
-                                    />
-                                </template>
-
-                                <template v-if="field.element === 'checkbox'">
-                                    <VsCheckbox
-                                        :key="field.name"
-                                        :ref="field.name"
-                                        :name="field.name"
-                                        :value="field.value"
-                                        :id="field.name"
-                                        :label="getTranslatedLabel(field.name, index)"
-                                        @status-update="updateFieldData"
-                                        :field-name="field.name"
-                                        :validation-rules="field.validation || {}"
-                                        :validation-messages="
-                                            getTranslatedValidation(field.name, index)
-                                                || {}
-                                        "
-                                        :generic-validation="
-                                            getMessagingData('validation', language)
-                                        "
-                                        :invalid="
-                                            errorFields.indexOf(field.name) > -1 ? true : false
-                                        "
-                                        :trigger-validate="triggerValidate"
-                                        :optional-text="getMessagingData('optional', language)"
-                                        :hint-text="getTranslatedHint(field.name, index)"
-                                        :info-text="getTranslatedInfo(field.name, index)"
                                         :re-alert-errors="reAlertErrors"
                                     />
                                 </template>
@@ -191,9 +140,7 @@ import { BFormGroup } from 'bootstrap-vue';
 import {
     VsContainer, VsCol, VsRow,
 } from '@components/elements/grid';
-import VsInput from '../../elements/input/Input';
 import VsSelect from '../../elements/select/Select';
-import VsCheckbox from '../../elements/checkbox/Checkbox';
 import VsButton from '../../elements/button/Button';
 import VsCarbonFormResults from './CarbonFormResults';
 
@@ -208,9 +155,7 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsInput,
         VsSelect,
-        VsCheckbox,
         BFormGroup,
         VsButton,
         VsContainer,
@@ -285,6 +230,13 @@ export default {
             }
 
             return false;
+        },
+        currentQuestion() {
+            if (!this.formData) {
+                return null;
+            }
+
+            return this.formData.fields[this.activeQuestion - 1];
         },
     },
     created() {

@@ -2,7 +2,7 @@
     <VsRow>
         <VsCol cols="12">
             <VsHeading
-                level="4"
+                level="2"
             >
                 Results
             </VsHeading>
@@ -11,20 +11,32 @@
             cols="12"
             lg="6"
         >
-            <p>Total tons: {{ totalTons.toFixed(3) }}</p>
+            <p
+                v-if="!fullResults"
+            >
+                Total tons: {{ totalTons.toFixed(3) }}
+            </p>
+            <VsHeading
+                level="3"
+                override-style-level="1"
+                v-if="fullResults"
+            >
+                Total tons: {{ totalTons.toFixed(3) }}
+            </VsHeading>
         </VsCol>
         <VsCol
             cols="12"
             lg="6"
-            v-if="fullResults"
         >
-            Chart
+            <div
+                class="vs-carbon-calculator__chart"
+            >
+                <PieChart
+                    :chart-data="chartData"
+                    v-if="fullResults"
+                />
+            </div>
         </VsCol>
-        <VsCol
-            cols="12"
-            lg="6"
-            v-if="!fullResults"
-        />
         <hr>
         <VsCol
             cols="6"
@@ -94,6 +106,8 @@
 </template>
 
 <script>
+import { PieChart } from 'vue-chart-3';
+
 import { VsCol, VsRow } from '@components/elements/grid';
 import VsIcon from '@components/elements/icon';
 
@@ -108,6 +122,7 @@ export default {
         VsCol,
         VsRow,
         VsIcon,
+        PieChart,
     },
     props: {
         totalTons: {
@@ -133,6 +148,33 @@ export default {
         fullResults: {
             type: Boolean,
             default: false,
+        },
+    },
+    computed: {
+        chartData() {
+            return {
+                labels: ['Transport', 'Food'],
+                datasets: [
+                    {
+                        data: [
+                            this.transportTons,
+                            this.foodTons,
+                        ],
+                        backgroundColor: [
+                            '#700E57',
+                            '#FCCA1B',
+                        ],
+                        legend: {
+                            position: 'right',
+                        },
+                    },
+                ],
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                },
+            };
         },
     },
 };
