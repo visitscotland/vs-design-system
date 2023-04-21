@@ -11,15 +11,9 @@
             cols="12"
             lg="6"
         >
-            <p
-                v-if="!fullResults"
-            >
-                Total tons: {{ totalTons.toFixed(3) }}
-            </p>
             <VsHeading
                 level="3"
                 override-style-level="1"
-                v-if="fullResults"
             >
                 Total tons: {{ totalTons.toFixed(3) }}
             </VsHeading>
@@ -33,14 +27,12 @@
             >
                 <PieChart
                     :chart-data="chartData"
-                    v-if="fullResults"
                 />
             </div>
         </VsCol>
         <hr>
         <VsCol
             cols="6"
-            v-if="fullResults"
         >
             <VsHeading
                 level="5"
@@ -73,7 +65,6 @@
         </VsCol>
         <VsCol
             cols="6"
-            v-if="fullResults"
         >
             <VsHeading
                 level="5"
@@ -146,10 +137,6 @@ export default {
         transportTip: {
             type: Object,
             default: null,
-        },
-        fullResults: {
-            type: Boolean,
-            default: false,
         },
     },
     computed: {

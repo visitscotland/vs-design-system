@@ -101,15 +101,19 @@
                 />
             </VsCol>
             <VsCol
-                v-show="activeQuestion > formData.fields.length"
+                cols="12"
             >
+                <VsCarbonFormRunningTotal
+                    v-if="activeQuestion <= formData.fields.length"
+                    :total-tons="totalTons"
+                />
                 <VsCarbonFormResults
+                    v-if="activeQuestion > formData.fields.length"
                     :total-tons="totalTons"
                     :transport-tons="transportTons"
                     :food-tons="foodTons"
                     :transport-tip="transportTip"
                     :food-tip="foodTip"
-                    :full-results="true"
                 />
             </VsCol>
             <VsCol
@@ -148,18 +152,6 @@
                 </VsButton>
             </VsCol>
         </VsRow>
-        <div
-            class="pt-8 vs-carbon-calculator__results"
-            v-if="formData && formData.fields && activeQuestion <= formData.fields.length"
-        >
-            <VsCarbonFormResults
-                :total-tons="totalTons"
-                :transport-tons="transportTons"
-                :food-tons="foodTons"
-                :transport-tip="transportTip"
-                :food-tip="foodTip"
-            />
-        </div>
     </VsContainer>
 </template>
 
@@ -178,6 +170,7 @@ import {
 import VsButton from '../../elements/button/Button';
 import VsCarbonFormResults from './CarbonFormResults';
 import VsCarbonFormTip from './CarbonFormTip';
+import VsCarbonFormRunningTotal from './CarbonFormRunningTotal';
 
 const axios = require('axios');
 
@@ -201,6 +194,7 @@ export default {
         VsRow,
         VsCarbonFormResults,
         VsCarbonFormTip,
+        VsCarbonFormRunningTotal,
     },
     props: {
         /**
@@ -282,24 +276,26 @@ export default {
             return this.formData.fields[this.activeQuestion - 1];
         },
         currentTip() {
-            let tip;
+            let tip = null;
 
-            switch (this.formData.fields[this.activeQuestion - 1].category) {
-            case ('transport'):
-                tip = this.transportTip;
-                break;
-            case ('accomodation'):
-                tip = this.accomodationTip;
-                break;
-            case ('experiences'):
-                tip = this.experiencesTip;
-                break;
-            case ('food'):
-                tip = this.foodTip;
-                break;
-            default:
-                tip = null;
-                break;
+            if (this.formData.fields[this.activeQuestion - 1]) {
+                switch (this.formData.fields[this.activeQuestion - 1].category) {
+                case ('transport'):
+                    tip = this.transportTip;
+                    break;
+                case ('accomodation'):
+                    tip = this.accomodationTip;
+                    break;
+                case ('experiences'):
+                    tip = this.experiencesTip;
+                    break;
+                case ('food'):
+                    tip = this.foodTip;
+                    break;
+                default:
+                    tip = null;
+                    break;
+                }
             }
 
             return tip;
