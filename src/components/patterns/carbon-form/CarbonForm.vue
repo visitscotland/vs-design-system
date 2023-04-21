@@ -114,16 +114,18 @@
             >
                 <VsCarbonFormRunningTotal
                     v-if="activeQuestion <= formData.fields.length"
-                    :total-tons="totalTons"
+                    :total-tonnes="totalTonnes"
                 />
                 <VsCarbonFormResults
                     v-if="activeQuestion > formData.fields.length"
                     :title="currentCategoryName"
-                    :total-tons="totalTons"
-                    :transport-tons="transportTons"
-                    :food-tons="foodTons"
+                    :total-tonnes="totalTonnes"
+                    :transport-tonnes="transportTonnes"
+                    :food-tonnes="foodTonnes"
                     :transport-tip="transportTip"
                     :food-tip="foodTip"
+                    :comparison="getTranslatedContent('comparison')"
+                    :comparison-tonnes="formData.content['comparisonTonnes']"
                 />
             </VsCol>
             <VsCol
@@ -256,11 +258,11 @@ export default {
             },
             inputVal: '',
             reAlertErrors: false,
-            totalTons: 0,
-            transportTons: 0,
-            foodTons: 0,
-            accomodationTons: 0,
-            experiencesTons: 0,
+            totalTonnes: 0,
+            transportTonnes: 0,
+            foodTonnes: 0,
+            accomodationTonnes: 0,
+            experiencesTonnes: 0,
             transportTip: null,
             foodTip: null,
             accomodationTip: null,
@@ -704,11 +706,11 @@ export default {
          * TODO
          */
         calculate() {
-            this.transportTons = 0;
+            this.transportTonnes = 0;
             this.transportTip = null;
             let transportTips = [];
 
-            this.foodTons = 0;
+            this.foodTonnes = 0;
             this.foodTip = null;
             let foodTips = [];
 
@@ -717,7 +719,7 @@ export default {
 
                 switch (currentField.category) {
                 case 'transport':
-                    this.transportTons += this.getFieldValue(
+                    this.transportTonnes += this.getFieldValue(
                         currentField.name,
                         this.form[currentField.name]
                     );
@@ -726,7 +728,7 @@ export default {
                     );
                     break;
                 case 'food':
-                    this.foodTons += this.getFieldValue(
+                    this.foodTonnes += this.getFieldValue(
                         currentField.name,
                         this.form[currentField.name]
                     );
@@ -739,7 +741,7 @@ export default {
                 }
             }
 
-            this.totalTons = this.transportTons + this.foodTons;
+            this.totalTonnes = this.transportTonnes + this.foodTonnes;
 
             this.transportTip = transportTips[Math.floor(Math.random() * transportTips.length)];
             this.foodTip = foodTips[Math.floor(Math.random() * foodTips.length)];

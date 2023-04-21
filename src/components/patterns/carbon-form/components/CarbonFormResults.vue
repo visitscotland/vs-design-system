@@ -18,7 +18,7 @@
                 >
                     <p>
                         <span class="vs-carbon-form-results__total">
-                            {{ totalTons.toFixed(3) }}
+                            {{ totalTonnes.toFixed(3) }}
                         </span>
                         Tonnes CO2
                     </p>
@@ -45,74 +45,94 @@
         </VsCol>
         <VsCol
             cols="12"
+            md="6"
         >
-            <div
-                class="vs-carbon-calculator__chart"
-            >
-                <PieChart
-                    :chart-data="chartData"
-                />
-            </div>
-        </VsCol>
-        <VsCol>
             <VsHeading
-                level="5"
+                level="3"
             >
+                Your CO2 Breakdown
+            </VsHeading>
+            <div class="vs-carbon-form-results__breakdown">
                 <VsIcon
                     name="transport"
                 />
-                Travel
-            </VsHeading>
-            <p>Tons emitted: {{ transportTons.toFixed(3) }}</p>
-            <VsRow
-                v-if="transportTip"
-            >
-                <VsCol cols="12">
-                    <VsHeading
-                        level="6"
-                    >
-                        Tips
-                    </VsHeading>
-                </VsCol>
-                <VsCol cols="2">
-                    <VsIcon
-                        :name="transportTip.icon"
-                    />
-                </VsCol>
-                <VsCol cols="10">
-                    <p>{{ transportTip.text }}</p>
-                </VsCol>
-            </VsRow>
-        </VsCol>
-        <VsCol>
-            <VsHeading
-                level="5"
-            >
+                <span
+                    class="vs-carbon-form-results__breakdown-cat"
+                >
+                    Transport
+                </span>
+                <span
+                    class="vs-carbon-form-results__breakdown-percent"
+                >
+                    {{ transportPercent.toFixed(1) }}%
+                </span>
+            </div>
+            <div class="vs-carbon-form-results__breakdown">
+                <VsIcon
+                    name="home"
+                />
+                <span
+                    class="vs-carbon-form-results__breakdown-cat"
+                >
+                    Accomodation
+                </span>
+                <span
+                    class="vs-carbon-form-results__breakdown-percent"
+                >
+                    {{ accomodationPercent.toFixed(1) }}%
+                </span>
+            </div>
+            <div class="vs-carbon-form-results__breakdown">
+                <VsIcon
+                    name="leaf"
+                />
+                <span
+                    class="vs-carbon-form-results__breakdown-cat"
+                >
+                    Experiences
+                </span>
+                <span
+                    class="vs-carbon-form-results__breakdown-percent"
+                >
+                    {{ experiencesPercent.toFixed(1) }}%
+                </span>
+            </div>
+            <div class="vs-carbon-form-results__breakdown">
                 <VsIcon
                     name="food"
                 />
-                Food
-            </VsHeading>
-            <p>Tons emitted: {{ foodTons.toFixed(3) }}</p>
-            <VsRow
-                v-if="foodTip"
+                <span
+                    class="vs-carbon-form-results__breakdown-cat"
+                >
+                    Food
+                </span>
+                <span
+                    class="vs-carbon-form-results__breakdown-percent"
+                >
+                    {{ foodPercent.toFixed(1) }}%
+                </span>
+            </div>
+        </VsCol>
+        <VsCol
+            cols="12"
+            md="6"
+        >
+            <div
+                class="vs-carbon-form-results__chart"
             >
-                <VsCol cols="12">
-                    <VsHeading
-                        level="6"
-                    >
-                        Tips
-                    </VsHeading>
-                </VsCol>
-                <VsCol cols="2">
-                    <VsIcon
-                        :name="foodTip.icon"
-                    />
-                </VsCol>
-                <VsCol cols="10">
-                    <p>{{ foodTip.text }}</p>
-                </VsCol>
-            </VsRow>
+                <PieChart
+                    :chart-data="chartData"
+                    :options="options"
+                />
+            </div>
+        </VsCol>
+        <VsCol
+            cols="12"
+            class="mt-8"
+        >
+            <VsCarbonFormTip
+                :all-tips="true"
+            />
         </VsCol>
     </VsRow>
 </template>
@@ -123,6 +143,7 @@ import { PieChart } from 'vue-chart-3';
 import { VsCol, VsRow } from '@components/elements/grid';
 import VsIcon from '@components/elements/icon';
 import VsImg from '@components/elements/img';
+import VsCarbonFormTip from './CarbonFormTip';
 
 /**
  * @displayName Carbon Form Results
@@ -137,6 +158,7 @@ export default {
         VsIcon,
         VsImg,
         PieChart,
+        VsCarbonFormTip,
     },
     props: {
         title: {
@@ -147,15 +169,15 @@ export default {
             type: String,
             default: '',
         },
-        comparisonTons: {
+        comparisonTonnes: {
             type: Number,
             default: 0.1,
         },
-        totalTons: {
+        totalTonnes: {
             type: Number,
             default: 0,
         },
-        foodTons: {
+        foodTonnes: {
             type: Number,
             default: 0,
         },
@@ -163,7 +185,7 @@ export default {
             type: Object,
             default: null,
         },
-        transportTons: {
+        transportTonnes: {
             type: Number,
             default: 0,
         },
@@ -171,26 +193,53 @@ export default {
             type: Object,
             default: null,
         },
+        accomodationTonnes: {
+            type: Number,
+            default: 0,
+        },
+        accomodationTip: {
+            type: Object,
+            default: null,
+        },
+        experiencesTonnes: {
+            type: Number,
+            default: 0,
+        },
+        experiencesTip: {
+            type: Object,
+            default: null,
+        },
     },
     computed: {
         chartData() {
             return {
-                labels: ['Transport', 'Food'],
+                labels: [
+                    'Transport',
+                    'Accomodation',
+                    'Experiences',
+                    'Food & Drink',
+                ],
                 datasets: [
                     {
                         data: [
-                            this.transportTons,
-                            this.foodTons,
+                            this.transportTonnes,
+                            this.accomodationTonnes,
+                            this.experiencesTonnes,
+                            this.foodTonnes,
                         ],
                         backgroundColor: [
-                            '#700E57',
-                            '#FCCA1B',
+                            '#EBBFDB',
+                            '#D373AF',
+                            '#BB2684',
+                            '#7A004D',
                         ],
-                        legend: {
-                            position: 'right',
-                        },
                     },
                 ],
+            };
+        },
+        options() {
+            return {
+                responsive: true,
                 plugins: {
                     legend: {
                         position: 'right',
@@ -199,9 +248,21 @@ export default {
             };
         },
         interpolComparison() {
-            const instances = (this.totalTons / this.comparisonTons).toFixed(3);
+            const instances = (this.totalTonnes / this.comparisonTonnes).toFixed(3);
 
             return this.comparison.replace('xxx', instances);
+        },
+        transportPercent() {
+            return (this.transportTonnes / this.totalTonnes) * 100;
+        },
+        accomodationPercent() {
+            return (this.accomodationTonnes / this.totalTonnes) * 100;
+        },
+        experiencesPercent() {
+            return (this.experiencesTonnes / this.totalTonnes) * 100;
+        },
+        foodPercent() {
+            return (this.foodTonnes / this.totalTonnes) * 100;
         },
     },
 };
@@ -230,5 +291,31 @@ export default {
 
     .vs-carbon-form-results__comparison {
         margin-bottom: $spacer-10;
+    }
+
+    .vs-carbon-form-results__chart {
+        margin-top: $spacer-8;
+
+        @include media-breakpoint-up(md) {
+            margin-top: $spacer-0;
+        }
+    }
+
+    .vs-carbon-form-results__breakdown {
+        padding: $spacer-2;
+
+        .vs-icon {
+            width: 10%;
+        }
+
+        .vs-carbon-form-results__breakdown-cat {
+            width: 40%;
+            display: inline-block;
+        }
+
+        .vs-carbon-form-results__breakdown-percent {
+            width: 40%;
+            display: inline-block;
+        }
     }
 </style>

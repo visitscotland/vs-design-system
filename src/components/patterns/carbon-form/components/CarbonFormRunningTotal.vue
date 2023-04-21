@@ -18,7 +18,7 @@
             >
                 <p>Your calculation so far:</p>
                 <p>
-                    <span class="font-weight-bold">{{ totalTons.toFixed(3) }}</span> Tonnes of C02
+                    <span class="font-weight-bold">{{ totalTonnes.toFixed(3) }}</span> Tonnes of C02
                 </p>
             </VsCol>
         </VsRow>
@@ -45,7 +45,7 @@ export default {
         VsIcon,
     },
     props: {
-        totalTons: {
+        totalTonnes: {
             type: Number,
             default: 0,
         },

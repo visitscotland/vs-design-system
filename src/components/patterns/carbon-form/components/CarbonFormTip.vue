@@ -8,13 +8,26 @@
         />
 
         <p
+            class="vs-carbon-form-tip__content"
+            v-if="allTips"
+        >
+            You can view all our sustainable travel tips
+            <VsLink href="#">
+                here
+            </VsLink>
+            . We've got you covered!
+        </p>
+
+        <p
             class="vs-carbon-form-tip__heading"
+            v-if="!allTips"
         >
             Top tip
         </p>
 
         <p
             class="vs-carbon-form-tip__content"
+            v-if="!allTips"
         >
             {{ tip }}
         </p>
@@ -23,6 +36,7 @@
 
 <script>
 import VsSvg from '@components/elements/svg';
+import VsLink from '@components/elements/link';
 
 /**
  * @displayName Carbon Form Tip
@@ -33,11 +47,16 @@ export default {
     release: '0.0.1',
     components: [
         VsSvg,
+        VsLink,
     ],
     props: {
         tip: {
             type: String,
             default: '',
+        },
+        allTips: {
+            type: Boolean,
+            default: false,
         },
     },
 };
@@ -46,7 +65,7 @@ export default {
 <style lang='scss'>
     .vs-carbon-form-tip {
         box-shadow: $shadow_popover;
-        padding: $spacer-4 $spacer-10;
+        padding: $spacer-8 $spacer-11;
     }
 
     .vs-carbon-form-tip__heading {
