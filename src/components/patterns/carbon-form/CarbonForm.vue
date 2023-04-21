@@ -1,7 +1,7 @@
 <template>
     <VsContainer
-        class="vs-carbon-form"
-        data-test="vs-carbon-form"
+        class="vs-carbon-calculator"
+        data-test="vs-carbon-calculator"
     >
         <VsRow
             class="vs-carbon-calculator__survey"
@@ -20,11 +20,23 @@
                         >
                             {{ getTranslatedContent('heading') }}
                         </legend>
+                        <p>
+                            {{ getTranslatedContent('intro') }}
+                        </p>
                         <p
+                            class="vs-carbon-calculator__progress-label"
                             v-if="currentQuestion"
                         >
-                            Step {{ currentQuestion ? currentQuestion.stage : 4 }} / 4
+                            {{ currentQuestion ? currentQuestion.stage : 4 }} of 4
                         </p>
+                        <BProgress
+                            max="4"
+                        >
+                            <BProgressBar
+                                :value="currentQuestion ? currentQuestion.stage - 1 : 4"
+                                :animated="true"
+                            />
+                        </BProgress>
                         <BFormGroup
                             v-for="(field, index) in formData.fields"
                             v-show="(index + 1) === activeQuestion"
@@ -41,36 +53,43 @@
                                         class="vs-carbon-calculator__question"
                                         :for="field.name"
                                     >
-                                        {{ getTranslatedLabel(field, index) }}
-                                        <BFormRadioGroup
-                                            :id="field.name"
+                                        <VsHeading
+                                            level="3"
                                         >
-                                            <BFormRadio
-                                                v-for="
-                                                    (option, optionIndex) in
-                                                        getTranslatedOptions(field.name, index)
-                                                "
-                                                :key="optionIndex"
-                                                :value="option.value"
-                                                :hint-text="getTranslatedHint(field.name, index)"
-                                                :name="field.name + option.value"
-                                                :id="field.name + option.value"
-                                                @change="updateFieldData({
-                                                    field: field.name,
-                                                    value: option.value,
-                                                })"
-                                                class="vs-carbon-calculator__radio"
-                                            >
-                                                <div class="vs-carbon-calculator__radio-icon">
-                                                    <VsIcon
-                                                        :name="option.icon"
-                                                        size="xl"
-                                                    />
-                                                </div>
-                                                {{ option.text }}
-                                            </BFormRadio>
-                                        </BFormRadioGroup>
+                                            {{ getTranslatedLabel(field, index) }}
+                                        </VsHeading>
                                     </label>
+                                    <p>
+                                        {{ getTranslatedExplanation(field, index) }}
+                                    </p>
+                                    <BFormRadioGroup
+                                        :id="field.name"
+                                    >
+                                        <BFormRadio
+                                            v-for="
+                                                (option, optionIndex) in
+                                                    getTranslatedOptions(field.name, index)
+                                            "
+                                            :key="optionIndex"
+                                            :value="option.value"
+                                            :hint-text="getTranslatedHint(field.name, index)"
+                                            :name="field.name + option.value"
+                                            :id="field.name + option.value"
+                                            @change="updateFieldData({
+                                                field: field.name,
+                                                value: option.value,
+                                            })"
+                                            class="vs-carbon-calculator__radio"
+                                        >
+                                            <div class="vs-carbon-calculator__radio-icon">
+                                                <VsIcon
+                                                    :name="option.icon"
+                                                    size="xl"
+                                                />
+                                            </div>
+                                            {{ option.text }}
+                                        </BFormRadio>
+                                    </BFormRadioGroup>
                                 </template>
                             </div>
                         </BFormGroup>
@@ -146,6 +165,8 @@ import {
     BFormGroup,
     BFormRadioGroup,
     BFormRadio,
+    BProgress,
+    BProgressBar,
 } from 'bootstrap-vue';
 import {
     VsContainer, VsCol, VsRow,
@@ -167,6 +188,8 @@ export default {
         BFormGroup,
         BFormRadioGroup,
         BFormRadio,
+        BProgress,
+        BProgressBar,
         VsButton,
         VsContainer,
         VsCol,
@@ -321,6 +344,29 @@ export default {
             }
 
             return labelText;
+        },
+        /**
+         * get translated explanation if available
+         */
+        getTranslatedExplanation(fieldName, index) {
+            const languageObj = this.getLanguageObj();
+            let explanationText = '';
+
+            if (this.language !== 'en'
+                && !this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined(languageObj[fieldName].explanation)
+            ) {
+                explanationText = languageObj[fieldName].explanation;
+            } else {
+                explanationText = this.formData.fields[index].explanation;
+            }
+
+            if (this.showOptionalText(this.formData.fields[index])
+                && !this.isUndefined(this.getMessagingData('optional', this.language))) {
+                explanationText = `${explanationText} (${this.getMessagingData('optional', this.language)})`;
+            }
+
+            return explanationText;
         },
         /**
          * get translated label if available
@@ -743,6 +789,7 @@ export default {
 
     .vs-carbon-calculator__radio {
         display: inline-block;
+        vertical-align: top;
         width: 50%;
         text-align: center;
         padding: $spacer-4 $spacer-2;
@@ -794,6 +841,29 @@ export default {
     @include media-breakpoint-up(lg) {
         .vs-carbon-calculator__radio {
             width: 25%;
+        }
+    }
+
+    .vs-carbon-calculator {
+        .vs-carbon-calculator__progress-label {
+            margin-bottom: $spacer-2;
+            text-align: right;
+            font-size: $font-size-2;
+            color: $color-gray-tint-3;
+        }
+
+        .progress {
+            width: 100%;
+            margin: $spacer-2 $spacer-0 $spacer-4;
+            background: $color-gray-tint-7;
+            border-radius: $spacer-2;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: $spacer-4;
+            background-color: $color-theme-secondary-teal;
+            transition: width ease-out .5s;
         }
     }
 
