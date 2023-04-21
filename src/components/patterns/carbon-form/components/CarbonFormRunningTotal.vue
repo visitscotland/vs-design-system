@@ -38,12 +38,12 @@ export default {
     name: 'CarbonFormTip',
     status: 'prototype',
     release: '0.0.1',
-    components: [
+    components: {
         VsContainer,
         VsCol,
         VsRow,
         VsIcon,
-    ],
+    },
     props: {
         totalTons: {
             type: Number,

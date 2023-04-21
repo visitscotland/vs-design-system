@@ -4,23 +4,47 @@
             <VsHeading
                 level="2"
             >
-                Results
+                {{ title }}
             </VsHeading>
         </VsCol>
         <VsCol
             cols="12"
-            lg="6"
         >
-            <VsHeading
-                level="3"
-                override-style-level="1"
+            <VsRow
+                class="vs-carbon-form-results__headline"
             >
-                Total tons: {{ totalTons.toFixed(3) }}
-            </VsHeading>
+                <VsCol
+                    cols="6"
+                >
+                    <p>
+                        <span class="vs-carbon-form-results__total">
+                            {{ totalTons.toFixed(3) }}
+                        </span>
+                        Tonnes CO2
+                    </p>
+                </VsCol>
+                <VsCol
+                    cols="6"
+                    class="vs-carbon-form-results__comp-img"
+                >
+                    <VsImg
+                        src="https://placehold.co/150x150"
+                    />
+                </VsCol>
+            </VsRow>
         </VsCol>
         <VsCol
             cols="12"
-            lg="6"
+            class="vs-carbon-form-results__comparison"
+        >
+            <!-- eslint-disable -->
+            <div
+                v-html="interpolComparison"
+            />
+            <!-- eslint-enable -->
+        </VsCol>
+        <VsCol
+            cols="12"
         >
             <div
                 class="vs-carbon-calculator__chart"
@@ -30,10 +54,7 @@
                 />
             </div>
         </VsCol>
-        <hr>
-        <VsCol
-            cols="6"
-        >
+        <VsCol>
             <VsHeading
                 level="5"
             >
@@ -63,9 +84,7 @@
                 </VsCol>
             </VsRow>
         </VsCol>
-        <VsCol
-            cols="6"
-        >
+        <VsCol>
             <VsHeading
                 level="5"
             >
@@ -103,6 +122,7 @@ import { PieChart } from 'vue-chart-3';
 
 import { VsCol, VsRow } from '@components/elements/grid';
 import VsIcon from '@components/elements/icon';
+import VsImg from '@components/elements/img';
 
 /**
  * @displayName Carbon Form Results
@@ -115,9 +135,22 @@ export default {
         VsCol,
         VsRow,
         VsIcon,
+        VsImg,
         PieChart,
     },
     props: {
+        title: {
+            type: String,
+            default: '',
+        },
+        comparison: {
+            type: String,
+            default: '',
+        },
+        comparisonTons: {
+            type: Number,
+            default: 0.1,
+        },
         totalTons: {
             type: Number,
             default: 0,
@@ -165,6 +198,37 @@ export default {
                 },
             };
         },
+        interpolComparison() {
+            const instances = (this.totalTons / this.comparisonTons).toFixed(3);
+
+            return this.comparison.replace('xxx', instances);
+        },
     },
 };
 </script>
+
+<style lang='scss'>
+    .vs-carbon-form-results__headline {
+        text-align: center;
+        margin-bottom: $spacer-10;
+    }
+
+    .vs-carbon-form-results__total {
+        display: block;
+        font-size: 80px;
+        font-weight: $font-weight-bold;
+    }
+
+    .vs-carbon-form-results__comp-img {
+        display: flex;
+        justify-content: center;
+
+        .vs-img {
+            height: 8rem;
+        }
+    }
+
+    .vs-carbon-form-results__comparison {
+        margin-bottom: $spacer-10;
+    }
+</style>

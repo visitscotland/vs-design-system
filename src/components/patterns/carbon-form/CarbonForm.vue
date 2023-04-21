@@ -7,9 +7,7 @@
             class="vs-carbon-calculator__survey"
             v-if="formData && formData.fields"
         >
-            <VsCol
-                v-show="activeQuestion <= formData.fields.length"
-            >
+            <VsCol>
                 <form
                     @submit.prevent="preSubmit"
                 >
@@ -37,62 +35,73 @@
                                 :animated="true"
                             />
                         </BProgress>
-                        <BFormGroup
-                            v-for="(field, index) in formData.fields"
-                            v-show="(index + 1) === activeQuestion"
-                            :key="field.name"
-                            :label="needsLabel(field) ? getTranslatedLabel(field.name, index) : ''"
-                            :label-for="needsLabel(field) ? field.name : ''"
-                            :class="conditionalElementClass(field.name)"
+
+                        <div
+                            v-show="activeQuestion <= formData.fields.length"
                         >
-                            <div
+                            <BFormGroup
+                                v-for="(field, index) in formData.fields"
+                                v-show="(index + 1) === activeQuestion"
+                                :key="field.name"
+                                :label="
+                                    needsLabel(field) ?
+                                        getTranslatedLabel(field.name, index)
+                                        : ''
+                                "
+                                :label-for="needsLabel(field) ? field.name : ''"
                                 :class="conditionalElementClass(field.name)"
                             >
-                                <template v-if="field.element === 'radio'">
-                                    <label
-                                        class="vs-carbon-calculator__question"
-                                        :for="field.name"
-                                    >
+                                <div
+                                    :class="conditionalElementClass(field.name)"
+                                >
+                                    <template v-if="field.element === 'radio'">
                                         <VsHeading
                                             level="3"
                                         >
-                                            {{ getTranslatedLabel(field, index) }}
+                                            {{ currentCategoryName }}
                                         </VsHeading>
-                                    </label>
-                                    <p>
-                                        {{ getTranslatedExplanation(field, index) }}
-                                    </p>
-                                    <BFormRadioGroup
-                                        :id="field.name"
-                                    >
-                                        <BFormRadio
-                                            v-for="
-                                                (option, optionIndex) in
-                                                    getTranslatedOptions(field.name, index)
-                                            "
-                                            :key="optionIndex"
-                                            :value="option.value"
-                                            :hint-text="getTranslatedHint(field.name, index)"
-                                            :name="field.name + option.value"
-                                            :id="field.name + option.value"
-                                            @change="updateFieldData({
-                                                field: field.name,
-                                                value: option.value,
-                                            })"
-                                            class="vs-carbon-calculator__radio"
+
+                                        <!-- eslint-disable -->
+                                        <label
+                                            class="vs-carbon-calculator__question"
+                                            :for="field.name"
                                         >
-                                            <div class="vs-carbon-calculator__radio-icon">
-                                                <VsIcon
-                                                    :name="option.icon"
-                                                    size="xl"
-                                                />
-                                            </div>
-                                            {{ option.text }}
-                                        </BFormRadio>
-                                    </BFormRadioGroup>
-                                </template>
-                            </div>
-                        </BFormGroup>
+                                            {{ getTranslatedLabel(field, index) }}
+                                        </label>
+                                        <!-- eslint-enable -->
+
+                                        <BFormRadioGroup
+                                            :id="field.name"
+                                        >
+                                            <BFormRadio
+                                                v-for="
+                                                    (option, optionIndex) in
+                                                        getTranslatedOptions(field.name, index)
+                                                "
+                                                :key="optionIndex"
+                                                :value="option.value"
+                                                :hint-text="getTranslatedHint(field.name, index)"
+                                                :name="field.name + option.value"
+                                                :id="field.name + option.value"
+                                                @change="updateFieldData({
+                                                    field: field.name,
+                                                    value: option.value,
+                                                })"
+                                                class="vs-carbon-calculator__radio"
+                                            >
+                                                <div class="vs-carbon-calculator__radio-icon">
+                                                    <VsIcon
+                                                        :name="option.icon"
+                                                        size="xl"
+                                                    />
+                                                </div>
+                                                {{ option.text }}
+                                            </BFormRadio>
+                                        </BFormRadioGroup>
+                                    </template>
+                                </div>
+                            </BFormGroup>
+                        </div>
                     </fieldset>
                 </form>
                 <VsCarbonFormTip
@@ -109,6 +118,7 @@
                 />
                 <VsCarbonFormResults
                     v-if="activeQuestion > formData.fields.length"
+                    :title="currentCategoryName"
                     :total-tons="totalTons"
                     :transport-tons="transportTons"
                     :food-tons="foodTons"
@@ -168,9 +178,9 @@ import {
     VsContainer, VsCol, VsRow,
 } from '@components/elements/grid';
 import VsButton from '../../elements/button/Button';
-import VsCarbonFormResults from './CarbonFormResults';
-import VsCarbonFormTip from './CarbonFormTip';
-import VsCarbonFormRunningTotal from './CarbonFormRunningTotal';
+import VsCarbonFormResults from './components/CarbonFormResults';
+import VsCarbonFormTip from './components/CarbonFormTip';
+import VsCarbonFormRunningTotal from './components/CarbonFormRunningTotal';
 
 const axios = require('axios');
 
@@ -299,6 +309,31 @@ export default {
             }
 
             return tip;
+        },
+        currentCategoryName() {
+            let name = 'Results';
+
+            if (this.formData.fields[this.activeQuestion - 1]) {
+                switch (this.formData.fields[this.activeQuestion - 1].category) {
+                case ('transport'):
+                    name = 'Transport';
+                    break;
+                case ('accomodation'):
+                    name = 'Accomodation';
+                    break;
+                case ('experiences'):
+                    name = 'Experiences';
+                    break;
+                case ('food'):
+                    name = 'Food and Drink';
+                    break;
+                default:
+                    name = null;
+                    break;
+                }
+            }
+
+            return name;
         },
     },
     created() {

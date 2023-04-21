@@ -1,4 +1,14 @@
-### Default
+```jsx
+    <VsCarbonFormResults
+        title="results"
+        :totalTons="0.019"
+        :transportTons="0.014"
+        :foodTons="0.005"
+        comparison="<p>That's the equivalent of xxx journeys!</p>"
+        :comparisonTons="0.01"
+    >
+    </VsCarbonFormResults>
+```
 
 ```jsx
     <VsCarbonForm
