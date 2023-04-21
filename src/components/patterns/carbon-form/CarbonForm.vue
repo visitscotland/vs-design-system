@@ -95,6 +95,10 @@
                         </BFormGroup>
                     </fieldset>
                 </form>
+                <VsCarbonFormTip
+                    v-if="currentTip"
+                    :tip="currentTip.text"
+                />
             </VsCol>
             <VsCol
                 v-show="activeQuestion > formData.fields.length"
@@ -173,6 +177,7 @@ import {
 } from '@components/elements/grid';
 import VsButton from '../../elements/button/Button';
 import VsCarbonFormResults from './CarbonFormResults';
+import VsCarbonFormTip from './CarbonFormTip';
 
 const axios = require('axios');
 
@@ -195,6 +200,7 @@ export default {
         VsCol,
         VsRow,
         VsCarbonFormResults,
+        VsCarbonFormTip,
     },
     props: {
         /**
@@ -249,8 +255,12 @@ export default {
             totalTons: 0,
             transportTons: 0,
             foodTons: 0,
+            accomodationTons: 0,
+            experiencesTons: 0,
             transportTip: null,
             foodTip: null,
+            accomodationTip: null,
+            experiencesTip: null,
             activeQuestion: 1,
             answerSet: false,
         };
@@ -270,6 +280,29 @@ export default {
             }
 
             return this.formData.fields[this.activeQuestion - 1];
+        },
+        currentTip() {
+            let tip;
+
+            switch (this.formData.fields[this.activeQuestion - 1].category) {
+            case ('transport'):
+                tip = this.transportTip;
+                break;
+            case ('accomodation'):
+                tip = this.accomodationTip;
+                break;
+            case ('experiences'):
+                tip = this.experiencesTip;
+                break;
+            case ('food'):
+                tip = this.foodTip;
+                break;
+            default:
+                tip = null;
+                break;
+            }
+
+            return tip;
         },
     },
     created() {
