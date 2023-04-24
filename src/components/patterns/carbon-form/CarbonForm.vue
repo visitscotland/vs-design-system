@@ -137,6 +137,9 @@
                     class="vs-form__submit mt-9 float-left"
                     v-if="activeQuestion > 1"
                     @click.native="backwardPage()"
+                    icon="chevron-down"
+                    icon-position="left"
+                    icon-orientation="right"
                 >
                     Previous
                 </VsButton>
@@ -148,6 +151,9 @@
                     v-if="activeQuestion < formData.fields.length"
                     :disabled="!answerSet"
                     @click.native="forwardPage()"
+                    icon="chevron-down"
+                    icon-position="right"
+                    icon-orientation="left"
                 >
                     Next
                 </VsButton>
@@ -159,6 +165,9 @@
                     v-if="activeQuestion === formData.fields.length"
                     :disabled="!answerSet"
                     @click.native="forwardPage()"
+                    icon="chevron-down"
+                    icon-position="right"
+                    icon-orientation="left"
                 >
                     Results
                 </VsButton>
