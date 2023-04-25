@@ -1,0 +1,68 @@
+{
+    "en": {
+        "submit": "submit",
+        "validation": {
+            "required": "This field is required",
+            "email": "Enter an email address in the correct format, like name@example.com",
+            "postcode": "Enter a valid postcode",
+            "noInvalid": "This value is not valid"
+        },
+        "optional": "optional",
+        "recaptchaError": "Please complete the recaptcha"
+    },
+    "it": {
+        "submit": "invia",
+        "validation": {
+            "required": "Questo campo è obbligatorio",
+            "email": "Inserire un indirizzo email in formato corretto, come nome@esempio.com.",
+            "postcode": "Inserire un codice postale valido",
+            "noInvalid": "Questo valore non è valido"
+        },
+        "optional": "opzionale",
+        "recaptchaError": "Compilare il recaptcha"
+    },
+    "nl": {
+        "submit": "submit",
+        "validation": {
+            "required": "Dit veld is verplicht",
+            "email": "Voer een e-mailadres op de juiste manier in, bijv. naam@voorbeeld.com",
+            "postcode": "Voer een geldige postcode in",
+            "noInvalid": "Deze waarde is niet geldig"
+        },
+        "optional": "optioneel",
+        "recaptchaError": "Voltooi de reCAPTCHA"
+    },
+    "de": {
+        "submit": "absenden",
+        "validation": {
+            "required": "Dieses Feld ist erforderlich",
+            "email": "Geben Sie eine E-Mail-Adresse im richtigen Format an, zum Beispiel name@beispiel.de.",
+            "postcode": "Geben Sie eine gültige Postleitzahl ein",
+            "noInvalid": "Diese Eingabe ist ungültig"
+        },
+        "optional": "optional",
+        "recaptchaError": "Bitte vervollständigen Sie das reCaptcha"
+    },
+    "es": {
+        "submit": "enviar",
+        "validation": {
+            "required": "Este campo es obligatorio",
+            "email": "Ingresa una dirección de correo electrónico en el formato correcto, como nombre@ejemplo.com.",
+            "postcode": "Introduce un código postal válido",
+            "noInvalid": "Este valor no es válido"
+        },
+        "optional": "opcional",
+        "recaptchaError": "Por favor complete el recaptcha"
+    },
+    "fr": {
+        "submit": "soumettre",
+        "validation": {
+            "required": "Ce champ est obligatoire",
+            "email": "Entrez une adresse e-mail dans un format valide, par exemple nom@exemple.com.",
+            "postcode": "Entrez un code postal valide",
+            "noInvalid": "Cette valeur est invalide"
+        },
+        "optional": "facultatif",
+        "recaptchaError": "Veuillez compléter le recaptcha"
+    }
+}

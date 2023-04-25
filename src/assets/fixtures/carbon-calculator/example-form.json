@@ -1,10 +1,13 @@
 {
     "content": {
         "heading": "Carbon Calculator",
+        "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse gravida felis erat, suscipit condimentum eros mollis nec. Cras molestie dolor nunc, vitae tincidunt libero lobortis quis. Morbi at ligula sollicitudin, gravida ligula eget, viverra lorem.",
         "successHeading": "Success",
         "successContent": "Success Content",
         "noJs": "NOJS",
-        "submit": "Calculate"
+        "submit": "Calculate",
+        "comparisonTonnes": 0.00929,
+        "comparison": "<p>That's the equivalent to travelling the West Highland line over the Glenfinnan Viaduct (like Harry Potter!) xxx times.</p><p>The West Highland Line runs from Glasgow to Mallaig for 162 miles. Each journey uses 9.29kg of CO2 per person.</p>"
     },
     "fields": [
         {
@@ -19,6 +22,7 @@
                 { "text": "Train", "value": "train", "icon": "train" }
             ],
             "label": "How are you travelling to Scotland?",
+            "explanation": "Duis ac facilisis orci. In lorem leo, euismod rhoncus imperdiet eget, tristique nec libero. In dapibus vitae dui nec blandit. Duis sed ultricies ligula.",
             "validation": {
                 "required": true
             },
@@ -27,7 +31,7 @@
             },
             "tips": {
                 "plane": {
-                    "text": "If you're travelling from within the UK, travelling by train instead of flying could save up to x tons of emissions per 100 miles!",
+                    "text": "If you're travelling from within the UK, travelling by train instead of flying could save up to x tonnes of emissions per 100 miles!",
                     "icon": "train"
                 }
             },
@@ -100,7 +104,7 @@
                 }
             },
             "category": "food",
-            "stage": 2
+            "stage": 4
         }
     ],
     "de": {
