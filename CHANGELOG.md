@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.8](https://github.com/visitscotland/design-system/compare/v1.0.7...v1.0.8) (2023-05-11)
+
+
+### ✨ Features
+
+* **blog:** adds new blog details component ([b117aae](https://github.com/visitscotland/design-system/commit/b117aae73dfb440e7f57eb2eecdd01416eccb487))
+
+
+### 🎨 Styling
+
+* **blogdetails:** updating divider padding ([0f8ec1c](https://github.com/visitscotland/design-system/commit/0f8ec1c8b8767f4e7830031bc65806b3f7a97347))
+
 ### [1.0.7](https://github.com/visitscotland/design-system/compare/v1.0.6...v1.0.7) (2023-04-13)
 
 
