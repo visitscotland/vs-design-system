@@ -46,6 +46,8 @@
                             <!-- @slot Intro section heading -->
                             <slot name="vsIntroHeading" />
                         </VsHeading>
+                        <!-- @slot Section for blog data -->
+                        <slot name="vsBlogData" />
                     </VsCol>
                 </VsRow>
                 <VsRow>
@@ -407,6 +409,14 @@ const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-iti
     </template>
     <template slot="vsIntroHeading">
         {{itineraries.sampleItinerary.h1Heading}}
+    </template>
+
+    <template slot="vsBlogData">
+        <VsBlogDetails
+            blog-author="Maria Garcia Tena"
+            blog-publish-date="May 10, 2023"
+            blog-read-time="Reading time: 2 minutes"
+        />
     </template>
 
     <template slot="vsIntroContent">
