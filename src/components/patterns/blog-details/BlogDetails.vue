@@ -4,7 +4,7 @@
         data-test="vs-blog-details"
     >
         <span class="vs-blog-details__author">
-            {{ blogAuthor }} &nbsp;&nbsp;·&nbsp;&nbsp;
+            {{ blogAuthor }} <span class="vs-blog-details__divider">·</span>
             <span class="vs-blog-details__date">
                 {{ blogPublishDate }}
             </span>
@@ -68,6 +68,10 @@ export default {
         display: block;
         margin-bottom: $spacer-6;
         color: $color-gray-shade-1;
+    }
+
+    &__divider{
+        padding: 0 $spacer-2;
     }
 }
 </style>
