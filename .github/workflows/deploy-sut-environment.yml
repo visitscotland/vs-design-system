@@ -4,6 +4,7 @@ name: Create SUT Environment
 # It uses an AWS S3 bucket to host the static files
 
 on:
+  push:
   pull_request:
     types:
       - opened
