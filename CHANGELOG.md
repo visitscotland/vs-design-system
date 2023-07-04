@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.9](https://github.com/visitscotland/vs-design-system/compare/v1.0.8...v1.0.9) (2023-07-04)
+
+
+### 🐛 Bug Fixes
+
+* **lazyhydration:** set non-focus event for hydration on non-safari ([950465e](https://github.com/visitscotland/vs-design-system/commit/950465e8d8b495d16d53225b4be59de51b08b735))
+
 ### [1.0.8](https://github.com/visitscotland/design-system/compare/v1.0.7...v1.0.8) (2023-05-11)
 
 
