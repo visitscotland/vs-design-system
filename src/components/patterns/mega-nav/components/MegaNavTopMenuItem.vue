@@ -4,7 +4,7 @@
         data-test="vs-mega-nav-top-menu-item"
         ref="menuToggle"
     >
-        <LazyHydrate on-interaction>
+        <LazyHydrate :on-interaction="['focus', 'click']">
             <VsMegaNavDropdown
                 menu-toggle-alt-text="Toggle Menu"
             >
