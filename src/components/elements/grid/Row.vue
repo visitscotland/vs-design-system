@@ -1,13 +1,14 @@
 <template>
-    <BRow v-bind="$attrs">
+    <div
+        class="row"
+        v-bind="$attrs"
+    >
         <!-- @slot Default slot for row content -->
         <slot />
-    </BRow>
+    </div>
 </template>
 
 <script>
-import { BRow } from 'bootstrap-vue';
-
 /**
  * Rows are used to wrap column elements to ensure consistent alignment.
  *
@@ -18,9 +19,6 @@ export default {
     name: 'VsRow',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        BRow,
-    },
 };
 </script>
 
